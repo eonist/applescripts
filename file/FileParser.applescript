@@ -76,7 +76,7 @@ on folder_names(the_folder)
 		return name of folders of folder (the_folder)
 	end tell
 end folder_names
---
+--Todo: does this method return file names and folder names
 on file_names(the_folder)
 	tell application "Finder"
 		return name of files of folder (the_folder)
