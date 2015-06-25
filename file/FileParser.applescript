@@ -3,17 +3,18 @@
 property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
 
-
 --Only works if the file actually exists akak an alias
 --Reads the actual file
 on read_URL(file_URL)
 	return (read POSIX file file_URL)
 end read_URL
---
+--returns the POSIX path from a file path
+--Todo write an example
 on posix_path(the_path)
 	return POSIX path of the_path
 end posix_path
---
+--returns the file url from a file path
+--Todo: write an example
 on file_URL(file_path)
 	--log "fileURL() filePath: " & filePath
 	tell application "System Events"
