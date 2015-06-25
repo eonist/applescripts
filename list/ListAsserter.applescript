@@ -7,7 +7,7 @@ end equals_to
 on contains_List(a, b)
 	a contains b
 end contains_List
-Add thes to this class:
+--Add these to this class:
 -- add {1, 2, 3, 4} starts with {1}
 -- add {1, 2, 3, 4} ends with {3, 4}
 -- add {1, 2} is in {1, 2, 3}--true
