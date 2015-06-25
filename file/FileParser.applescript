@@ -31,7 +31,7 @@ end file_path
 on file_name_by_url(file_URL)
 	return file_name(file_path(file_URL))
 end file_name_by_url
---
+--returns the implicit path from a HSF file path
 on implicit_file_URL(HFS_path)
 	set posix_path to POSIX path of HFS_path
 	set implicit_file_URL to "file://" & posix_path
@@ -49,7 +49,7 @@ on file_kind(file_path)
 		return kind of file_path
 	end tell
 end file_kind
---
+--returns the file kind from a file_URL
 on file_kind_by_URL(file_URL)
 	return file_kind(file_path(file_URL))
 end file_kind_by_URL
@@ -65,7 +65,7 @@ end file_properties
 on file_info(the_file)
 	info for the_file
 end file_info
---
+--returns the file extension of the file, i.e: .zip
 on file_extension(the_file)
 	return name extension of (info for the_file)
 end file_extension
@@ -82,13 +82,16 @@ on file_names(the_folder)
 		return name of files of folder (the_folder)
 	end tell
 end file_names
---
+--returns the file name from the file path
+--Todo: does it include the file extension?
 on file_name(the_file_path)
 	tell application "Finder"
 		return name of the_file_path
 	end tell
 end file_name
---
+--returns all file names of all files in a folder
+--Todo: does this return folder names aswell?
+--Todo: create a method for single files that trims away the extension and loop this method instead
 on file_names_sans_ext(the_folder)
 	set temp_names to file_names(the_folder)
 	set names to {}
