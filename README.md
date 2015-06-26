@@ -1,3 +1,3 @@
-# applescript
+# applescript's
 
 Custom applescript libraries
