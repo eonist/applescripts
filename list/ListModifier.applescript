@@ -6,7 +6,7 @@ on remove_range(the_list, from_index, to_index)
 	set second_part to (items to_index thru (length of the_list) of the_list)
 	return first_part & second_part
 end remove_range
---Removes an item form theArray at the_index
+--Removes an item from the Array at the_index
 --Note does not modifies the original array
 --TODO could we redesign this method to actually remove the item on the array, or maybe applescript cant do this? you can replace directly, but maybe not delete directly?
 on remove_at(the_list, the_index)
@@ -46,7 +46,7 @@ on replace_many(the_list, the_matches, the_replacments)
 	end repeat
 	return the_list
 end replace_many
---
+--swaps an item a in the list with item b
 on swap(the_list, a, b)
 	set a_index to ListParser's index_of(the_list, a)
 	set b_index to ListParser's index_of(the_list, b)
@@ -69,7 +69,10 @@ on remove_many(the_Array, the_items)
 	end repeat
 	return the_Array
 end remove_many
---
+--Returns a list that consits of list a and list b
+--Todo: what happens to the two list after the combination has talen place?
+--Todo: is there an extra seperator at the end? Or is this taken care of?
+--Note: the seperator can be a comma or any other sign
 on combine(list_a, list_b, seperator)
 	set ret_val to {} --establish the return value
 	repeat with i from 1 to (length of list_a)
