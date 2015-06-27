@@ -1,4 +1,4 @@
---
+--Logs all items in a list
 on log_items(the_list)
 	repeat with i from 1 to (length of the_list)
 		set theItem to item i of the_list
@@ -6,6 +6,7 @@ on log_items(the_list)
 	end repeat
 end log_items
 --TODO add support for returning a value when there is no index, maybe 0 maybe -1 maybe even null
+--Returns the index of an item in a list
 on index_of(array, theItem)
 	repeat with i from 1 to (length of array)
 		if theItem = (item i of array) then
@@ -14,7 +15,7 @@ on index_of(array, theItem)
 	end repeat
 	return null
 end index_of
---
+--Returns the indices of multiple items ina list
 on indices(the_list, the_items)
 	set the_indices to {}
 	repeat with i from 1 to (length of the_items)
@@ -24,12 +25,14 @@ on indices(the_list, the_items)
 	end repeat
 	return the_indices
 end indices
---Clones an array
-on clone(array)
-	return every item of array
+--Clones a list
+on clone(the_list)
+	return every item of the_list
 end clone
 --TODO possibly rename to "all()"
 --Retuns an array of items at specific indices {blue,red,pink},{1,2} returns red and pink etc
+--@indices: a list comprised of integeres
+--@the_list: an array of items
 on items_at(the_list, indices)
 	set the_items to {}
 	repeat with i from 1 to (length of indices)
