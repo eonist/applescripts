@@ -15,7 +15,7 @@ on index_of(array, theItem)
 	end repeat
 	return null
 end index_of
---Returns the indices of multiple items ina list
+--Returns the indices of multiple items in a list
 on indices(the_list, the_items)
 	set the_indices to {}
 	repeat with i from 1 to (length of the_items)
