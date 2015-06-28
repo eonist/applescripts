@@ -22,12 +22,12 @@ on condition_procedure(conditions, alteration)
 	end repeat
 	return condition_text
 end condition_procedure
---caps items that are longer than cap_len and adds  "..."  to the end of the capped text
+--caps items that are longer than cap_len and adds 3 punctuation characters "..."  to the end of the capped text
 on cap_row_values(the_text, cap_len)
 	log "cap_row_values()"
 	return cap_values(paragraphs of the_text, cap_len)
 end cap_row_values
---
+--Caps values that are longer then the alpwed length specified in the @param cap_len
 on cap_values(the_list, cap_len)
 	log "cap_values ()"
 	set return_text to ""
