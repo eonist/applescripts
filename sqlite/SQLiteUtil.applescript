@@ -50,7 +50,7 @@ on cap_values(the_list, cap_len)
 	end repeat
 	return return_text
 end cap_values
---
+--TODO: could we use an utility method named cap_text inside the loop?
 on cap_items(the_list, cap_len)
 	set return_text to ""
 	repeat with i from 1 to (length of the_list)
