@@ -6,9 +6,11 @@ on remove_range(the_list, from_index, to_index)
 	set second_part to (items to_index thru (length of the_list) of the_list)
 	return first_part & second_part
 end remove_range
---Removes an item from the Array at the_index
---Note does not modifies the original array
---TODO could we redesign this method to actually remove the item on the array, or maybe applescript cant do this? you can replace directly, but maybe not delete directly?
+(* 
+ * Removes an item from the Array at the_index
+ * Note: does not modifies the original array
+ * TODO: could we redesign this method to actually remove the item on the array, or maybe applescript cant do this? you can replace directly, but maybe not delete directly?
+ *)
 on remove_at(the_list, the_index)
 	if the_index = 1 then
 		set new_list to rest of the_list
@@ -19,8 +21,9 @@ on remove_at(the_list, the_index)
 	end if
 	return new_list
 end remove_at
---Note if the index is 2 it adds the item just infront of the second item
---BETA
+(*
+ * Note if the index is 2 it adds the item just infront of the second item
+ *)
 on add_at(the_list, the_item, the_index)
 	if the_index = 1 then
 		set beginning of the_list to the_item

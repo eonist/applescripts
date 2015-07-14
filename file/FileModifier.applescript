@@ -26,3 +26,4 @@ on delete_file(file_path)
 		delete file file_path
 	end tell
 end delete_file
+
