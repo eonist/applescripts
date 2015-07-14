@@ -1,5 +1,7 @@
---Returns the value of xmlItem (XML item)
---remeber to cast the returned value to the excpected type (i.e: as string)
+(*
+ * Returns the value of xmlItem (XML item)
+ * remeber to cast the returned value to the excpected type (i.e: as string)
+ *)
 on xml_value(xml_item)
 	tell application "System Events"
 		return value of xml_item
