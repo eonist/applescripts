@@ -1,10 +1,14 @@
---Returns "desktop/image.jpg" from desktop:image.jpg
---HFS path is folder:folder and POSIX (unix) paths are folder/folder
+(*
+ * Returns "desktop/image.jpg" from desktop:image.jpg
+ * HFS path is folder:folder and POSIX (unix) paths are folder/folder
+ *)
 property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
 
---Only works if the file actually exists akak an alias
---Reads the actual file
+(* 
+ * Only works if the file actually exists akak an alias
+ * Reads the actual file
+ *)
 on read_URL(file_URL)
 	return (read POSIX file file_URL)
 end read_URL

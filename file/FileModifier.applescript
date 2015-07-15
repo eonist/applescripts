@@ -1,6 +1,8 @@
---writes data to target_file (appends if append_data is true)
---if the target_file doesnt exisist it is created
---target_file needs to be in this url format: "Macintosh HD:Users:Jorgensen:Desktop:del.txt"
+(* 
+ * writes data to target_file (appends if append_data is true)
+ * if the target_file doesnt exisist it is created
+ * target_file needs to be in this url format: "Macintosh HD:Users:Jorgensen:Desktop:del.txt"
+ *)
 on write_data(this_data, target_file, append_data) -- (string, file path as string, boolean)
 	--log "writeData"
 	try
