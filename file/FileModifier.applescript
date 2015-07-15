@@ -22,7 +22,9 @@ on write_data(this_data, target_file, append_data) -- (string, file path as stri
 		return false
 	end try
 end write_data
---deletesnthe file at the file_path
+(*
+ * deletes the file at the file_path
+ *)
 on delete_file(file_path)
 	tell application "Finder"
 		delete file file_path
