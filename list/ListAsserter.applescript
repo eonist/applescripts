@@ -1,9 +1,13 @@
---Note: to log the return value you must create an if statment that asserts the boolean value returned, short hand if statment should work
+(*
+ * Note: to log the return value you must create an if statment that asserts the boolean value returned, short hand if statment should work
+ *)
 on equals_to(a, b)
 	return a = b
 end equals_to
---{1,2,3,4} contains 3--true
---Note: to log the return value you must create an if statment that asserts the boolean value returned, short hand if statment should work
+(*
+ * {1,2,3,4} contains 3--true
+ * Note: to log the return value you must create an if statment that asserts the boolean value returned, short hand if statment should work
+ *)
 on contains_List(a, b)
 	a contains b
 end contains_List
