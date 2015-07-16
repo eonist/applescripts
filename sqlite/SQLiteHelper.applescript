@@ -8,7 +8,9 @@ property FileModifier : my ScriptLoader's load_script(alias ((path to scripts fo
 property FileParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "file:FileParser.applescript"))
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
 
---Promts a file browser
+(*
+ * Promts a file browser
+ *)
 on choose_database_file()
 	set file_path to alias choose file with prompt "Pick a .db file" of type {"DB"}
 	log ("file_path: " & file_path)
@@ -16,9 +18,11 @@ on choose_database_file()
 	log ("the_file_path: " & the_file_path)
 	return the_file_path
 end choose_database_file
---Promts a file browser
---TODO explain better
---a problem here if the user cancels, you can solve this by doing try , on error, end try... google it
+(*
+ * Promts a file browser
+ * TODO explain better
+ * a problem here if the user cancels, you can solve this by doing try , on error, end try... google it
+ *)
 on choose_file(title)
 	log "choose_file()"
 	set file_path to alias choose file with prompt title
@@ -27,8 +31,10 @@ on choose_file(title)
 	log ("file_URL: " & file_URL)
 	return file_URL
 end choose_file
---Promts a file browser
---TODO explain better
+(*
+ * Promts a file browser
+ * TODO: explain better
+ *)
 on choose_file_name(title, file_name)
 	log "choose_file_name()"
 	set default_desktop_folder to (path to desktop folder as text) --set filePath to alias choose file with prompt "Pick a .db file" of type {"DB"}
@@ -36,14 +42,18 @@ on choose_file_name(title, file_name)
 	log "filePath: " & file_path
 	return file_path
 end choose_file_name
---TODO explain better
---promts a save file dialog, choose a desired file name and export the file
+(*
+ * TODO: explain better
+ * promts a save file dialog, choose a desired file name and export the file
+ *)
 on export_data(export_data)
 	set file_path to my Helper's choose_file_name("Export data to file: ", "untitled.txt") --choose the path and file name
 	FileModifier's write_data(export_data, file_path, false)
 end export_data
---TODO explain better
---promts a file save dialog, choose your desired file name and export
+(*
+ * TODO: explain better
+ * promts a file save dialog, choose your desired file name and export
+ *)
 on create_new_database()
 	set file_path to choose_file_name("Create a new database file:", "database.db")
 	log ("file_path: " & file_path)
@@ -52,8 +62,10 @@ on create_new_database()
 	SQLiteModifier's create_DB(the_file_path)
 	return the_file_path
 end create_new_database
---TODO explain better
---promts a lost dialog with the table names of the .db file, pick one item
+(*
+ * TODO: explain better
+ * promts a lost dialog with the table names of the .db file, pick one item
+ *)
 on choose_table_name(file_path) --TODO rename to chooseTable
 	log "choose_table_name()"
 	--set db_file_path to my MainDialog's get_db_file_path()
@@ -70,8 +82,10 @@ on choose_table_name(file_path) --TODO rename to chooseTable
 		--handleTableNameSelection() --TODO should return the picked table name
 	end if
 end choose_table_name
---TODO explain better
---promts a list dialog populated with all row id's in the @file_path and @table_name, pick an item or many
+(*
+ * TODO: explain better
+ * promts a list dialog populated with all row id's in the @file_path and @table_name, pick an item or many
+ *)
 on choose_rows(file_path, table_name) --TODO move this method into Utils, because it is private or?
 	log "choose_rows"
 	set rows to paragraphs of SQLiteParser's read_table(file_path, table_name, {"_rowid_", "*"})
@@ -86,8 +100,10 @@ on choose_rows(file_path, table_name) --TODO move this method into Utils, becaus
 		return selected_rows
 	end if
 end choose_rows
---TODO explain better
---promts a list dialog populated with all collumn keys in the @file_path and @table_name, pick an item or many
+(*
+ * TODO: explain better
+ * promts a list dialog populated with all collumn keys in the @file_path and @table_name, pick an item or many
+ *)
 on choose_column_keys(file_path, table_name)
 	log "choose_column_keys"
 	--then display column names w/ multi select
@@ -105,8 +121,10 @@ on choose_column_keys(file_path, table_name)
 		--handleColumnKeysSelection()
 	end if
 end choose_column_keys
---TODO explain better
---promts a list dialog populated with all collumn keys in the @file_path and @table_name, pick an item
+(*
+ * TODO: explain better
+ * promts a list dialog populated with all collumn keys in the @file_path and @table_name, pick an item
+ *)
 on choose_column_key(file_path, table_name)
 	log "choose_column_key"
 	--then display column names w/ multi select
@@ -123,9 +141,11 @@ on choose_column_key(file_path, table_name)
 		return selected_column_key
 	end if
 end choose_column_key
---TODO explain better, what does it return?
---promts a list dialog populated with all row id's in the @file_path and @table_name, pick an item
---this method seems to also trim the length of a the row if it's too lengthy
+(*
+ * TODO: explain better, what does it return?
+ * promts a list dialog populated with all row id's in the @file_path and @table_name, pick an item
+ * this method seems to also trim the length of a the row if it's too lengthy
+ *)
 on choose_row(file_path, table_name)
 	--set selected_table_name to my MainDialog's get_selected_table_name()
 	log "choose_row(): "
@@ -161,14 +181,18 @@ on choose_row(file_path, table_name)
 		--handleRowSelection()
 	end if
 end choose_row
---retrive a row id by promting a list dialog and then pick a row, the row_id will be returned as text
+(*
+ * Retrive a row id by promting a list dialog and then pick a row, the row_id will be returned as text
+ *)
 on choose_row_id(file_path, table_name)
 	log "choose_row_id()"
 	return first item of choose_row(file_path, table_name)
 end choose_row_id
---TODO explain better
---NOTE does not include column in the pick list only row value
---promts a list dialog populated with every value in a row, pick one row value to return it
+(*
+ * TODO explain better
+ * NOTE does not include column in the pick list only row value
+ * promts a list dialog populated with every value in a row, pick one row value to return it
+ *)
 on choose_row_value(selected_row)
 	log "choose_row_value() "
 	set row_items to items of TextParser's split(selected_row as text, "|")
@@ -183,9 +207,11 @@ on choose_row_value(selected_row)
 		return selected_row_value
 	end if
 end choose_row_value
---the value is derived from picking table first, the col:row from a list 
---same as choose_row_value but displays "column key : row value" in a alist
---TODO you may need to move this into the actual code again, since we may need to go back to prev step, and thats hard with this method
+(*
+ * the value is derived from picking table first, the col:row from a list 
+ * same as choose_row_value but displays "column key : row value" in a alist
+ * TODO: you may need to move this into the actual code again, since we may need to go back to prev step, and thats hard with this method
+ *)
 on choose_value(db_file_path)
 	set temp_table_name to choose_table_name(db_file_path)
 	set temp_chosen_row to choose_row(db_file_path, temp_table_name)
@@ -200,8 +226,10 @@ on choose_value(db_file_path)
 	log "temp_row_value: " & temp_row_value
 	return temp_row_value
 end choose_value
---TODO explain better
---Returns a list of chosen values
+(*
+ * TODO explain better
+ * Returns a list of chosen values
+ *)
 on choose_row_values(selected_row)
 	log "choose_row_values()"
 	set row_items to items of TextParser's split(selected_row as text, "|")
@@ -216,8 +244,10 @@ on choose_row_values(selected_row)
 		return selected_row_values
 	end if
 end choose_row_values
---Returns indices
---NOTE extract all row_items after the first if you dont want to include the id (this is built in for now)
+(*
+ * Returns indices
+ * NOTE: extract all row_items after the first if you dont want to include the id (this is built in for now)
+ *)
 on choose_row_value_indices(row, column_keys)
 	log "choose_row_value_indices()"
 	set row_items to items of TextParser's split(row as text, "|")
@@ -239,8 +269,10 @@ on choose_row_value_indices(row, column_keys)
 		return indices
 	end if
 end choose_row_value_indices
---NEW
---Returns an index
+(*
+ * NEW
+ * Returns an index
+ *)
 on choose_row_value_index(row, column_keys)
 	log "choose_row_value_index()"
 	set row_items to items of TextParser's split(row as text, "|")
@@ -260,8 +292,10 @@ on choose_row_value_index(row, column_keys)
 		return the_index
 	end if
 end choose_row_value_index
---Returns column_key from a row_value
---TODO explain better
+(*
+ * Returns column_key from a row_value
+ * TODO: explain better
+ *)
 on column_key(file_path, table_name, the_row, the_row_value)
 	set row_items to items of TextParser's split(the_row as text, "|")
 	set index_of_row_value to ListParser's index_of(row_items, the_row_value as text)
@@ -272,8 +306,10 @@ on column_key(file_path, table_name, the_row, the_row_value)
 	log "the_column_key: " & the_column_key
 	return the_column_key
 end column_key
---TODO explain better
--probably returns a list of chosen col key's
+(*
+ * TODO: explain better
+ * probably returns a list of chosen col key's
+ *)
 on column_keys(file_path, table_name, the_row, row_values)
 	log "column_keys()"
 	set row_items to items of TextParser's split(the_row as text, "|")
@@ -285,8 +321,10 @@ on column_keys(file_path, table_name, the_row, row_values)
 	log "the_selected_column_keys:" & the_selected_column_keys
 	return the_selected_column_keys
 end column_keys
---Returns the row id from a row
---TODO explain better
+(*
+ * Returns the row id from a row
+ * TODO: explain better
+ *)
 on row_id(the_row)
 	set row_items to items of TextParser's split(the_row as text, "|")
 	set the_row_id to first item of row_items --the first item is always the _rowid_ 
