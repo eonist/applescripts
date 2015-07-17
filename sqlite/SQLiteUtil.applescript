@@ -1,9 +1,10 @@
 property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
 property TextModifier : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextModifier.applescript"))
-
---@Example: Returns in this format: firstname = 'Ray' and lastname = 'Barber'
---Alteration can be eigther "AND" or "OR"
+(*
+ * Example: Returns in this format: firstname = 'Ray' and lastname = 'Barber'
+ * Alteration can be eigther "AND" or "OR"
+ *)
 on condition_procedure(conditions, alteration)
 	log "condition_procedure()"
 	set condition_text to ""
@@ -22,12 +23,16 @@ on condition_procedure(conditions, alteration)
 	end repeat
 	return condition_text
 end condition_procedure
---caps items that are longer than cap_len and adds 3 punctuation characters "..."  to the end of the capped text
+(*
+ * caps items that are longer than cap_len and adds 3 punctuation characters "..."  to the end of the capped text
+ *)
 on cap_row_values(the_text, cap_len)
 	log "cap_row_values()"
 	return cap_values(paragraphs of the_text, cap_len)
 end cap_row_values
---Caps values that are longer then the alpwed length specified in the @param cap_len
+(*
+ * Caps values that are longer then the alpwed length specified in the @param cap_len
+ *)
 on cap_values(the_list, cap_len)
 	log "cap_values ()"
 	set return_text to ""
@@ -50,7 +55,9 @@ on cap_values(the_list, cap_len)
 	end repeat
 	return return_text
 end cap_values
---TODO: could we use an utility method named cap_text inside the loop?
+(*
+ * TODO: could we use an utility method named cap_text inside the loop?
+ *)
 on cap_items(the_list, cap_len)
 	set return_text to ""
 	repeat with i from 1 to (length of the_list)
