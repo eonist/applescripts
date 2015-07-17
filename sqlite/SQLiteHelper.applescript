@@ -7,7 +7,6 @@ property ListModifier : my ScriptLoader's load_script(alias ((path to scripts fo
 property FileModifier : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "file:FileModifier.applescript"))
 property FileParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "file:FileParser.applescript"))
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
-
 (*
  * Promts a file browser
  *)
