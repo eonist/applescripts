@@ -4,23 +4,25 @@ property SQLiteUtil : my ScriptLoader's load_script(alias ((path to scripts fold
 property ListModifier : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "list:ListModifier.applescript"))
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
 property TextModifier : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextModifier.applescript"))
-
-
---Creates a database
---theFilePath "~/desktop/TestDB.db"
---TODO test how to use POSIX filepath and the other format for filePath
+(*
+ * Creates a database
+ * theFilePath "~/desktop/TestDB.db"
+ * TODO: test how to use POSIX filepath and the other format for filePath
+ *)
 on create_db(file_path)
 	set loc to space & file_path & space
 	set head to "sqlite3" & loc & quote -- "head" is the opening statement of every future command to our db.-- "head" tells SQLite where to put our db if it doesn't exist, identifies it if it does.
 	set tail to quote -- "tail" ends every query started with "head".
 	do shell script head & tail -- And finally, build the SQLite query and execute it
 end create_db
---table_name : "mods"
---file_path : "~/desktop/TestDB.db"
---column_ids : {"firstname", "lastname", "country"}
---TODO you should be able to also set the column_key_type somehow
--- The data type comes after the col_key like: age INT, first_name TEXT, birth_day DATE etc
---TYPES in SQLite INT REAL (number) TEXT BLOB, what about NULL and NONE? UINT? BOOLEAN doesnt exist in SQLite use int and ask if its true or false when reading the value, DATE doesnt exist, use text,number or int, 
+(*
+ * table_name : "mods"
+ * file_path : "~/desktop/TestDB.db"
+ * column_ids : {"firstname", "lastname", "country"}
+ * TODO you should be able to also set the column_key_type somehow
+ * The data type comes after the col_key like: age INT, first_name TEXT, birth_day DATE etc
+ * TYPES in SQLite INT REAL (number) TEXT BLOB, what about NULL and NONE? UINT? BOOLEAN doesnt exist in SQLite use int and ask if its true or false when reading the value, DATE doesnt exist, use text,number or int, 
+ *)
 on create_table(file_path, table_name, column_ids)
 	set loc to space & file_path & space
 	set head to "sqlite3" & loc & quote -- the "-line" option outputs the column data and heading one line at a time - useful for parsing the output for particular data items.
@@ -30,10 +32,12 @@ on create_table(file_path, table_name, column_ids)
 	set new_table to "create table " & table_name & "(" & the_column_ids & "); " --TODO: Create table should be a constant and in caps?
 	do shell script head & new_table & tail
 end create_table
---inserts a row
---Example SQLiteModifier's insertRow(_dbFilePath, "countries", {"name", "continent", "capital"}, {"England", "Europe", "London"})
---@Note there are 2 ways to insert rows the bellow and a way were you dont have to define the keys, but that way doesnt work when a primary key is present
---TODO make the method described above, its easy see pdf, and you had these method before you upgraded this one
+(*
+ * inserts a row
+ * Example: SQLiteModifier's insertRow(_dbFilePath, "countries", {"name", "continent", "capital"}, {"England", "Europe", "London"})
+ * Note: there are 2 ways to insert rows the bellow and a way were you dont have to define the keys, but that way doesnt work when a primary key is present
+ * TODO: make the method described above, its easy see pdf, and you had these method before you upgraded this one
+ *)
 on insert_row(file_path, table_name, keys, row) --todo rename row to values
 	log "insert_row()"
 	set loc to space & file_path & space
@@ -45,7 +49,9 @@ on insert_row(file_path, table_name, keys, row) --todo rename row to values
 	set insert_command to "insert into " & table_name & "(" & the_keys & ")" & " values(" & the_row & "); "
 	do shell script head & insert_command & tail -- And finally, build the SQLite query and execute it
 end insert_row
---Example SQLiteModifier's updateRows(_dbFilePath, "mods", {{"country","Uk"}}, {{"country","England"}})
+(*
+ * Example: SQLiteModifier's updateRows(_dbFilePath, "mods", {{"country","Uk"}}, {{"country","England"}})
+ *)
 on update_rows(file_path, table_name, conditions, input)
 	set loc to space & file_path & space
 	set head to "sqlite3 -column" & loc & quote
@@ -59,8 +65,10 @@ on update_rows(file_path, table_name, conditions, input)
 	log head & procedure & tail
 	do shell script head & procedure & tail
 end update_rows
---Note dataSet can only have one item, this can probably be fixed in the future
---Example SQLiteModifier's updateRow(_dbFilePath, "countries", {{"id", "4"}}, {{"capital", "Ottawa"}})
+(*
+ * Note: dataSet can only have one item, this can probably be fixed in the future
+ * Example: SQLiteModifier's updateRow(_dbFilePath, "countries", {{"id", "4"}}, {{"capital", "Ottawa"}})
+ *)
 on update_row(file_path, table_name, condition, data_set)
 	set the_condition to SQLiteUtil's condition_procedure(condition, "AND")
 	log "the_condition: " & the_condition
@@ -70,7 +78,9 @@ on update_row(file_path, table_name, condition, data_set)
 	log "procedure: " & procedure
 	do shell script procedure
 end update_row
---
+(*
+ * removes a table from a database
+ *)
 on remove_table(file_path, table_name)
 	set loc to space & file_path & space
 	set head to "sqlite3" & loc & quote -- the "-line" option outputs the column data and heading one line at a time - useful for parsing the output for particular data items.
@@ -78,12 +88,16 @@ on remove_table(file_path, table_name)
 	set tail to quote
 	do shell script head & procedure & tail
 end remove_table
---
+(*
+ * rename a table
+ *)
 on rename_table(file_path, table_name, new_table_name)
 	set procedure to "sqlite3" & space & file_path & space & quote & "ALTER TABLE" & space & table_name & space & "RENAME TO" & space & new_table_name & ";" & quote
 	do shell script procedure
 end rename_table
---
+(*
+ * transfere table
+ *)
 on transfer_table(file_path, from_table, to_table, from_column_keys, to_column_keys)
 	set from_column_keys_string to TextParser's comma_delimited_text(from_column_keys)
 	log "from_column_keys_string: " & from_column_keys_string
@@ -93,8 +107,10 @@ on transfer_table(file_path, from_table, to_table, from_column_keys, to_column_k
 	--log "procedure: " & procedure
 	do shell script procedure
 end transfer_table
---TODO in the future do all the procedures in the bellow method in one db call !?!
---Example SQLiteModifier's renameColumn(_dbFilePath, "colors", "color", "val")
+(*
+ * TODO: in the future do all the procedures in the bellow method in one db call !?!
+ * Example: SQLiteModifier's renameColumn(_dbFilePath, "colors", "color", "val")
+ *)
 on rename_columns(file_path, table_name, old_column_names, new_column_names) --TODO rename to columnKey and newColumnKey
 	log "rename_columns()"
 	set column_names_string to SQLiteParser's column_names(file_path, table_name) --use the SQLiteParser's columnNames() to get the columnnames
@@ -108,12 +124,17 @@ on rename_columns(file_path, table_name, old_column_names, new_column_names) --T
 	transfer_table(file_path, temp_table_name, table_name, column_names_string, column_names) --use the transferTable method (figure out if you need the column name or if you can use the column name and meta data etc)
 	remove_table(file_path, temp_table_name) --remove the temp table
 end rename_columns
---
+(*
+ * swap columns
+ *)
 on swap_columns(file_path, table_name, coloumn_key_a, column_key_b)
 	log "swap_columns()"
 	swap_column_data(file_path, table_name, coloumn_key_a, column_key_b)
 	swap_column_keys(file_path, table_name, coloumn_key_a, column_key_b)
 end swap_columns
+(*
+ * swap column keys
+ *)
 on swap_column_keys(file_path, table_name, coloumn_key_a, column_key_b)
 	log "swap_column_keys"
 	set column_names to SQLiteParser's column_names(file_path, table_name)
@@ -130,14 +151,18 @@ on swap_column_keys(file_path, table_name, coloumn_key_a, column_key_b)
 	--remove the temp table
 	remove_table(file_path, temp_table_name) --remove the temp table
 end swap_column_keys
---Swaps the content of each row from one column key to another column key
+(*
+ * Swaps the content of each row from one column key to another column key
+ *)
 on swap_column_data(file_path, table_name, coloumn_key_a, column_key_b)
 	--update mytable set coloumn_key_a = column_key_b, column_key_b = coloumn_key_a
 	set procedure to "sqlite3" & space & file_path & space & quote & "UPDATE" & space & table_name & space & "SET" & space & coloumn_key_a & space & "=" & space & column_key_b & space & "," & space & column_key_b & space & "=" & space & coloumn_key_a & ";" & quote
 	log "procedure: " & procedure
 	do shell script procedure
 end swap_column_data
---Note assert if the column exists with the SQLiteAsserter's hasColumn(dbFilePath,tableName,columnName)
+(*
+ * Note assert if the column exists with the SQLiteAsserter's hasColumn(dbFilePath,tableName,columnName)
+ *)
 on remove_columns(file_path, table_name, column_names)
 	log "remove_columns()"
 	set current_column_names to SQLiteParser's column_names(file_path, table_name) --get the columnNames
@@ -149,7 +174,9 @@ on remove_columns(file_path, table_name, column_names)
 	transfer_table(file_path, temp_table_name, table_name, new_column_names, new_column_names) --transferTable
 	remove_table(file_path, temp_table_name) --remove the temp table
 end remove_columns
---Example: SQLiteModifier's removeRow(_dbFilePath, "people", {{"firstname", "Ray"}, {"lastname", "Barber"}})
+(*
+ * Example: SQLiteModifier's removeRow(_dbFilePath, "people", {{"firstname", "Ray"}, {"lastname", "Barber"}})
+ *)
 on remove_row(file_path, table_name, condition)
 	log "remove_row()"
 	set condition_string to SQLiteUtil's condition_procedure(condition, "AND")
@@ -158,14 +185,18 @@ on remove_row(file_path, table_name, condition)
 	log procedure
 	do shell script procedure
 end remove_row
---Example SQLiteModifier's addColumn(_dbFilePath, "temp", "attribute")
+(*
+ * Example SQLiteModifier's addColumn(_dbFilePath, "temp", "attribute")
+ *)
 on add_column(file_path, table_name, column_name)
 	log "add_column()"
 	set procedure to "sqlite3" & space & file_path & space & quote & "ALTER" & space & "table" & space & table_name & space & "ADD" & space & "column" & space & column_name & space & ";" & quote
 	log procedure
 	do shell script procedure
 end add_column
---
+(*
+ * add columns to a table
+ *)
 on add_columns(file_path, table_name, column_names)
 	log "add_columns()"
 	repeat with i from 1 to (length of column_names)
