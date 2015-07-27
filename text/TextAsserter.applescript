@@ -5,7 +5,7 @@ on has_word(the_string, the_word)
 	the_word is in (words of the_string)
 end has_word
 (*
- * you can also use "is equal to" instead of the equal sign
+ * you can also use "is equal to" instead of the equal sign, the opposite is "is not equal to"
  *)
 on is_equal(a, b)
 	return (a = b)
