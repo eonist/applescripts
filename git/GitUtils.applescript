@@ -26,9 +26,11 @@ end add
  * @return example: [master af86d55] added
  * 1 file changed, 0 insertions(+), 0 deletions(-)
  * create mode 100644 error.html
+ * @Note: its important that the message is betweentwo single quates
  *)
-on commit(local_repo_path, msg)
-	return do shell script "cd " & local_repo_path & ";" & git_path & git_commit & " " & "-m" & " " & msg
+on commit(local_repo_path, the_msg)
+	log "the_msg: " & the_msg
+	return do shell script "cd " & local_repo_path & ";" & git_path & git_commit & " " & "-m" & " '" & the_msg & "'"
 end commit
 --push
 --this uploads the current from the local git commits to the remote git

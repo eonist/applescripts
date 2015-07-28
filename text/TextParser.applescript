@@ -12,7 +12,7 @@ on every_paragraph(the_text)
 	set paragraph_list to {}
 	set para_list to paragraphs of the_text
 	repeat with next_line in para_list
-		if length of next_line is greater than 0 then-- this takes care of not adding an emty item at the end
+		if length of next_line is greater than 0 then -- this takes care of not adding an emty item at the end
 			copy next_line to the end of paragraph_list
 		end if
 	end repeat

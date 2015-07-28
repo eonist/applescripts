@@ -10,8 +10,9 @@ on write_data(this_data, target_file, append_data) -- (string, file path as stri
 		--log "target_file: " & target_file
 		set the open_target_file to open for access file target_file with write permission
 		--log "open_target_file: " & open_target_file
-		if append_data is false then Â
+		if (append_data is false) then
 			set eof of the open_target_file to 0
+		end if
 		write this_data to the open_target_file starting at eof
 		close access the open_target_file
 		return true
