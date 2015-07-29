@@ -24,6 +24,13 @@ on remove_at(the_list, the_index)
 	return new_list
 end remove_at
 (*
+ * Note: this the equvilent of pushing an item into an array
+ *)
+On add_item(the_list,the_item)
+	set the_list to the_list & the_item
+	Return the_list
+end add_item
+(*
  * Note: if the index is 2 it adds the item just infront of the second item
  *)
 on add_at(the_list, the_item, the_index)
