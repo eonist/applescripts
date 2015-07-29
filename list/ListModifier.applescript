@@ -26,9 +26,9 @@ end remove_at
 (*
  * Note: this the equvilent of pushing an item into an array
  *)
-On add_item(the_list,the_item)
+on add_item(the_list, the_item)
 	set the_list to the_list & the_item
-	Return the_list
+	return the_list
 end add_item
 (*
  * Note: if the index is 2 it adds the item just infront of the second item
