@@ -1,5 +1,6 @@
 property git_status : "git status" --returns current git status
 property git_add : "git add" --add a file or many files to a commit
+property git_reset : "git add" --the opposite of the add action
 property git_log : "git log" --git log
 property git_push : "git push" --this uploads the current from the local git commits to the remote git
 property git_pretty_log : "git log --pretty=oneline" --get a log of what is new, less verbose with pretty oneline
@@ -39,12 +40,18 @@ end commit
  * @param to_where: "origin"
  * @param remote_repo_url: github.com/user-name/repo-name.git
  * @Note: you may mitigate using username and pass by researching how to use SSH key in github from trusted maschines
+ * Todo: maybe add try error when doing the shell part
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "master" --master branch
 	set to_where to "https://" & user_name & ":" & user_password & "@" & remote_repo_url --https://user:pass@github.com/user/repo.git--"origin"
 	return do shell script "cd " & local_repo_path & ";" & git_path & git_push & " " & to_where & " " & from_where
 end push
+--the opposite of the add action
+--The * resets all
+on reset(local_repo_path, file_name)
+	return do shell script "cd " & local_repo_path & ";" & git_path & git_reset & " " & file_name
+end reset
 --log
 
 --config

@@ -31,6 +31,19 @@ on add_item(the_list, the_item)
 	return the_list
 end add_item
 (*
+ * Adds a list inside another list, the list is now two dimensional
+ * Note: Also works with record
+ * Example: add_list({1,2,3},{"a","b","c"})--{1,2,3,{"a","b","c"}}
+ * Note: if you log the list it will show up as: {1,2,3,"a","b","c"}
+ * Note: the length of the returned list in the example above is now 4
+ * Note: if you ammed the second list directly the length will be 6
+ *)
+on add_list(a, b)
+	set a to a & null --append null to the end of the list
+	set last item in a to b
+	return a
+end add_list
+(*
  * Note: if the index is 2 it adds the item just infront of the second item
  *)
 on add_at(the_list, the_item, the_index)
