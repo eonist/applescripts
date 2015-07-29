@@ -1,7 +1,8 @@
 (* 
- * writes data to target_file (appends if append_data is true)
+ * Writes data to target_file (appends if append_data is true)
  * if the target_file doesnt exisist it is created
- * target_file needs to be in this url format: "Macintosh HD:Users:Jorgensen:Desktop:del.txt"
+ * target_file needs to be in this url format: "Macintosh HD:Users:J*****n:Desktop:del.txt"
+ * Todo: create a method for creating files, you have this code in the SQLite edit project
  *)
 on write_data(this_data, target_file, append_data) -- (string, file path as string, boolean)
 	--log "writeData"

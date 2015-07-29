@@ -96,6 +96,7 @@ end remove_many
  * Todo: what happens to the two list after the combination has talen place?
  * Todo: is there an extra seperator at the end? Or is this taken care of?
  * Note: the seperator can be a comma or any other sign
+ * Note: i think you can just do: set list_c to list_a & list_b to achive the same result
  *)
 on combine(list_a, list_b, seperator)
 	set ret_val to {} --establish the return value
@@ -124,3 +125,10 @@ on bubble_sort(the_list)
 		end repeat
 	end repeat
 end bubble_sort
+
+--AppleScript supports two assignment operators, set and copy 
+--Note:  When applied to complex types (such as list) copy really clones the data, while set only stores a reference. 
+on clone(the_list)
+	copy the_list to the_copy_list -- copy data 
+	return the_copy_list
+end clone
