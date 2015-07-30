@@ -8,6 +8,7 @@ property TextParser : my ScriptLoader's load_script(alias ((path to scripts fold
 (* 
  * Only works if the file actually exists akak an alias
  * Reads the actual file
+ * Example: FileParser's read_URL(POSIX path of (((path to desktop) as string) & "colors.xml"))--returns the content of xml on the desktop
  *)
 on read_URL(file_URL)
 	return (read POSIX file file_URL)

@@ -81,6 +81,9 @@ on attribute_by_name(xml_data, the_name)
 end attribute_by_name
 (*
  * Returns the root of the xml
+ * @param xml_file the path to the xml file like: "Macintosh HD:Users:Admin:Desktop:colors.xml"  in HSF not POSIX
+ * @Example: XMLParser.root(((path to desktop) as string) & "colors.xml")
+ * @Note: You must keep using XMLParser to gain further access to xml elements, since it relies on the System events
  *)
 on root(xml_file)
 	tell application "System Events"
@@ -90,6 +93,7 @@ on root(xml_file)
 end root
 (*
  * Returns every XML element in xmlElement
+ * @Note: log length of XMLParser's every_element(theXMLRoot)--returns number of children in the xml root
  *)
 on every_element(xml_element)
 	tell application "System Events"
