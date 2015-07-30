@@ -32,11 +32,11 @@ on add_item(the_list, the_item)
 end add_item
 (*
  * Adds a list inside another list, the list is now two dimensional
- * Note: Also works with record
+ * Note: You can also use this to add record's to a list like: {{name:John, title:"Manager", color:"Blue"},{1,2,3}}
  * Example: add_list({1,2,3},{"a","b","c"})--{1,2,3,{"a","b","c"}}
  * Note: if you log the list it will show up as: {1,2,3,"a","b","c"}
  * Note: the length of the returned list in the example above is now 4
- * Note: if you ammed the second list directly the length will be 6
+ * Note: if you amned the second list directly the length will be 6
  *)
 on add_list(a, b)
 	set a to a & null --append null to the end of the list
