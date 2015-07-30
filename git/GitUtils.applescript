@@ -16,6 +16,7 @@ on status(local_repo_path, option)
 end status
 (* 
  * @param file_name is the file name you want to add, use * if you want to add all files
+ * @example: GitUtils's add(local_repo_path, "*")
  *)
 on add(local_repo_path, file_name)
 	return do shell script "cd " & local_repo_path & ";" & git_path & git_add & " " & file_name
@@ -28,6 +29,7 @@ end add
  * 1 file changed, 0 insertions(+), 0 deletions(-)
  * create mode 100644 error.html
  * @Note: its important that the message is betweentwo single quates
+ * @example: GitUtils's commit(local_repo_path, "changes made")
  *)
 on commit(local_repo_path, the_msg)
 	log "the_msg: " & the_msg
@@ -40,7 +42,11 @@ end commit
  * @param to_where: "origin"
  * @param remote_repo_url: github.com/user-name/repo-name.git
  * @Note: you may mitigate using username and pass by researching how to use SSH key in github from trusted maschines
+<<<<<<< HEAD
  * Todo: maybe add try error when doing the shell part
+=======
+ * @example: GitUtils's push(local_repo_path, "github.com/user-name/repo-name.git", user_name, user_password)
+>>>>>>> origin/master
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "master" --master branch
@@ -64,3 +70,8 @@ end reset
 --clone
 
 --remote add origin
+
+--try to clone a remote REPO 
+
+
+--try to pull a repo

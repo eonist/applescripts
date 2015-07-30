@@ -106,3 +106,13 @@ end quoted_form
 on sub_string(the_start, the_end, the_text)
 	return text the_start thru the_end of the_text
 end sub_string
+
+-- Counts how many times a string appears in a text
+-- Note: Its splits the text by the substring and count the items
+--
+on countSubstring(theText, theSubstring)
+   set AppleScript's text item delimiters to theSubstring
+   set counter to (count of every text item of theText) - 1
+   set AppleScript's text item delimiters to ""
+   return counter
+end countSubstring
