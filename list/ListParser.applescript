@@ -51,3 +51,14 @@ on items_at(the_list, indices)
 	end repeat
 	return the_items
 end items_at
+-- Returns the total count of a specific item in a list
+--
+on occurences(theList, theItem)
+   set counter to 0
+   repeat with i from 1 to count of theList
+      if item i of theList is equal to theItem then
+         set counter to counter + 1
+      end if
+   end repeat
+   return counter
+end occurences
