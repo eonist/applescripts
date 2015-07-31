@@ -111,8 +111,8 @@ end sub_string
 -- Note: Its splits the text by the substring and count the items
 --
 on countSubstring(theText, theSubstring)
-   set AppleScript's text item delimiters to theSubstring
-   set counter to (count of every text item of theText) - 1
-   set AppleScript's text item delimiters to ""
-   return counter
+	set AppleScript's text item delimiters to theSubstring
+	set counter to (count of every text item of theText) - 1
+	set AppleScript's text item delimiters to ""
+	return counter
 end countSubstring

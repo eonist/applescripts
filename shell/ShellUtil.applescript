@@ -12,6 +12,6 @@ end touch
  * Example: keychain_password("flowerpower")--"abc123"
  *)
 on keychain_password(keychain_item_name)
-	do shell script "security 2>&1 >/dev/null find-generic-password -gl " & quoted form of keychain_item_name & " | awk '{print $2}'"
-	return (text 2 thru -2 of result)
+	set the_result to do shell script "security 2>&1 >/dev/null find-generic-password -gl " & (quoted form of keychain_item_name) & " | awk '{print $2}'"
+	return (text 2 thru -2 of the_result)
 end keychain_password
