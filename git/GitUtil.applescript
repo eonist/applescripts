@@ -31,6 +31,7 @@ end add
  * create mode 100644 error.html
  * @Note: its important that the message is betweentwo single quates
  * @example: GitUtils's commit(local_repo_path, "changes made")
+ * Todo: can we also add desscription to a commit?
  *)
 on commit(local_repo_path, the_msg)
 	log "the_msg: " & the_msg
@@ -62,6 +63,8 @@ end reset
 (*
  * Note: the original git cmd is "git pull origin master"
  * Note: "https://user:pass@github.com/user/repo.git"
+ * Note: returns "Already up-to-date." if there are nothing to pull from remote
+ * Todo: Do we need login and pass for pulling?
  *)
 on pull(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "https://" & user_name & ":" & user_password & "@" & remote_repo_url
