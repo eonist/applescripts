@@ -3,6 +3,7 @@ property git_add : "git add" --add a file or many files to a commit
 property git_reset : "git add" --the opposite of the add action
 property git_log : "git log" --git log
 property git_push : "git push" --this uploads the current from the local git commits to the remote git
+property git_pull : "git pull" --this downloads the current from the remote git to the local git
 property git_pretty_log : "git log --pretty=oneline" --get a log of what is new, less verbose with pretty oneline
 property git_commit : "git commit" --commit current changes
 property git_path : "/usr/local/git/bin/" --to execute git commands we need to call the git commands from this path
@@ -58,10 +59,19 @@ end push
 on reset(local_repo_path, file_name)
 	return do shell script "cd " & local_repo_path & ";" & git_path & git_reset & " " & file_name
 end reset
+(*
+ * Note: the original git cmd is "git pull origin master"
+ * Note: "https://user:pass@github.com/user/repo.git"
+ *)
+on pull(local_repo_path, remote_repo_url, user_name, user_password)
+	set from_where to "https://" & user_name & ":" & user_password & "@" & remote_repo_url
+	set to_where to "master" --master branch
+	return do shell script "cd " & local_repo_path & ";" & git_path & git_pull & " " & from_where & " " & to_where
+end pull
 --log
 
 --config
---pull
+
 
 --rm --remove files, research this
 
