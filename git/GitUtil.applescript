@@ -32,6 +32,8 @@ end add
  * @Note: its important that the message is betweentwo single quates
  * @example: GitUtils's commit(local_repo_path, "changes made")
  * Todo: can we also add desscription to a commit?
+ * @Note: There is no "extended description" concept in git. Only the commit message. What happens is that the commit message can have a single line or multiple lines External tools or websites such as git-cola or GitHub can interpret multiple lines commit messages as: The first line is a short description All the other lines are an extended description For one line messages, only the "short description" is defined.
+ * // :TODO: git commit -m "Title" -m "Description .........."
  *)
 on commit(local_repo_path, the_msg)
 	log "the_msg: " & the_msg
