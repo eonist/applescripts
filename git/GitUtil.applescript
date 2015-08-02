@@ -90,3 +90,12 @@ end pull
 
 
 --try to pull a repo
+
+
+--get a log of what is new, less verbose with pretty oneline
+--git log --pretty=oneline
+
+--set your name and email
+--git config --global user.email you@example.com
+--git config --globaluser.name "eonist"
+
