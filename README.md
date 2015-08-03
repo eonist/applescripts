@@ -4,7 +4,7 @@ Custom applescript libraries.
 - [x] Conform to multiline comments
 - [x] Write a short doc about importing raw text source files
 - [x] Add a regexp folder and start adding methods
-- [ ] Make comments less unambiguous
+- [ ] Make comments less ambiguous
 
 ###FAQ
 
