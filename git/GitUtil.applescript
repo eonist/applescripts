@@ -9,9 +9,9 @@ property git_commit : "git commit" --commit current changes
 property git_cherry : "git cherry"
 property git_path : "/usr/local/git/bin/" --to execute git commands we need to call the git commands from this path
 (* 
- * Todo: Should return a more meaningfull list of items, multidim accociative array
- * @param local_repo_path is the path to the target repository on your local machine
- * @Note: the cd is to move manouver into the local repository path, the ; char ends the call so you can make another call
+ * @param: local_repo_path is the path to the target repository on your local machine
+ * Note: the cd is to move manouver into the local repository path, the ; char ends the call so you can make another call
+ * Note: To obtaine a more meaningfull list of items, create a metod that compiles a multidim accociative array derived from the text based staus 
  *)
 on status(local_repo_path, option)
 	return do shell script "cd " & local_repo_path & ";" & git_path & git_status & " " & option
@@ -69,7 +69,7 @@ end reset
  * Note: the original git cmd is "git pull origin master"
  * Note: "https://user:pass@github.com/user/repo.git"
  * Note: returns "Already up-to-date." if there are nothing to pull from remote
- * Todo: Do we need login and pass for pulling?
+ * Note: Do we need login and pass for pulling? - for private repos, yes
  *)
 on pull(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "https://" & user_name & ":" & user_password & "@" & remote_repo_url
@@ -79,35 +79,45 @@ end pull
 --log
 --config
 
---Cherry
---git cherry -v origin/master
---Todo: description needed
---Note: this can be used to assert if there are any local commits ready to be pushed, if there are local commits then text will be returned, if there arent then there will be no text
+(* 
+ * Cherry
+ * git cherry -v origin/master
+ * Todo: description needed
+ * Note: this can be used to assert if there are any local commits ready to be pushed, if there are local commits then text will be returned, if there arent then there will be no text
+ *)
 on cherry(local_repo_path, user_name, user_password)
 	set loc to "origin" --"https://" & user_name & ":" & user_password & "@" & remote_repo_url
 	set what_branch to "master" --master branch
 	return do shell script "cd " & local_repo_path & ";" & git_path & git_cherry & " " & loc & "/" & what_branch
 end cherry
 
-
 --rm --remove files, research this
-
+on remove()
+	
+end remove
 --init
-
+on init()
+	
+end init
 --clone
-
+on clone()
+	
+end clone
 --remote add origin
 
 --try to clone a remote REPO 
 
 
---try to pull a repo
-
 
 --get a log of what is new, less verbose with pretty oneline
 --git log --pretty=oneline
+on do_log()
+	
+end do_log
 
 --set your name and email
 --git config --global user.email you@example.com
---git config --globaluser.name "eonist"
-
+--git config --global user.name "your-user-name"
+on config()
+	
+end config
