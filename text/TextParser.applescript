@@ -7,6 +7,7 @@ end every_word
 (*
  * Returns all paragraps in a text as a list
  * TODO: write an example
+ * // :TODO: rename to every_line?
  *)
 on every_paragraph(the_text)
 	set paragraph_list to {}
@@ -62,6 +63,7 @@ on delimited_text(text_items, delimiter)
 end delimited_text
 (*
  * TODO: doesnt this add a return at the last line? maybe use delimited_text() intead? 
+ * // :TODO: try to find a better name
  *)
 on to_paragraphs(the_list)
 	set AppleScript's text item delimiters to {return}
@@ -108,11 +110,11 @@ on sub_string(the_start, the_end, the_text)
 end sub_string
 
 -- Counts how many times a string appears in a text
--- Note: Its splits the text by the substring and count the items
+-- Note: Its splits the text by the substring and counts the items
 --
-on countSubstring(theText, theSubstring)
-	set AppleScript's text item delimiters to theSubstring
-	set counter to (count of every text item of theText) - 1
-	set AppleScript's text item delimiters to ""
-	return counter
-end countSubstring
+on occurrences(the_text, match)
+   set AppleScript's text item delimiters to match
+   set counter to (count of every text item of the_text) - 1
+   set AppleScript's text item delimiters to ""
+   return counter
+end occurrences
