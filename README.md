@@ -1,5 +1,3 @@
-Custom applescript libraries.
-
 ###Todo's:
 - [x] Conform to multiline comments
 - [x] Write a short doc about importing raw text source files
