@@ -4,6 +4,7 @@ property git_path : "/usr/local/git/bin/" --to execute git commands we need to c
  * @param: local_repo_path is the path to the target repository on your local machine
  * Note: the cd is to move manouver into the local repository path, the ; char ends the call so you can make another call
  * Note: To obtaine a more meaningfull list of items, create a metod that compiles a multidim accociative array derived from the text based staus 
+ * Note: Appending -s simplifies the ret msg or you can also use --porcelain which does the same
  *)
 on status(local_repo_path, option)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git status" & " " & option
