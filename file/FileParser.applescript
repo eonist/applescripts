@@ -13,13 +13,13 @@ property TextParser : my ScriptLoader's load_script(alias ((path to scripts fold
 on read_URL(file_URL)
 	return (read POSIX file file_URL)
 end read_URL
---returns the POSIX path from a file path
+--Returns the POSIX path from a file path
 --Todo write an example
 on posix_path(the_path)
 	return POSIX path of the_path
 end posix_path
 (*
- * returns the file url from a file path
+ * Returns the file url from a file path
  * Todo: write an example
  *)
 on file_URL(file_path)
@@ -38,13 +38,13 @@ on file_path(fileURL)
 	return posix_file as alias
 end file_path
 (*
- * TD Explain
+ * // :TODO:  Explain
  *)
 on file_name_by_url(file_URL)
 	return file_name(file_path(file_URL))
 end file_name_by_url
 (*
- * returns the implicit path from a HSF file path
+ * Returns the implicit path from a HSF file path
  *)
 on implicit_file_URL(HFS_path)
 	set posix_path to POSIX path of HFS_path
@@ -84,13 +84,13 @@ on file_properties(file_path)
 	end tell
 end file_properties
 (*
- * example: name:test.db, creation date:date Thursday 29 August 2013 18:43:31, modification date:date Thursday 21 November 2013 20:07:41, size:28672, folder:false, alias:false, package folder:false, visible:true, extension hidden:false, name extension:db, displayed name:test.db, kind:Document, file type:
+ * Example: name:test.db, creation date:date Thursday 29 August 2013 18:43:31, modification date:date Thursday 21 November 2013 20:07:41, size:28672, folder:false, alias:false, package folder:false, visible:true, extension hidden:false, name extension:db, displayed name:test.db, kind:Document, file type:
  *)
 on file_info(the_file)
 	info for the_file
 end file_info
 (*
- * returns the file extension of the file, i.e: .zip
+ * Returns the file extension of the file, i.e: .zip
  *)
 on file_extension(the_file)
 	return name extension of (info for the_file)
