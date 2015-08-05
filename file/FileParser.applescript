@@ -31,12 +31,20 @@ on file_URL(file_path)
 	end tell
 end file_URL
 (*
- * Untest but should work
+ * Returns a "hfs alias path" from a "POSIX path"
+ * Example file_path(POSIX path of (path to desktop)): --"alias Macintosh HD:Users:John:Desktop:"
  *)
 on file_path(fileURL)
 	set posix_file to POSIX file fileURL
 	return posix_file as alias
 end file_path
+(*
+ * Returns a "hsf path" from an "alias hsf path"
+ * Example: hfs_path(path to desktop)--"Macintosh HD:Users:John:Desktop:"
+ *)
+on hfs_path(file_path)
+	return file_path as string
+end hfs_path
 (*
  * // :TODO:  Explain
  *)
@@ -46,8 +54,8 @@ end file_name_by_url
 (*
  * Returns the implicit path from a HSF file path
  *)
-on implicit_file_URL(HFS_path)
-	set posix_path to POSIX path of HFS_path
+on implicit_file_URL(hfs_path)
+	set posix_path to POSIX path of hfs_path
 	set implicit_file_URL to "file://" & posix_path
 	return implicit_file_URL
 end implicit_file_URL

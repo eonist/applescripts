@@ -46,7 +46,7 @@ end choose_file_name
  * promts a save file dialog, choose a desired file name and export the file
  *)
 on export_data(export_data)
-	set file_path to my Helper's choose_file_name("Export data to file: ", "untitled.txt") --choose the path and file name
+	set file_path to my Helper's choose_file_name("Export data to file: ", "untitled.txt") --Choose the path and file name
 	FileModifier's write_data(export_data, file_path, false)
 end export_data
 (*
