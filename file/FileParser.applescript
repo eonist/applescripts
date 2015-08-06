@@ -4,7 +4,6 @@
  *)
 property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
-
 (* 
  * Only works if the file actually exists akak an alias
  * Reads the actual file
@@ -46,7 +45,7 @@ on hfs_path(file_path)
 	return file_path as string
 end hfs_path
 (*
- * // :TODO:  Explain
+ * TODO:  Explain
  *)
 on file_name_by_url(file_URL)
 	return file_name(file_path(file_URL))

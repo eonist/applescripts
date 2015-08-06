@@ -11,26 +11,25 @@ on status(local_repo_path, option)
 end status
 (* 
  * Add a file or many files to a commit
- *@param file_name is the file name you want to add, use * if you want to add all files
- * @example: GitUtils's add(local_repo_path, "*")
+ * @param file_name is the file name you want to add, use * if you want to add all files
+ * Example: GitUtils's add(local_repo_path, "*")
  *)
 on add(local_repo_path, file_name)
 	return do shell script "cd " & local_repo_path & ";" & git_path & git_add & " " & file_name
 end add
-
 (* 
- * Commit current changes
+ * Commits current changes
  * Note: Commit , usually doesnt return anything
  * @param msg example: "created index.html file"
- * @return example: [master af86d55] added
+ * Return example: [master af86d55] added
  * 1 file changed, 0 insertions(+), 0 deletions(-)
  * create mode 100644 error.html
- * @Note: its important that the message is betweentwo single quates
- * @example: GitUtils's commit(local_repo_path, "changes made")
+ * Note: its important that the message is betweentwo single quates
+ * Example: GitUtils's commit(local_repo_path, "changes made")
  * Todo: can we also add desscription to a commit?
- * // :TODO: what does commit -a do? -all?
- * @Note: There is no "extended description" concept in git. Only the commit message. What happens is that the commit message can have a single line or multiple lines External tools or websites such as git-cola or GitHub can interpret multiple lines commit messages as: The first line is a short description All the other lines are an extended description For one line messages, only the "short description" is defined.
- * // :TODO: git commit -m "Title" -m "Description .........." <--this works
+ * TODO: what does commit -a do? -all?
+ * Note: There is no "extended description" concept in git. Only the commit message. What happens is that the commit message can have a single line or multiple lines External tools or websites such as git-cola or GitHub can interpret multiple lines commit messages as: The first line is a short description All the other lines are an extended description For one line messages, only the "short description" is defined.
+ * TODO: git commit -m "Title" -m "Description .........." <--this works
  *)
 on commit(local_repo_path, message_title, message_description)
 	log "message_title: " & message_title
@@ -42,11 +41,11 @@ end commit
  * @param from_where: "master"
  * @param to_where: "origin"
  * @param remote_repo_url: github.com/user-name/repo-name.git
- * @Note: you may mitigate using username and pass by researching how to use SSH key in github from trusted maschines
+ * Note: you may mitigate using username and pass by researching how to use SSH key in github from trusted maschines
  * <<<<<<< HEAD
  * Todo: maybe add try error when doing the shell part
  * =======
- * @example: GitUtils's push(local_repo_path, "github.com/user-name/repo-name.git", user_name, user_password)
+ * Example: GitUtils's push(local_repo_path, "github.com/user-name/repo-name.git", user_name, user_password)
  * >>>>>>> origin/master
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password)
