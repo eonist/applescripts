@@ -95,6 +95,7 @@ on decode(the_text)
 end decode
 (*
  * Returns a text in quoted form
+ * Todo: write an example
  *)
 on quoted_form(the_text)
 	return quoted form of the_text
@@ -113,8 +114,8 @@ end sub_string
 -- Note: Its splits the text by the substring and counts the items
 --
 on occurrences(the_text, match)
-   set AppleScript's text item delimiters to match
-   set counter to (count of every text item of the_text) - 1
-   set AppleScript's text item delimiters to ""
-   return counter
+	set AppleScript's text item delimiters to match
+	set counter to (count of every text item of the_text) - 1
+	set AppleScript's text item delimiters to ""
+	return counter
 end occurrences

@@ -39,7 +39,7 @@ end add_item
  * Note: if you amned the second list directly the length will be 6
  *)
 on add_list(a, b)
-	set a to a & null --append null to the end of the list
+	set a to a & null --append null to the end of the list so that there is something to replace in the next step
 	set last item in a to b
 	return a
 end add_list

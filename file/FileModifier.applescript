@@ -3,7 +3,7 @@
  * Note: if the target_file doesnt exisist it is created
  * @param target_file: needs to be in this url format: "Macintosh HD:Users:John:Desktop:del.txt" (aka the HFS format)
  * Todo: create a method for creating files, google it, you may also us she'll and touch and terminal and mkdir
- * Note: the eof value seems to be a special kind of value
+ * Note: the eof value seems to be a special kind of value, it some how gets the length of the file without being set
  *)
 on write_data(the_data, target_file, append_data) -- (string, file path as string, boolean)
 	--log "writeData"

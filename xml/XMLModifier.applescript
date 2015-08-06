@@ -18,11 +18,16 @@ on element(the_name, content)
 	return "<" & the_name & ">" & content & "</" & the_name & ">"
 end element
 --no content = single element
---attributes contain a list with accociative lists like {key:"color",code:"FF0503"}
+--attributes contain a list with "sudo accociative lists" like {{"key","color"},{"code","FF0503"}}
 on element_with_attribute(the_name, the_content, the_attributes)
 	set attribute_text to ""
-	repeat with attribute in the_attributes
-		set attribute_text to attribute_text & ((key of attribute) & "=" & "\"" & (value of attribute) & "\"")
+	repeat with i from 1 to (length of the_attributes)
+		set attribute to item i of the_attributes
+		set the_key to first item in attribute
+		set the_value to (second item in attribute)
+		set attribute_text to attribute_text & (the_key & "=" & "\"" & the_value & "\"")
+		if attribute is not the last item in the_attributes then set attribute_text to attribute_text & " " --append a space after each key value pair, unless its at the end
+		
 	end repeat
 	set xml_text to "<" & the_name & " " & attribute_text --beginning of xml text
 	if (length of the_content > 0) then --has content
