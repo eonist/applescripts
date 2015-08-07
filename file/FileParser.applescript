@@ -13,7 +13,7 @@ on read_URL(file_URL)
 	return (read POSIX file file_URL)
 end read_URL
 --Returns the POSIX path from a file path
---Todo write an example
+--Example: posix_path(Macintosh HD:Users:John:project:*)--"/Users/John/project/"
 on posix_path(the_path)
 	return POSIX path of the_path
 end posix_path
