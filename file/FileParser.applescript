@@ -1,3 +1,5 @@
+--property FileParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "file:FileParser.applescript"))
+
 (*
  * Returns "desktop/image.jpg" from desktop:image.jpg
  * HFS path is folder:folder and POSIX (unix) paths are folder/folder
@@ -25,7 +27,7 @@ on file_URL(file_path)
 	--log "fileURL() filePath: " & filePath
 	tell application "System Events"
 		set the_URL to URL of file_path
-		log ("the_URL: " & the_URL)
+		--log ("the_URL: " & the_URL)
 		return the_URL
 	end tell
 end file_URL
@@ -42,7 +44,7 @@ end file_path
  * Example: hfs_path(path to desktop)--"Macintosh HD:Users:John:Desktop:"
  *)
 on hfs_path(file_path)
-	return file_path as string
+	return file_path as text --string and text can be used
 end hfs_path
 (*
  * TODO:  Explain
@@ -60,6 +62,8 @@ on implicit_file_URL(hfs_path)
 end implicit_file_URL
 (*
  * Note can be used on files and folders
+ * Example: FileParser's parent_folder(path to me)--"folder Macintosh HD:Users:John:projects:SomeProject:"
+ * @Param file_path: HFS alias file type
  *)
 on parent_folder(file_path)
 	tell application "System Events"
@@ -141,3 +145,26 @@ on file_names_sans_ext(the_folder)
 	end repeat
 	return names
 end file_names_sans_ext
+(*
+ * Returns an alias hfs file path from a POSIX file path
+ *)
+on alias_hfs_file_path(posix_file_path)
+	set the_alias_hfs_file_path to POSIX file posix_file_path as alias
+	return the_alias_hfs_file_path
+end alias_hfs_file_path
+(*
+ * Returns an alias hfs file path from a POSIX file path
+ *)
+on hfs_file_path(posix_file_path)
+	set the_alias_hfs_file_path to alias_hfs_file_path(posix_file_path)
+	return the_alias_hfs_file_path as text --converts an "alias HFS file path" to a "HFS file path"
+end hfs_file_path
+(*
+ * hfs_parent(path to me)--Macintosh HD:Users:John:SomeProject:
+ *)
+on hfs_parent_path(the_hsf_path)
+	set the_parent_folder to parent_folder(the_hsf_path)
+	set the_posix_path to file_URL(the_parent_folder)
+	set the_hfs_file_path to hfs_file_path(the_posix_path)
+	return the_hfs_file_path
+end hfs_parent_path
