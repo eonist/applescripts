@@ -10,7 +10,7 @@
  * Example: my doesMatch("127.0.0.1", "^(\\d{1,3}\\.){3}\\d{1,3}$") # -> true
  * Example: doesMatch(text, regexString) -> Boolean
  *)
-on does_matches(s, regex)
+on does_matches(s, regex)--// :TODO: rename s to string
 	local ignoreCase, extraGrepOption
 	set ignoreCase to "a" is "A"
 	if ignoreCase then
@@ -33,12 +33,22 @@ end does_matches
  * [[:alnum:]] [[:digit:]] [[:xdigit:]]
  * [[:blank:]] [[:space:]] [[:punct:]] [[:cntrl:]] 
  * [[:graph:]]  [[:print:]] 
+ * Description:
+ * [:alpha:] the Roman letters
+ * [:lower:] the lowercase Roman letters
+ * [:upper:] the uppercase Roman letters
+ * [:digit:] the digits
+ * [:xdigit:] the hexadecimal digits (lowercase and uppercase)
+ * [:blank:] space or tab
+ * [:space:] space, tab, CR, LF or FF
+ * [:cntrl:] the set of the characters with an ASCII code < 32 or = 127
+ * [:punct:] neither a control character nor alphanumeric
  * Note: Also, `\b`, '\B', '\<', and '\>' are not supported; you can use `[[:<:]]` for '\<' and `[[:>:]]` for `\>`
  * Note: Always returns a *list*: an empty list, if no match is found, otherwise, the first list element contains the matching string
  * Note: if regex contains capture groups, additional elements return the strings captured by the capture groups; note that *named* capture groups are NOT supported.
  * Example: my getMatch("127.0.0.1", "^([[:digit:]]{1,3})\\.([[:digit:]]{1,3})\\.([[:digit:]]{1,3})\\.([[:digit:]]{1,3})$") # -> { "127.0.0.1", "127", "0", "0", "1" }
  *)
-on match(s, regex)
+on match(s, regex)--// :TODO: rename s to string
 	local ignoreCase, extraCommand
 	set ignoreCase to "a" is "A"
 	if ignoreCase then
