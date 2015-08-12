@@ -68,7 +68,7 @@ on match(s, regex) --// :TODO: rename s to string
 	#  Since `quoted form of` encloses its argument in single quotes, we must set compatibility option `shopt -s compat31` for the =~ operator to work.
 	#  Rather than let the shell command fail we return '' in case of non-match to avoid having to deal with exception handling in AppleScript.
 	tell me to do shell script "export LANG='" & user locale of (system info) & ".UTF-8'; shopt -s compat31; " & extraCommand & "[[ " & quoted form of s & " =~ " & quoted form of regex & " ]] && printf '%s\\n' \"${BASH_REMATCH[@]}\" || printf ''"
-	return result --paragraphs of result--paragraphs returns a list, which can be unconvenient 
+	return paragraphs of result --paragraphs returns a list, which can be unconvenient 
 end match
 
 

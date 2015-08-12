@@ -1,3 +1,4 @@
+--property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
 (*
  * Returns an array of every word in the_text
  *)
@@ -79,6 +80,7 @@ on ordinal(the_number)
 end ordinal
 (*
  * Returns encode text (escaped)
+ * Caution: encode does not handle the double quote char very well
  * Note: this could also be done by creating a a method that does all the character trickery involved in unescaping/escaping text, but this method leverages the php language to do all this for us
  * Example: encode("<image location:files/img/image.jpg")--%3Cimage+location%3Afiles%2Fimg%2Fimage.jpg
  *)
@@ -109,13 +111,33 @@ end quoted_form
 on sub_string(the_start, the_end, the_text)
 	return text the_start thru the_end of the_text
 end sub_string
-
--- Counts how many times a string appears in a text
--- Note: Its splits the text by the substring and counts the items
---
+(*
+ * Counts how many times a string appears in a text
+ * Note: Its splits the text by the substring and counts the items
+ *)
 on occurrences(the_text, match)
 	set AppleScript's text item delimiters to match
 	set counter to (count of every text item of the_text) - 1
 	set AppleScript's text item delimiters to ""
 	return counter
 end occurrences
+(*
+ * Returns a text without linebreaks, a substitue replaces the linebreak char
+ * Note: linebreaks often come in the form of \\n or \\r 
+ * Caution: if a line is empty it is still replaced with the_substitute 
+ * Param: the_substitue is the replacement for the linebreak
+ *)
+on wrap_text(the_text, the_substitue)
+	set the_wrapped_text to ""
+	set the_paragraphs to paragraphs of the_text
+	set the_len to length of the_paragraphs
+	repeat with i from 1 to the_len
+		set the_paragraph to item i of the_paragraphs
+		if (i = the_len) then
+			set the_wrapped_text to the_wrapped_text & the_paragraph --append the paragraph to the text
+		else
+			set the_wrapped_text to the_wrapped_text & the_paragraph & the_substitue --append the paragraph to the text and the line break replacement
+		end if
+	end repeat
+	return the_wrapped_text
+end wrap_text
