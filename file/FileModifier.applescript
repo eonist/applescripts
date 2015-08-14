@@ -25,12 +25,18 @@ on write_data(the_data, target_file, append_data) -- (string, file path as strin
 		return false
 	end try
 end write_data
-(*
+(* 
  * Deletes the file at the file_path
+ * Todo: what kind of file path?
  *)
 on delete_file(file_path)
 	tell application "Finder"
 		delete file file_path
 	end tell
 end delete_file
-
+(*
+ * Todo: what kind of file path?
+ *)
+on rename_file(file_path,new_file_name)
+	--Todo: complete me
+end rename_file
