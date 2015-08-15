@@ -102,6 +102,7 @@ on file_info(the_file)
 end file_info
 (*
  * Returns the file extension of the file, i.e: .zip
+ * Note: its also possible to DisplayObject it directly from the file, google it
  *)
 on file_extension(the_file)
 	return name extension of (info for the_file)
