@@ -48,7 +48,7 @@ end comma_delimited_text
 --Returns a text item by stitching many text items together with the delimiter inbetween each word
 on delimited_text(text_items, delimiter)
 	set ret_val to ""
-	repeat with i from 1 to (length of text_items)
+	repeat with i from 1 to (length of text_items)--Todo: store len in a variable
 		set the_word to item i of text_items
 		set head to ""
 		set tail to delimiter
