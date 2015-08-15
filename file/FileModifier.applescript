@@ -28,6 +28,7 @@ end write_data
 (* 
  * Deletes the file at the file_path
  * Todo: what kind of file path?
+ * Todo: impliment try error?
  *)
 on delete_file(file_path)
 	tell application "Finder"
@@ -36,7 +37,17 @@ on delete_file(file_path)
 end delete_file
 (*
  * Todo: what kind of file path?
+ * Todo: complete me
+ * Todo: untested
  *)
 on rename_file(file_path,new_file_name)
-	--Todo: complete me
+	tell application "Finder"
+	   try
+	       set fileName to name of file_path 
+	       log fileName
+	       set name of theFile to new_file_name --> rename the file
+	   on error
+	       log "error"
+	   end try
+	end tell
 end rename_file
