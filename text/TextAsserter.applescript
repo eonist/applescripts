@@ -1,5 +1,6 @@
 (*
  * Assserts if theWord is in theString
+ * Todo: does this work with partial words ?, if it doesnt create a regexp has match method
  *)
 on has_word(the_string, the_word)
 	the_word is in (words of the_string)

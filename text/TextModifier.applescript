@@ -1,5 +1,6 @@
 (*
  * Example : StringModifier's replaceText("Let it be known that [company] is responsible for any damage" & " any employee causes during [company]'s activity while in the conference.", "[company]", "Disny inc") -- this will then replace all instances of [company] with Disny inc
+ * Todo: is the original text also edited?
  *)
 on replace_text(the_text, match, replacement)
 	set text item delimiters to match
