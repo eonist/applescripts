@@ -77,7 +77,13 @@ on match(s, regex) --// :TODO: rename s to string
 	return paragraphs of result --paragraphs returns a list, which can be unconvenient 
 end match
 
-
+(*
+ * Todo: untested
+ *)
+on match_and_replace(the_text)
+	set the_result to do shell script "echo " & quoted form of the_text & " | sed 's/ /\\\\ /g'"
+	return the_result
+end match_and_replace
 (*
 Note:
 
