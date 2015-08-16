@@ -1,4 +1,4 @@
---
+--property RegExpUtil : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "regexp:RegExpUtil.applescript"))
 (*
  * Matches string s against regular expression (string) regex using bash's extended regular expression language *including* 
  * Note: sed regexp does not support lookahead, lookbehind, lazy quantifieres, so use groups or nested regexp calls may be needed in order to get at the bits you want
@@ -11,7 +11,7 @@
  * Example: my doesMatch("127.0.0.1", "^(\\d{1,3}\\.){3}\\d{1,3}$") # -> true
  * Example: doesMatch(text, regexString) -> Boolean
  *)
-on does_matches(s, regex) --// :TODO: rename s to string
+on has_match(s, regex) --// :TODO: rename s to string
 	local ignoreCase, extraGrepOption
 	set ignoreCase to "a" is "A"
 	if ignoreCase then
@@ -24,7 +24,7 @@ on does_matches(s, regex) --// :TODO: rename s to string
 	 * Rather than let the shell command fail we return the exit code and test for "0" to avoid having to deal with exception handling in AppleScript.
 	 *)
 	tell me to return "0" = (do shell script "export LANG='" & user locale of (system info) & ".UTF-8'; egrep -q" & extraGrepOption & " " & quoted form of regex & " <<< " & quoted form of s & "; printf $?")
-end does_matches
+end has_match
 (*
  * Matches string s against regular expression (string) regex using bash's extended regular expression language and
  * returns the matching string and substrings matching capture groups, if any.*
