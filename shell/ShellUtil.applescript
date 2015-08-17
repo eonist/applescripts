@@ -27,7 +27,7 @@ end keychain_password
 getPW("name of keychain item")
 
 on getPW(keychainItemName)
-    do shell script "security 2>&1 >/dev/null find-generic-password -gl " & quoted form of keychainItemName & " | awk '{print $2}'"
-    return (text 2 thru -2 of result)
-end getPWu
+	do shell script "security 2>&1 >/dev/null find-generic-password -gl " & quoted form of keychainItemName & " | awk '{print $2}'"
+	return (text 2 thru -2 of result)
+end getPW
 
