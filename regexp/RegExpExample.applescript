@@ -15,3 +15,12 @@ on isloated_word(the_text)
 	set the_pattern to ""
 	return RegExpUtil's match(the_text, the_pattern)
 end isloated_word
+
+--log not_char("abc dfg")
+--finds text without the char a
+--log RegExpUtil's match(" bla bla \"thePassWord\" jada jasa", "\"([^\"]+)\"")--(*"thePassWord", thePassWord*)
+on not_char(the_text)
+	set the_pattern to "[^a]+"
+	return RegExpUtil's match(the_text, the_pattern)
+end not_char
+
