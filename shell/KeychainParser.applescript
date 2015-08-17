@@ -3,13 +3,16 @@ property RegExpUtil : my ScriptLoader's load_script(alias ((path to scripts fold
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
 
 
-keychain_data("flowerpower2")
+
 
 (*
  * Returns a record with keychain name, account name and password by querrying keychain with the "keychain item name" of the password-keychain-item
  * Note: the_keychain_item_name is the "name" of the keychain-password-item
  * Caution: If there are unusual characters in the password, it isn't output as plain text, it's output encoded in hex. Here's a python script I've been using which covers that case: http://blog.macromates.com/2006/keychain-access-from-shell/
  * Note: appending find-generic-password -a  & account_name &  -g will retrive keychain itm name and pass from account name
+ * Example: keychain_data("flowerpower2")--{keychain_item_name:"flowerpower2", account_name:"John", the_password:"HereIsJohnny2015"}
+ * Note: to access a record use the_password of keychain_data
+ * Todo: impliment support for retriving the comment in the keychain item
  *)
 on keychain_data(the_keychain_item_name)
 	set pass_result to (do shell script "2>&1 security find-generic-password -gl " & the_keychain_item_name) --outputs pass and login credentials
@@ -42,3 +45,11 @@ on keychain_data(the_keychain_item_name)
 	
 	return {keychain_item_name:keychain_item_name, account_name:account_name, the_password:the_password}
 end keychain_data
+
+on keychain_password()
+	--Todo: complete me
+end keychain_password
+
+on keychain_account()
+	--Todo: complete me
+end keychain_account
