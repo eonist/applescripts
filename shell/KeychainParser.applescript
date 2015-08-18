@@ -46,10 +46,25 @@ on keychain_data(the_keychain_item_name)
 	return {keychain_item_name:keychain_item_name, account_name:account_name, the_password:the_password}
 end keychain_data
 
-on keychain_password()
-	--Todo: complete me
-end keychain_password
 
 on keychain_account()
 	--Todo: complete me
 end keychain_account
+
+(*
+ * Retrive passwords from Apples keychain application by querrying the keychain item name (not account name)
+ * Note: Make sure you set the keychain item to allow this script to retrive passwords
+ * Example: keychain_password("flowerpower")--"abc123"
+ *)
+on keychain_password(keychain_item_name)
+	set the_result to do shell script "security 2>&1 >/dev/null find-generic-password -gl " & quoted form of keychain_item_name & " | awk '{print $2}'"
+	--log the_result
+	return (text 2 thru -2 of the_result)
+end keychain_password
+
+--to add a keychain: security add-generic-password -s google -a mogensen -w PaSSW0rd
+
+--internet pass: security find-internet-password -g -s www.google.com 
+--PASSWORD=`security find-internet-password -wl "KUPHOG-NAS"`
+
+
