@@ -7,7 +7,7 @@
 
 ###FAQ
 
-Q: Where do I place the appliscript's in this library?<br/>
+Q: Where do I place the appliscripts in this library?<br/>
 A: Finder -> Go -> Go to folder then write: /users/your-user-name/Library
 
 Q: Why not use .scpt files?<br/>
