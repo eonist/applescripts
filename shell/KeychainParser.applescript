@@ -38,11 +38,7 @@ on keychain_data(the_keychain_item_name)
 	return {account_name:account_name, the_password:the_password}
 end keychain_data
 
-
-on keychain_account()
-	--Todo: complete me
-end keychain_account
-
+keychain_password("flowerpower") --"abc123"
 (*
  * Retrive passwords from Apples keychain application by querrying the keychain item name (not account name)
  * Note: Make sure you set the keychain item to allow this script to retrive passwords
@@ -59,4 +55,9 @@ end keychain_password
 --internet pass: security find-internet-password -g -s www.google.com 
 --PASSWORD=`security find-internet-password -wl "KUPHOG-NAS"`
 
+
+
+on keychain_account()
+	--Todo: complete me
+end keychain_account
 
