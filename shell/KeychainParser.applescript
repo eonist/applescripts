@@ -33,16 +33,16 @@ on keychain_data(the_keychain_item_name)
 	--log fourth item in the_result
 	set the_password_text to second item in the_result
 	log "the_password_text: " & the_password_text
-	set password_result to RegExpUtil's match(the_password_text, "(0x[0-9A-F]+)?[[:space:]]*\"(.+)\"")
+	set password_result to RegExpUtil's match(the_password_text, "0?x?([0-9A-F]+)?[[:space:]]*\"(.+)\"")
 	
 	if (second item in password_result = "") then --is string-form
 		set the_password to third item in password_result
-		log "string_pass: " & the_password
 	else --is hex-form
 		set hex_pass to second item in password_result
 		log "hex_pass: " & hex_pass
 		set the_password to ShellUtil's hex_to_ascii(hex_pass)
 	end if
+	log "the_password: " & the_password
 	set the_content to fourth item in the_result
 	--log the_content
 	set account_name_result to RegExpUtil's match(the_content, " \"acct\"\\<blob\\>\\=\"([^\"]+)\"")
