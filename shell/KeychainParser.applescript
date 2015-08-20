@@ -1,7 +1,7 @@
 property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
 property RegExpUtil : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "regexp:RegExpUtil.applescript"))
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
-
+keychain_data("github")
 (*
  * Returns a record with account name and password by querrying keychain with the "keychain item name" of the password-keychain-item
  * Note: the_keychain_item_name is the "name" of the keychain-password-item
@@ -16,7 +16,7 @@ property TextParser : my ScriptLoader's load_script(alias ((path to scripts fold
 on keychain_data(the_keychain_item_name)
 	--log "keychain_data()"
 	set pass_result to (do shell script "2>&1 security find-generic-password -gl " & the_keychain_item_name) --outputs pass and login credentials
-	--log pass_result
+	log pass_result
 	--log length of pass_result
 	
 	set wrapped_text to TextParser's wrap_text(pass_result, " ") --wraps the text into one line, replaces linebreaks with a single space char
