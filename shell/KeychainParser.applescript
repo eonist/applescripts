@@ -11,6 +11,7 @@ property TextParser : my ScriptLoader's load_script(alias ((path to scripts fold
  * Example: keychain_data("flowerpower2")--{keychain_item_name:"flowerpower2", account_name:"John", the_password:"HereIsJohnny2015"}
  * Note: to access a record use the_password of keychain_data
  * Todo: impliment support for retriving the comment in the keychain item
+ * Caution: If the password contains special chars, the password will be returned as hex values, Use ShellUtil's hex_to_ascii(hex_text
  *)
 on keychain_data(the_keychain_item_name)
 	--log "keychain_data()"
@@ -43,6 +44,7 @@ keychain_password("flowerpower") --"abc123"
  * Retrive passwords from Apples keychain application by querrying the keychain item name (not account name)
  * Note: Make sure you set the keychain item to allow this script to retrive passwords
  * Example: keychain_password("flowerpower")--"abc123"
+ * Caution: If the password contains special chars, the password will be returned as hex values, Use ShellUtil's hex_to_ascii(hex_text)
  *)
 on keychain_password(keychain_item_name)
 	set the_result to do shell script "security 2>&1 >/dev/null find-generic-password -gl " & quoted form of keychain_item_name & " | awk '{print $2}'"
