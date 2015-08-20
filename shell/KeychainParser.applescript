@@ -32,6 +32,8 @@ on keychain_data(the_keychain_item_name)
 	--log fourth item in the_result
 	set the_password to second item in the_result
 	log "Password: " & the_password
+	log RegExpUtil's match(the_password, "Password:[[:space:]](0x[0-9A-F]+)?[[:space:]]*\"(.+)\"")
+	
 	set the_content to fourth item in the_result
 	--log the_content
 	set account_name_result to RegExpUtil's match(the_content, " \"acct\"\\<blob\\>\\=\"([^\"]+)\"")
