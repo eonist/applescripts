@@ -2,19 +2,18 @@ property ScriptLoader : load script alias ((path to scripts folder from user dom
 property RegExpUtil : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "regexp:RegExpUtil.applescript"))
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
 
-
-
-
 (*
- * Returns a record with keychain name, account name and password by querrying keychain with the "keychain item name" of the password-keychain-item
+ * Returns a record with account name and password by querrying keychain with the "keychain item name" of the password-keychain-item
  * Note: the_keychain_item_name is the "name" of the keychain-password-item
  * Caution: If there are unusual characters in the password, it isn't output as plain text, it's output encoded in hex. Here's a python script I've been using which covers that case: http://blog.macromates.com/2006/keychain-access-from-shell/
+ * Caution: Make sure your keychain item is unique, or else it may return the wrong keychain, this includes secure notes
  * Note: appending find-generic-password -a  & account_name &  -g will retrive keychain itm name and pass from account name
  * Example: keychain_data("flowerpower2")--{keychain_item_name:"flowerpower2", account_name:"John", the_password:"HereIsJohnny2015"}
  * Note: to access a record use the_password of keychain_data
  * Todo: impliment support for retriving the comment in the keychain item
  *)
 on keychain_data(the_keychain_item_name)
+	--log "keychain_data()"
 	set pass_result to (do shell script "2>&1 security find-generic-password -gl " & the_keychain_item_name) --outputs pass and login credentials
 	--log pass_result
 	--log length of pass_result
@@ -22,7 +21,7 @@ on keychain_data(the_keychain_item_name)
 	set wrapped_text to TextParser's wrap_text(pass_result, " ") --wraps the text into one line, replaces linebreaks with a single space char
 	--log wrapped_text
 	
-	set the_result to RegExpUtil's match(wrapped_text, "password\\: \"([a-z0-9]+)\".keychain\\: \"([a-z0-9/.]+)\" class\\: \"genp\" attributes\\:(.+)")
+	set the_result to RegExpUtil's match(wrapped_text, "password\\: \"([a-zA-Z0-9]+)\".keychain\\: \"([a-z0-9/.]+)\" class\\: \"genp\" attributes\\:(.+)")
 	--log the_result
 	--log length of the_result
 	
@@ -36,14 +35,7 @@ on keychain_data(the_keychain_item_name)
 	--log first item in account_name_result
 	set account_name to second item in account_name_result
 	--log "account_name:" & account_name
-	--svce"<blob>="flowerpower"
-	set keychain_item_name_result to RegExpUtil's match(the_content, " \"svce\"\\<blob\\>\\=\"([^\"]+)\"")
-	--log keychain_item_name_result
-	--log length of keychain_item_name_result
-	set keychain_item_name to (second item in keychain_item_name_result) --keychain item name
-	--log "keychain_item_name: " & keychain_item_name
-	
-	return {keychain_item_name:keychain_item_name, account_name:account_name, the_password:the_password}
+	return {account_name:account_name, the_password:the_password}
 end keychain_data
 
 

@@ -1,3 +1,5 @@
+property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
+property TextAsserter : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextAsserter.applescript"))
 property git_path : "/usr/local/git/bin/" --to execute git commands we need to call the git commands from this path
 (* 
  * Returns current git status
@@ -13,10 +15,16 @@ end status
 (* 
  * Add a file or many files to a commit
  * @param file_name is the file name you want to add, use * if you want to add all files
+ * Caution: when a file is removed, the * char wont work, you have to add the file manually
  * Example: GitUtils's add(local_repo_path, "*")
  *)
 on add(local_repo_path, file_name)
-	return do shell script "cd " & local_repo_path & ";" & git_path & git_add & " " & file_name
+	if (TextAsserter's is_wrapped_in(file_name, "\"") = false) then --avoids quoting a file_name that is already quoated, this can happen when git removes a file
+		set file_name to quoted form of file_name
+	end if
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git add" & " " & file_name
+	log "shell_cmd: " & shell_cmd
+	return do shell script shell_cmd
 end add
 (* 
  * Commits current changes
@@ -52,13 +60,15 @@ end commit
 on push(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "master" --master branch
 	set to_where to "https://" & user_name & ":" & user_password & "@" & remote_repo_url --https://user:pass@github.com/user/repo.git--"origin"
-	return do shell script "cd " & local_repo_path & ";" & git_path & "git push" & " " & to_where & " " & from_where
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git push" & " " & to_where & " " & from_where
+	log "shell_cmd: " & shell_cmd
+	return do shell script shell_cmd
 end push
 --Reset
 --the opposite of the add action
 --The * resets all
 on reset(local_repo_path, file_name)
-	return do shell script "cd " & local_repo_path & ";" & git_path & git_reset & " " & file_name
+	return do shell script "cd " & local_repo_path & ";" & git_path & "git reset" & " " & file_name
 end reset
 (*
  * Downloads the current from the remote git to the local git
@@ -77,11 +87,12 @@ end pull
  * git cherry -v origin/master
  * Todo: description needed
  * Note: this can be used to assert if there are any local commits ready to be pushed, if there are local commits then text will be returned, if there arent then there will be no text
+ * Caution: if you use git add with https login and pass, you need to run "git remote update" in order for the above note to work
  *)
 on cherry(local_repo_path, user_name, user_password)
 	set loc to "origin" --"https://" & user_name & ":" & user_password & "@" & remote_repo_url
 	set what_branch to "master" --master branch
-	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " " & loc & "/" & what_branch
+	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & what_branch
 end cherry
 (*
  * The opposite of the add action
@@ -139,6 +150,9 @@ end config
 on diff()
 	
 end diff
-
+-- to bring your remote refs up to date
+on git_remote_update(local_repo_path)
+	return do shell script "cd " & local_repo_path & ";" & git_path & "git remote update"
+end git_remote_update
 
 --remote add origin

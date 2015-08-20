@@ -8,11 +8,11 @@ end has_word
 (*
  * Todo: untested
  *)
-on has_any_word(the_text,the_words)
+on has_any_word(the_text, the_words)
 	repeat with the_word in the_words
-		if (has_word(the_text,the_word)) then
+		if (has_word(the_text, the_word)) then
 			return true
-		end if	
+		end if
 	end repeat
 	return false
 end has_any_word
@@ -32,3 +32,9 @@ on is_text(the_text)
 		return false
 	end if
 end is_text
+(*
+ * Example: Asserts if a word is duoble quated: is_wrapped_in("\"abc123\"", "\"")--true
+ *)
+on is_wrapped_in(the_text, wrapper)
+	return (the first character in the_text is wrapper) and (the last character in the_text is wrapper)
+end is_wrapped_in
