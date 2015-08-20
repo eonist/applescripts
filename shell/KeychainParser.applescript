@@ -3,7 +3,7 @@ property RegExpUtil : my ScriptLoader's load_script(alias ((path to scripts fold
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
 
 
-keychain_data("flowerpower")
+keychain_data("github")
 (*
  * Returns a record with account name and password by querrying keychain with the "keychain item name" of the password-keychain-item
  * Note: the_keychain_item_name is the "name" of the keychain-password-item
@@ -32,7 +32,7 @@ on keychain_data(the_keychain_item_name)
 	--log fourth item in the_result
 	set the_password to second item in the_result
 	log "Password: " & the_password
-	log RegExpUtil's match(the_password, "Password:[[:space:]](0x[0-9A-F]+)?[[:space:]]*\"(.+)\"")
+	log RegExpUtil's match(the_password, "(0x[0-9A-F]+)?[[:space:]]*\"(.+)\"")
 	
 	set the_content to fourth item in the_result
 	--log the_content
