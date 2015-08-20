@@ -38,10 +38,11 @@ on keychain_data(the_keychain_item_name)
 	if (second item in passoword_result = "") then --is string-form
 		set the_password to third item in passoword_result
 	else --is hex-form
-		set the_password to second item in passoword_result
-		set the_password ShellUtil's hex_to_ascii()
+		set hex_pass to second item in passoword_result
+		log "hex_pass: " & hex_pass
+		set the_password to ShellUtil's hex_to_ascii(hex_pass)
 	end if
-	
+	log "the_password:" & the_password
 	set the_content to fourth item in the_result
 	--log the_content
 	set account_name_result to RegExpUtil's match(the_content, " \"acct\"\\<blob\\>\\=\"([^\"]+)\"")
