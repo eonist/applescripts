@@ -7,7 +7,7 @@ on touch() --touch creates an index.html file
 	log "retMSG: " & retMSG
 end touch
 
-log hex_to_ascii("6162634028292F3132335F262F25242F26242325242226C2A7E2889E7CC2A7E2889E7") --abc@()/123_&/%$/&$#%$"&ぐ|ぐ
+log hex_to_ascii("0x6162634028292F3132335F262F25242F26242325242226C2A7E2889E7CC2A7E2889E7") --abc@()/123_&/%$/&$#%$"&ぐ|ぐ
 
 (*
  * Note: Instead of loading a .sh shell script into terminal, we compile it as a string and run it directly in terminal
@@ -15,6 +15,7 @@ log hex_to_ascii("6162634028292F3132335F262F25242F26242325242226C2A7E2889E7CC2A7
  * Note: When including shell scripts inside applescripts, becarefull with using linebreaks as "return" or end calls with ";"
  * Note Using a shell script file, returns the same result: log do shell script "cd ~/;" & "sh hexatoascii.sh x6162634028292F3132335F262F25242F26242325242226C2A7E2889E7CC2A7E2889E7"
  * Example: --log hex_to_ascii("x6162634028292F3132335F262F25242F26242325242226C2A7E2889E7CC2A7E2889E7")--abc@()/123_&/%$/&$#%$"&ぐ|ぐ
+ * Caution: seems to work without the x infront of the hex aswell, 0x00FF00 format doesnt seem to work
  *)
 on hex_to_ascii(the_hex_text)
 	set the_shell_script to "#!/bin/bash
