@@ -3,7 +3,7 @@ property RegExpUtil : my ScriptLoader's load_script(alias ((path to scripts fold
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
 
 
-keychain_data("github")
+keychain_data("flowerpower")
 (*
  * Returns a record with account name and password by querrying keychain with the "keychain item name" of the password-keychain-item
  * Note: the_keychain_item_name is the "name" of the keychain-password-item
