@@ -32,7 +32,7 @@ on keychain_data(the_keychain_item_name)
 	--log fourth item in the_result
 	set the_password to second item in the_result
 	log "Password: " & the_password
-	log RegExpUtil's match(the_password, "(0x[0-9A-F]+)?[[:space:]]*\"(.+)\"")
+	set RegExpUtil's match(the_password, "(0x[0-9A-F]+)?[[:space:]]*\"(.+)\"")
 	
 	set the_content to fourth item in the_result
 	--log the_content
