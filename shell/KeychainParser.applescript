@@ -1,6 +1,10 @@
 property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
 property RegExpUtil : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "regexp:RegExpUtil.applescript"))
 property TextParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextParser.applescript"))
+
+
+log "\\302"
+
 keychain_data("flowerpower")
 (*
  * Returns a record with account name and password by querrying keychain with the "keychain item name" of the password-keychain-item
@@ -56,7 +60,6 @@ end keychain_password
 
 --internet pass: security find-internet-password -g -s www.google.com 
 --PASSWORD=`security find-internet-password -wl "KUPHOG-NAS"`
-
 
 
 on keychain_account()
