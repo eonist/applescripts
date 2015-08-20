@@ -30,14 +30,15 @@ on keychain_data(the_keychain_item_name)
 	--log second item in the_result
 	--log third item in the_result
 	--log fourth item in the_result
-	set the_password to second item in the_result
-	log "Password: " & the_password
-	set hex_and_string_password to RegExpUtil's match(the_password, "(0x[0-9A-F]+)?[[:space:]]*\"(.+)\"")
+	set the_password_text to second item in the_result
+	log "the_password_text: " & the_password_text
+	set passoword_result to RegExpUtil's match(the_password_text, "(0x[0-9A-F]+)?[[:space:]]*\"(.+)\"")
 	
-	if (second item in hex_and_string_password = "") then --is string-form
-		
+	if (second item in passoword_result = "") then --is string-form
+		set the_password to third item in passoword_result
 	else --is hex-form
-		
+		set the_password to second item in passoword_result
+		set the_password ShellUtil's hex_to_ascii()
 	end if
 	
 	set the_content to fourth item in the_result
