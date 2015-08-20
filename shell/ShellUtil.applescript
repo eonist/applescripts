@@ -7,7 +7,7 @@ on touch() --touch creates an index.html file
 	log "retMSG: " & retMSG
 end touch
 
-log hex_to_ascii("x6162634028292F3132335F262F25242F26242325242226C2A7E2889E7CC2A7E2889E7") --abc@()/123_&/%$/&$#%$"&ぐ|ぐ
+log hex_to_ascii("testing") --abc@()/123_&/%$/&$#%$"&ぐ|ぐ
 
 (*
  * Note: Instead of loading a .sh shell script into terminal, we compile it as a string and run it directly in terminal
