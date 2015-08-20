@@ -19,7 +19,7 @@ keychain_data("flowerpower")
 on keychain_data(the_keychain_item_name)
 	--log "keychain_data()"
 	set pass_result to (do shell script "2>&1 security find-generic-password -gl " & the_keychain_item_name) --outputs pass and login credentials
-	log pass_result
+	--log pass_result
 	--log length of pass_result
 	
 	set wrapped_text to TextParser's wrap_text(pass_result, " ") --wraps the text into one line, replaces linebreaks with a single space char
@@ -27,22 +27,22 @@ on keychain_data(the_keychain_item_name)
 	
 	set the_result to RegExpUtil's match(wrapped_text, "password\\: (.+) keychain\\: \"([a-z0-9/.]+)\" class\\: \"genp\" attributes\\:(.+)")
 	--log the_result
-	log length of the_result
+	--log length of the_result
 	--log second item in the_result
 	--log third item in the_result
 	--log fourth item in the_result
 	set the_password_text to second item in the_result
-	log "the_password_text: " & the_password_text
+	--log "the_password_text: " & the_password_text
 	set password_result to RegExpUtil's match(the_password_text, "0?x?([0-9A-F]+)?[[:space:]]*\"(.+)\"")
 	
 	if (second item in password_result = "") then --is string-form
 		set the_password to third item in password_result
 	else --is hex-form
 		set hex_pass to second item in password_result
-		log "hex_pass: " & hex_pass
+		--log "hex_pass: " & hex_pass
 		set the_password to ShellUtil's hex_to_ascii(hex_pass)
 	end if
-	log "the_password: " & the_password
+	--log "the_password: " & the_password
 	set the_content to fourth item in the_result
 	--log the_content
 	set account_name_result to RegExpUtil's match(the_content, " \"acct\"\\<blob\\>\\=\"([^\"]+)\"")
@@ -50,8 +50,8 @@ on keychain_data(the_keychain_item_name)
 	--log length of account_name_result
 	--log first item in account_name_result
 	set account_name to second item in account_name_result
-	log "account_name:" & account_name
-	--return {account_name:account_name, the_password:the_password}
+	--log "account_name:" & account_name
+	return {account_name:account_name, the_password:the_password}
 end keychain_data
 
 --keychain_password("flowerpower") --"abc123"
