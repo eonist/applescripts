@@ -1,4 +1,5 @@
 --Note: All shell calls resets previouse shell variables, append with ";" after each shell command if you need to run many shell calls in a row
+--Note: Alot of FAQ's about Shell in applescript here: https://developer.apple.com/library/mac/technotes/tn2065/_index.html
 (*
  * Touch creates files	
  *)
