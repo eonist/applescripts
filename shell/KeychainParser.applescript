@@ -27,19 +27,19 @@ on keychain_data(the_keychain_item_name)
 	set the_result to RegExpUtil's match(wrapped_text, "password\\: (.+) keychain\\: \"([a-z0-9/.]+)\" class\\: \"genp\" attributes\\:(.+)")
 	--log the_result
 	log length of the_result
-	log second item in the_result
+	--log second item in the_result
 	--log third item in the_result
-	log fourth item in the_result
-	--set the_password to second item in the_result
-	--log "Password: " & the_password
-	--set the_content to fourth item in the_result
+	--log fourth item in the_result
+	set the_password to second item in the_result
+	log "Password: " & the_password
+	set the_content to fourth item in the_result
 	--log the_content
-	--set account_name_result to RegExpUtil's match(the_content, " \"acct\"\\<blob\\>\\=\"([^\"]+)\"")
+	set account_name_result to RegExpUtil's match(the_content, " \"acct\"\\<blob\\>\\=\"([^\"]+)\"")
 	--log account_name_result
 	--log length of account_name_result
 	--log first item in account_name_result
-	--set account_name to second item in account_name_result
-	--log "account_name:" & account_name
+	set account_name to second item in account_name_result
+	log "account_name:" & account_name
 	--return {account_name:account_name, the_password:the_password}
 end keychain_data
 
