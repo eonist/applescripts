@@ -4,6 +4,7 @@
 - [x] Add a regexp folder and start adding methods
 - [ ] Make comments less ambiguous
 - [ ] Conform all metod names to the current naming convention
+- [ ] Move GitUtil.applescript into the shell folder
 
 ###FAQ
 
