@@ -5,7 +5,7 @@
 - [ ] Make comments less ambiguous
 - [ ] Conform all metod names to the current naming convention
 - [ ] Move GitUtil.applescript into the shell folder
-
+- [ ] Add a .gitignore, but don't include it in the source folder, write it up in the wiki section
 ###FAQ
 
 Q: Where do I place the appliscripts in this library?<br/>
