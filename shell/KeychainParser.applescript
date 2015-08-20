@@ -24,10 +24,12 @@ on keychain_data(the_keychain_item_name)
 	set wrapped_text to TextParser's wrap_text(pass_result, " ") --wraps the text into one line, replaces linebreaks with a single space char
 	--log wrapped_text
 	
-	set the_result to RegExpUtil's match(wrapped_text, "password\\: (.+)keychain\\: \"([a-z0-9/.]+)\" class\\: \"genp\" attributes\\:(.+)")
-	log the_result
+	set the_result to RegExpUtil's match(wrapped_text, "password\\: (.+) keychain\\: \"([a-z0-9/.]+)\" class\\: \"genp\" attributes\\:(.+)")
+	--log the_result
 	log length of the_result
-	
+	log second item in the_result
+	--log third item in the_result
+	log fourth item in the_result
 	--set the_password to second item in the_result
 	--log "Password: " & the_password
 	--set the_content to fourth item in the_result
