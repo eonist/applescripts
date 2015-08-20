@@ -32,7 +32,13 @@ on keychain_data(the_keychain_item_name)
 	--log fourth item in the_result
 	set the_password to second item in the_result
 	log "Password: " & the_password
-	set RegExpUtil's match(the_password, "(0x[0-9A-F]+)?[[:space:]]*\"(.+)\"")
+	set hex_and_string_password to RegExpUtil's match(the_password, "(0x[0-9A-F]+)?[[:space:]]*\"(.+)\"")
+	
+	if (second item in hex_and_string_password = "") then --is string-form
+		
+	else --is hex-form
+		
+	end if
 	
 	set the_content to fourth item in the_result
 	--log the_content
