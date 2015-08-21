@@ -1,16 +1,16 @@
 --property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
 --property RegExpUtil : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "regexp:RegExpUtil.applescript"))
 
-set remote_path to "https://github.com/eonist/test.git"
+set remote_path to "github.com/eonist/test.git"
 set is_full_url to has_match(remote_path, "^https://.+$")
-if is_full_url is false then
-	--set remote_path to "https://" & remote_path
-	log "if"
+if is_full_url = false then
+	set remote_path to "https://" & remote_path
+	log "false"
 else
-	log "else"
+	log "true"
 	
 end if
-
+log remote_path
 (*
  * Matches string s against regular expression (string) regex using bash's extended regular expression language *including* 
  * Note: sed regexp does not support lookahead, lookbehind, lazy quantifieres, so use groups or nested regexp calls may be needed in order to get at the bits you want
