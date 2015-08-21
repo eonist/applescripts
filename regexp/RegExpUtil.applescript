@@ -2,9 +2,13 @@
 --property RegExpUtil : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "regexp:RegExpUtil.applescript"))
 
 set remote_path to "https://github.com/eonist/test.git"
-set is_full_url to RegExpUtil's has_match(remote_path, "^https://.+$")
-if is_full_url is false then 
-	set remote_path to "https://" & remote_path
+set is_full_url to has_match(remote_path, "^https://.+$")
+if is_full_url is false then
+	--set remote_path to "https://" & remote_path
+	log "if"
+else
+	log "else"
+	
 end if
 
 (*
