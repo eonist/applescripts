@@ -51,6 +51,7 @@ on capitalize_text(the_text)
 end capitalize_text
 (*
  * removes trim string from the right side of the text
+ * Note: you can also do something like this: text 2 thru (length of the_text) of the_text
  *)
 on left_side_strip(the_text, trim_string)
 	set x to count trim_string
@@ -65,6 +66,7 @@ on left_side_strip(the_text, trim_string)
 end left_side_strip
 (*
  * removes trim string from the right side of the text
+ * Note: you can also do something like this: text 1 thru ((length of the_text) - 1) of the_text
  *)
 on right_side_strip(the_text, trim_string)
 	set x to count trim_string
