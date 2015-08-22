@@ -1,7 +1,7 @@
 (* 
  * Writes data to target_file (appends if append_data is true)
  * Note: if the target_file doesnt exisist it is created
- * @param target_file: needs to be in this url format: "Macintosh HD:Users:John:Desktop:del.txt" (aka the HFS format)
+ * @param target_file: needs to be in the hsf URL path format: "Macintosh HD:Users:John:Desktop:del.txt"
  * Todo: create a method for creating files, google it, you may also us she'll and touch and terminal and mkdir
  * Note: the eof value seems to be a special kind of value, it some how gets the length of the file without being set
  *)
