@@ -127,6 +127,8 @@ end file_names
 (*
  * Returns the file name from the file path
  * Todo: does it include the file extension?
+ * Todo: does this work with posix?, if not make a note about how to convert hsf to posix
+ * Note: works with hsf paths
  *)
 on file_name(the_file_path)
 	tell application "Finder"
