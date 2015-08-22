@@ -5,6 +5,7 @@
  * Todo: create a method for creating files, google it, you may also us she'll and touch and terminal and mkdir
  * Note: the eof value seems to be a special kind of value, it some how gets the length of the file without being set
  * Note: to createa file you can also do: tell application "Finder" to make new file at desktop with properties {name:"text1.txt", creator type:"8BIM", comment:"Hi!"}
+ * Note: you can also do this in shell: 
  *)
 on write_data(the_data, target_file, append_data) -- (string, file path as string, boolean)
 	--log "writeData"
