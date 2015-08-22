@@ -47,6 +47,14 @@ on hfs_path(file_path)
 	return file_path as text --string and text can be used
 end hfs_path
 (*
+ * Param the_hsf_file_path: Macintosh HD:Users:John:project:Text.txt
+ * Returns: an alias object with the hsf file path
+ * Note: you can cast as alias and as text to convert back and forth from hsf and alias hsf
+ *)
+on alias_file_path(the_hsf_file_path)
+	return the_hsf_file_path as alias
+end alias_file_path
+(*
  * TODO:  Explain
  *)
 on file_name_by_url(file_URL)
