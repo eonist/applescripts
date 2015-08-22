@@ -6,6 +6,7 @@
  * Note: the eof value seems to be a special kind of value, it some how gets the length of the file without being set
  * Note: to createa file you can also do: tell application "Finder" to make new file at desktop with properties {name:"text1.txt", creator type:"8BIM", comment:"Hi!"}
  * Note: you can also do this in shell: do shell script "echo 'some text here' > /desktop/some_file.txt"
+ * Example: FileModifier's write_data("test", (path to desktop & ":text1.txt"), false)--creates a text file on the desktop and adds some text to it
  *)
 on write_data(the_data, target_file, append_data) -- (string, file path as string, boolean)
 	--log "writeData"
