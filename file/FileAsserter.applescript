@@ -1,4 +1,5 @@
 property FileParser : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "file:FileParser.applescript"))
+
 (*
  * Todo: untested
  *)
