@@ -8,3 +8,17 @@ property FileParser : my ScriptLoader's load_script(alias ((path to scripts fold
 on is_folder(the_path)
 	return FileParser's file_kind(the_path) is equal to "folder"
 end is_folder
+
+(*
+ * Asserts if a file exits
+ * Param: hsf_file_path is a hsf file path
+ * Caution if you use alias hsf paths, make sure to cast it as text first
+ * Note: For alias hsf you can also do: use "exists file h"
+ * Note you can also use the try error clause with: hsf_file_path as alias--then it will be an error if the file doesnt exist 
+ *)
+on does_file_exist(hsf_file_path)
+	tell application "Finder"
+		return (exists file hsf_file_path)
+	end tell
+end does_file_exist
+

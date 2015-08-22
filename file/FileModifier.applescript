@@ -11,7 +11,7 @@
 on write_data(the_data, target_file, append_data) -- (string, file path as string, boolean)
 	--log "writeData"
 	try
-		set the target_file to the target_file as text
+		set the target_file to the target_file as text --Converts an "alias hsf" to "hsf format"
 		log "target_file: " & target_file
 		set the open_target_file to open for access file target_file with write permission
 		--log "open_target_file: " & open_target_file
