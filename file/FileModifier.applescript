@@ -40,14 +40,14 @@ end delete_file
  * Todo: complete me
  * Todo: untested
  *)
-on rename_file(file_path,new_file_name)
+on rename_file(file_path, new_file_name)
 	tell application "Finder"
-	   try
-	       set fileName to name of file_path 
-	       log fileName
-	       set name of theFile to new_file_name --> rename the file
-	   on error
-	       log "error"
-	   end try
+		try
+			set fileName to name of file_path
+			log fileName
+			set name of theFile to new_file_name --> rename the file
+		on error
+			log "error"
+		end try
 	end tell
 end rename_file
