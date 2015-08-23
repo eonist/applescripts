@@ -7,6 +7,10 @@ on touch() --touch creates an index.html file
 	set retMSG to do shell script "cd ~/test/" --touch ~/test/error.html
 	log "retMSG: " & retMSG
 end touch
+
+on remove()
+	condition
+end remove
 (*
  * Note: Instead of loading a .sh shell script into terminal, we compile it as a string and run it directly in terminal
  * Note: the upside of running the script directly as a string is that we dont have to include a .sh in every project
