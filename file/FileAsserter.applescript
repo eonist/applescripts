@@ -15,6 +15,7 @@ end is_folder
  * Caution if you use alias hsf paths, make sure to cast it as text first
  * Note: For alias hsf you can also do: use "exists file h"
  * Note you can also use the try error clause with: hsf_file_path as alias--then it will be an error if the file doesnt exist
+ * Caution: it seems if you try to assert if a folder exist you must pass the file_path as an alias hsf file path
  *)
 on does_file_exist(hsf_file_path)
 	tell application "Finder"
