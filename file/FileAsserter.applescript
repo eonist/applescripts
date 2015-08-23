@@ -36,3 +36,15 @@ on does_folder_exist(hsf_file_path)
     return false
   end try
 end test
+(*
+ * Asserts if a folder is a git repository
+ * Example: does_path_exist("~/testing/.git/")--true/false
+ *)
+on does_path_exist(posix_file_path)
+  try
+		do shell script "cd " & posix_file_path
+    return true
+	on error
+    return false
+	end try
+end does_path_exist
