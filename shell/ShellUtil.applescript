@@ -8,13 +8,13 @@ on touch() --touch creates an index.html file
 	log "retMSG: " & retMSG
 end touch
 (*
- * removes file or folder
+ * Removes file or folder
  * Param: the_name: name of file or folder
- * Param: posix_file_path: the path of the folder where the target file or folder is located
+ * Param: posix_file_path: the path of the file or folder
  * Note: rm -rf ~/testing/.git
  *)
-on remove(posix_file_path,the_name)
-	do shell script "cd " & posix_file_path & ";" &"rm -rf " & the_name
+on remove(posix_file_path)
+	do shell script "rm -rf " & posix_file_path
 end remove
 (*
  * Note: Instead of loading a .sh shell script into terminal, we compile it as a string and run it directly in terminal
