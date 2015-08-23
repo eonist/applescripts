@@ -57,6 +57,7 @@ end rename_file
 (*
  * Creates a folder
  * @Example: create_folder(path to desktop,"test")
+ * Todo: Assert if the folder already exists, if it does dont try to make it just return false, return true if it succseded
  *)
 on create_folder(alias_hsf_file_path,folder_name)
 	tell application "Finder"
