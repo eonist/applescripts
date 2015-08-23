@@ -118,6 +118,16 @@ on init(local_repo_path)
 	return do shell script shell_cmd
 end init
 (*
+ * attach a remote repo to a local repo
+ * Note: remote add origin 'https://github.com/eonist/testing.git'
+ *)
+on attach_remote_repo(local_repo_path,remote_repo_path)
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git remote add origin" & " " & (quoted form of remote_repo_path)
+	log "shell_cmd: " & shell_cmd
+	return do shell script shell_cmd
+
+end attach_remote_repo
+(*
  * Clone
  * Todo: try to clone a remote REPO
  *)
