@@ -1,4 +1,4 @@
-(* 
+(*
  * Writes data to target_file (appends if append_data is true) Returns true if successfull, false if unsuccessfull
  * Note: if the target_file doesnt exisist it is created
  * @param target_file: needs to be in the hsf URL path format: "Macintosh HD:Users:John:Desktop:del.txt"
@@ -28,7 +28,7 @@ on write_data(the_data, target_file, append_data) -- (string, file path as strin
 		return false
 	end try
 end write_data
-(* 
+(*
  * Deletes the file at the file_path
  * Todo: what kind of file path?
  * Todo: impliment try error?
@@ -54,4 +54,13 @@ on rename_file(file_path, new_file_name)
 		end try
 	end tell
 end rename_file
-
+(*
+ * Creates a folder
+ * @Example: create_folder(path to desktop,"test")
+ *)
+on create_folder(alias_hsf_file_path,folder_name)
+	tell application "Finder"
+		set newfo to make new folder at (path to desktop) with properties {name:"testing"}
+		--make new folder at newfo with properties {name:"Job Materials"}
+	end tell
+end create_folder
