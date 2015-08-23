@@ -113,7 +113,8 @@ end remove
  * Init
  *)
 on init()
-
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git init"
+	log "shell_cmd: " & shell_cmd
 end init
 (*
  * Clone
