@@ -61,7 +61,7 @@ end rename_file
  *)
 on create_folder(alias_hsf_file_path,folder_name)
 	tell application "Finder"
-		set newfo to make new folder at (path to desktop) with properties {name:"testing"}
+		set newfo to make new folder at alias_hsf_file_path with properties {name:folder_name}
 		--make new folder at newfo with properties {name:"Job Materials"}
 	end tell
 end create_folder
