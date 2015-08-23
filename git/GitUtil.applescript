@@ -131,8 +131,10 @@ end attach_remote_repo
  * Note: the reverse of attach_remote_repo method
  * Note: git remote rm origin
  *)
-on detach_remote_repo()
-	condition
+on detach_remote_repo(local_repo_path)
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git remote rm origin"
+	log "shell_cmd: " & shell_cmd
+	return do shell script shell_cmd
 end detach_remote_repo
 (*
  * Clone
