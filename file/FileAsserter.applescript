@@ -26,6 +26,7 @@ test()
 (*
  * Asserts if a folder exists
  * Example: does_folder_exist(((path to desktop) & "testing") as text)
+ * Note you can also do this in shell: try do shell script "cd " & posix_file_path
  *)
 on does_folder_exist(hsf_file_path)
   try
