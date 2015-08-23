@@ -22,3 +22,16 @@ on does_file_exist(hsf_file_path)
 		return (exists file hsf_file_path)
 	end tell
 end does_file_exist
+test()
+(*
+ * Asserts if a folder exists
+ * Example: does_folder_exist(((path to desktop) & "testing") as text)
+ *)
+on does_folder_exist(hsf_file_path)
+  try
+    hsf_file_path as alias
+    return true
+  on error
+    return false
+  end try
+end test
