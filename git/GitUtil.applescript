@@ -1,18 +1,19 @@
+--property GitUtil : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "git:GitUtil.applescript"))
 property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
 property TextAsserter : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "text:TextAsserter.applescript"))
 property git_path : "/usr/local/git/bin/" --to execute git commands we need to call the git commands from this path
-(* 
+(*
  * Returns current git status
  * @param: local_repo_path is the path to the target repository on your local machine
  * Note: ~/someProject/someProject.git (use the ~ char if you want to access the users homve folder in OSX)
  * Note: the cd is to move manouver into the local repository path, the ; char ends the call so you can make another call
- * Note: To obtaine a more meaningfull list of items, create a metod that compiles a multidim accociative array derived from the text based staus 
+ * Note: To obtaine a more meaningfull list of items, create a metod that compiles a multidim accociative array derived from the text based staus
  * Note: Appending -s simplifies the ret msg or you can also use --porcelain which does the same
  *)
 on status(local_repo_path, option)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git status" & " " & option
 end status
-(* 
+(*
  * Add a file or many files to a commit
  * @param file_name is the file name you want to add, use * if you want to add all files
  * Caution: when a file is removed, the * char wont work, you have to add the file manually
@@ -26,7 +27,7 @@ on add(local_repo_path, file_name)
 	log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end add
-(* 
+(*
  * Commits current changes
  * Note: Commit , usually doesnt return anything
  * @param msg example: "created index.html file"
@@ -82,7 +83,7 @@ on pull(local_repo_path, remote_repo_url, user_name, user_password)
 	set to_where to "master" --master branch
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git pull" & " " & from_where & " " & to_where
 end pull
-(* 
+(*
  * Cherry
  * git cherry -v origin/master
  * Todo: description needed
@@ -99,29 +100,29 @@ end cherry
  * "git reset"
  *)
 on do_reset()
-	
+
 end do_reset
 
 (*
  * --rm --remove files, research this
  *)
 on remove()
-	
+
 end remove
 (*
  * Init
  *)
 on init()
-	
+
 end init
 (*
  * Clone
- * Todo: try to clone a remote REPO 
+ * Todo: try to clone a remote REPO
  *)
 on clone()
-	
+
 end clone
-(* 
+(*
  * Get a log of what is new, less verbose with pretty oneline
  * Note: git log --pretty=oneline
  * Note: "pretty=oneline" --get a log of what is new, less verbose with pretty oneline
@@ -129,7 +130,7 @@ end clone
  * Note: the do_log name is used because applescript has reserved the log word for its own log method
  *)
 on do_log()
-	
+
 end do_log
 (*
  * set your name and email
@@ -138,7 +139,7 @@ end do_log
  *
  *)
 on config()
-	
+
 end config
 (*
  *
@@ -148,7 +149,7 @@ end config
  * Note: git diff returns a result if a file is changed (the returned result will contain the lines that changed with a "-" preceding the line that is removed and a "+" preceding the line that is added)
  *)
 on diff()
-	
+
 end diff
 -- to bring your remote refs up to date
 on git_remote_update(local_repo_path)
