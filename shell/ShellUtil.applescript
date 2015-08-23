@@ -7,9 +7,11 @@ on touch() --touch creates an index.html file
 	set retMSG to do shell script "cd ~/test/" --touch ~/test/error.html
 	log "retMSG: " & retMSG
 end touch
-
-on remove()
-	condition
+(*
+ * removes file or folder
+ *)
+on remove(posix_file_path)
+	do shell script "cd " & posix_file_path & ";" &"rm -rf fox"
 end remove
 (*
  * Note: Instead of loading a .sh shell script into terminal, we compile it as a string and run it directly in terminal
