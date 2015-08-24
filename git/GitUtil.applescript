@@ -151,6 +151,7 @@ end clone
  *)
 on manual_clone(local_repo_path, remote_repo_path)
 	--"git init" <--Installs the invisible .git folder
+	--Todo: do reasearch with different posix paths ~/testing/ vs Users/Joe/testing vs macintosh hd/ user / etc, and how to convert between them
 	--"git remote add origin https://github.com/eonist/testing.git" <-- attach a remote repo
 	--"git fetch origin master" <--Download the latest .git data
 	--"git checkout master" <-- Downloads all the **files** from the remote repo
