@@ -57,7 +57,7 @@ end commit
  * =======
  * Example: GitUtils's push(local_repo_path, "github.com/user-name/repo-name.git", user_name, user_password)
  * >>>>>>> origin/master
- * Note: Original gti cmd: git push https://github.com/eonist/testing.git
+ * Note: Original gti cmd: git push https://github.com/user/test.git master
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "master" --master branch
@@ -140,7 +140,7 @@ on detach_remote_repo(local_repo_path)
 end detach_remote_repo
 (*
  * Clone
- * Todo: try to clone a remote REPO
+ * Note: Cloning automatically creates a remote connection called origin pointing back to the original repository.
  *)
 on clone()
 
