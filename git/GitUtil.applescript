@@ -146,6 +146,17 @@ on clone()
 
 end clone
 (*
+ * Manually clone a git to a local folder
+ * Note:  same as clone but differs in that it clones into an existing folder
+ *)
+on manual_clone(local_repo_path, remote_repo_path)
+	--"git init" <--Installs the invisible .git folder
+	--"git remote add origin https://github.com/eonist/testing.git" <-- attach a remote repo
+	--"git fetch origin master" <--Download the latest .git data
+	--"git checkout master" <-- Downloads all the **files** from the remote repo
+	--"git fetch origin master" <-- Do this Again to download the latest .git data  , since your ahead sort of
+end manual_clone
+(*
  * Get a log of what is new, less verbose with pretty oneline
  * Note: git log --pretty=oneline
  * Note: "pretty=oneline" --get a log of what is new, less verbose with pretty oneline
