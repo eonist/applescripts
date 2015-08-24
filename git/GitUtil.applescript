@@ -57,6 +57,7 @@ end commit
  * =======
  * Example: GitUtils's push(local_repo_path, "github.com/user-name/repo-name.git", user_name, user_password)
  * >>>>>>> origin/master
+ * Note: Original gti cmd: git push https://github.com/eonist/testing.git
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "master" --master branch
@@ -77,6 +78,7 @@ end reset
  * Note: "https://user:pass@github.com/user/repo.git"
  * Note: returns "Already up-to-date." if there are nothing to pull from remote
  * Note: Do we need login and pass for pulling? - for private repos, yes
+ * Note: In the simplest terms, git pull does a git fetch followed by a git merge.
  *)
 on pull(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "https://" & user_name & ":" & user_password & "@" & remote_repo_url
@@ -119,7 +121,7 @@ on init(local_repo_path)
 end init
 (*
  * Attach a remote repo to a local repo
- * Note: remote add origin 'https://github.com/eonist/testing.git'
+ * Note: git remote add origin https://github.com/eonist/testing.git
  *)
 on attach_remote_repo(local_repo_path,remote_repo_path)
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git remote add origin" & " " & (quoted form of remote_repo_path)
@@ -184,7 +186,8 @@ on check_out()
 end check_out
 (*
  * Fetch
+ * Note: downloads git "data" to the invicible .git folder
  *)
 on fetch()
-	--condition 
+	--condition
 end fetch
