@@ -95,7 +95,7 @@ end pull
 on cherry(local_repo_path, user_name, user_password)
 	set loc to "origin" --"https://" & user_name & ":" & user_password & "@" & remote_repo_url
 	set what_branch to "master" --master branch
-	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & what_branch
+	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & what_branch--Todo: whats the -v, verbose?
 end cherry
 (*
  * The opposite of the add action
@@ -121,7 +121,7 @@ on init(local_repo_path)
 end init
 (*
  * Attach a remote repo to a local repo
- * Note: git remote add origin https://github.com/eonist/testing.git
+ * Note: git remote add origin https://github.com/user/test.git
  *)
 on attach_remote_repo(local_repo_path,remote_repo_path)
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git remote add origin" & " " & (quoted form of remote_repo_path)
@@ -152,7 +152,7 @@ end clone
 on manual_clone(local_repo_path, remote_repo_path)
 	--"git init" <--Installs the invisible .git folder
 	--Todo: do reasearch with different posix paths ~/testing/ vs Users/Joe/testing vs macintosh hd/ user / etc, and how to convert between them
-	--"git remote add origin https://github.com/eonist/testing.git" <-- attach a remote repo
+	--"git remote add origin https://github.com/user/testing.git" <-- attach a remote repo
 	--"git fetch origin master" <--Download the latest .git data
 	--"git checkout master" <-- Downloads all the **files** from the remote repo
 	--"git fetch origin master" <-- Do this Again to download the latest .git data  , since your ahead sort of
