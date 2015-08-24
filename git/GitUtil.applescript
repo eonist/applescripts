@@ -176,5 +176,15 @@ end diff
 on git_remote_update(local_repo_path)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git remote update"
 end git_remote_update
-
---remote add origin
+(*
+ * Checkout
+ *)
+on check_out()
+	--condition
+end check_out
+(*
+ * Fetch
+ *)
+on fetch()
+	--condition 
+end fetch
