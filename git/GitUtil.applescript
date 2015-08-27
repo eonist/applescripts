@@ -141,6 +141,8 @@ end detach_remote_repo
 (*
  * Clone
  * Note: Cloning automatically creates a remote connection called origin pointing back to the original repository.
+ * Note: git clone <repo> <directory>
+ * Note: 
  *)
 on clone()
 
