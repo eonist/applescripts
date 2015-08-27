@@ -1,6 +1,6 @@
 --property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
 --property RegExpUtil : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "regexp:RegExpUtil.applescript"))
-
+--Note: the great thing about using the sed regular expression is that it is included with osx
 (*
  * Matches string s against regular expression (string) regex using bash's extended regular expression language *including* 
  * Note: sed regexp does not support lookahead, lookbehind, lazy quantifieres, so use groups or nested regexp calls may be needed in order to get at the bits you want
@@ -98,7 +98,7 @@ If the regex contains capture groups, you can access the captured strings via th
 As in the accepted answer, you'll have to \-escape double quotes and backslashes.
 Here's an alternative using egrep:
 
-set isMatch to "0" = (do shell script Â
+set isMatch to "0" = (do shell script ï¿½
   "egrep -q '^\\d{10}' <<<" & quoted form of filename & "; printf $?")
 Though this presumably performs worse, it has two advantages:
 
