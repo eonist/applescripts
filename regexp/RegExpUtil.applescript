@@ -11,7 +11,7 @@
  * Note: There is an easier way to make use of the shell (works on bash 3.2+) for regex matching:
  * set isMatch to "0" = (do shell script "[[ " & quoted form of fileName & " =~ ^[[:digit:]]{10} ]]; printf $?")
  * Example: my doesMatch("127.0.0.1", "^(\\d{1,3}\\.){3}\\d{1,3}$") # -> true
- * Example: doesMatch(text, regexString) -> Boolean
+ * Example: doesMatch(text, regexString) -> Boolean	
  *)
 on has_match(s, regex) --// :TODO: rename s to string
 	local ignoreCase, extraGrepOption
