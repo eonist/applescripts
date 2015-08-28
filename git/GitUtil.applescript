@@ -81,6 +81,12 @@ on reset(local_repo_path, file_name)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git reset" & " " & file_name
 end reset
 (*
+ * clean
+ *)
+on clean()
+	--condition 
+end clean
+(*
  * Downloads the current from the remote git to the local git
  * Note: the original git cmd is "git pull origin master"
  * Note: "https://user:pass@github.com/user/repo.git"
