@@ -66,9 +66,14 @@ on push(local_repo_path, remote_repo_url, user_name, user_password)
 	log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end push
---Reset
---the opposite of the add action
---The * resets all
+(*
+ * The opposite of the add action
+ * Important: You should never use git reset <commit> when any snapshots after <commit> have been pushed to a public repository
+ * Note: The * resets all
+ * Note: git reset <file> --Removes a file from the staging area, 
+ * Note: git reset --Removes all files form the staging area, opposite of 
+ * Note: git reset <commit> --reset the staging area to a specific commit id, this is great when you want to group a bunch of commits together
+ *)
 on reset(local_repo_path, file_name)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git reset" & " " & file_name
 end reset
@@ -101,9 +106,9 @@ end cherry
  * The opposite of the add action
  * "git reset"
  *)
-on reset()
+on revert()
 	 
-end reset
+end revert
 
 (*
  * --rm --remove files, research this
