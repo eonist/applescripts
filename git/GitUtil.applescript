@@ -71,8 +71,11 @@ end push
  * Important: You should never use git reset <commit> when any snapshots after <commit> have been pushed to a public repository
  * Note: The * resets all
  * Note: git reset <file> --Removes a file from the staging area, 
+ * Note: git reset --hard --Removes a file from the staging area and the actual file (does not remove an untracked file)
  * Note: git reset --Removes all files form the staging area, opposite of 
  * Note: git reset <commit> --reset the staging area to a specific commit id, this is great when you want to group a bunch of commits together
+ * Note: git reset --hard <commit>--reset the staging area and the actual files to a specific commit id (does not remove untracked files)
+ * Note: git reset --hard HEAD~2--resets 2 commits backward, also removes the actual files (does not remove untracked files)
  *)
 on reset(local_repo_path, file_name)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git reset" & " " & file_name
