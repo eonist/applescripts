@@ -101,8 +101,7 @@ on pull(local_repo_path, remote_repo_url, user_name, user_password)
 end pull
 (*
  * Cherry
- * git cherry -v origin/master
- * Todo: description needed
+ * Note: git cherry -v origin/master
  * Note: this can be used to assert if there are any local commits ready to be pushed, if there are local commits then text will be returned, if there arent then there will be no text
  * Caution: if you use git add with https login and pass, you need to run "git remote update" in order for the above note to work
  *)
