@@ -101,9 +101,9 @@ end cherry
  * The opposite of the add action
  * "git reset"
  *)
-on do_reset()
-
-end do_reset
+on reset()
+	 
+end reset
 
 (*
  * --rm --remove files, research this
