@@ -206,12 +206,18 @@ end config
 on diff()
 
 end diff
--- to bring your remote refs up to date
+(*
+ * Note: brings your remote refs up to date
+ * Todo: Ellaborate
+ *)
 on git_remote_update(local_repo_path)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git remote update"
 end git_remote_update
 (*
- * Note: git remote -v --List the remote connections you have to other repositories.
+ * Note: git remote -v (List the remote connections you have to other repositories. include the URL of each connection.)
+ * Note: git remote add <name> <url> (Create a new connection to a remote repository. After adding a remote, you’ll be able to use <name> as a shortcut)
+ * Note: git remote rm <name> (Remove the connection to the remote repository called <name>.)
+ * Note: git remote rename <old-name> <new-name> (Rename a remote connection from <old-name> to <new-name>.)
  *)
 on remote()
 	--condition 
