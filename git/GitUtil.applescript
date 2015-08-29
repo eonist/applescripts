@@ -141,6 +141,7 @@ end init
 (*
  * Attach a remote repo to a local repo
  * Note: git remote add origin https://github.com/user/test.git
+ * Note: git remote add john http://dev.example.com/john.git (YOu can also add other teammates git repos to the same repo as above)
  *)
 on attach_remote_repo(local_repo_path,remote_repo_path)
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git remote add origin" & " " & (quoted form of remote_repo_path)
@@ -231,7 +232,11 @@ on check_out()
 end check_out
 (*
  * Fetch
+ * Note: Fetching is what you do when you want to see what everybody else has been working on. Since fetched content is represented as a remote branch, it has absolutely no effect on your local development work. This makes fetching a safe way to review commits before integrating them with your local repository.
+ * Note: The git fetch command imports commits from a remote repository into your local repo
  * Note: downloads git "data" to the invicible .git folder
+ * git fetch <remote> (Fetch all of the branches from the repository. This also downloads all of the required commits and files from the other repository.)
+ * git fetch <remote> <branch> (Same as the above command, but only fetch the specified branch.)
  *)
 on fetch()
 	--condition
