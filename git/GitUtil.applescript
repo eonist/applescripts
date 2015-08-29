@@ -82,22 +82,11 @@ on reset(local_repo_path, file_name)
 end reset
 (*
  * clean
-git clean -n
-Perform a “dry run” of git clean. This will show you which files are going to be removed without actually doing it.
-
-git clean -f
-Remove untracked files from the current directory. The -f (force) flag is required unless the clean.requireForce configuration option is set to false (it's true by default). This will not remove untracked folders or files specified by .gitignore.
-
-git clean -f <path>
-Remove untracked files, but limit the operation to the specified path.
-
-git clean -df
-Remove untracked files and untracked directories from the current directory.
-
-git clean -xf
-Remove untracked files from the current directory as well as any files that Git usually ignores.
-
-
+ * Note: git clean -n --Perform a “dry run” of git clean. This will show you which files are going to be removed without actually doing it.
+ * Note: git clean -f --Remove untracked files from the current directory. The -f (force) flag is required unless the clean.requireForce configuration option is set to false (it's true by default). This will not remove untracked folders or files specified by .gitignore.
+ * Note: git clean -f <path> --Remove untracked files, but limit the operation to the specified path.
+ * Note: git clean -df --Remove untracked files and untracked directories from the current directory.
+ * Note: git clean -xf --Remove untracked files from the current directory as well as any files that Git usually ignores.
  *)
 on clean()
 	--condition 
