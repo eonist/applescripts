@@ -213,6 +213,9 @@ end git_remote_update
 (*
  * Note: git remote -v --List the remote connections you have to other repositories.
  *)
+on remote()
+	--condition 
+end remote
 (*
  * Checkout
  *)
