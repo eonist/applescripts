@@ -235,8 +235,7 @@ end check_out
 (*
  * Fetch
  * Note: Fetching is what you do when you want to see what everybody else has been working on. Since fetched content is represented as a remote branch, it has absolutely no effect on your local development work. This makes fetching a safe way to review commits before integrating them with your local repository.
- * Note: The git fetch command imports commits from a remote repository into your local repo
- * Note: downloads git "data" to the invicible .git folder
+ * Note: The git fetch command downloads commits from a remote repository into your local repo, does not download the actual files
  * git fetch <remote> (Fetch all of the branches from the repository. This also downloads all of the required commits and files from the other repository.)
  * git fetch <remote> <branch> (Same as the above command, but only fetch the specified branch.)
  *)
