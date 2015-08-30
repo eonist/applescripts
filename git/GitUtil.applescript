@@ -228,7 +228,8 @@ on remote()
 end remote
 (*
  * Checkout
- * Note: Checkout is a way to move back and forward in your code history. The git checkout command serves three distinct functions: checking out files, checking out commits, and checking out branches. 
+ * Note: Checkout is a way to move back and forward in your code history. The git checkout command serves three distinct functions: checking out files, checking out commits, and checking out branches.
+ * Note git checkout works hand-in-hand with git branch. When you want to start a new feature, you create a branch with git branch, then check it out with git checkout. You can work on multiple features in a single repository by switching between them with git checkout
  * Note: To create a new branch adn start using it: "git branch new-feature" then "git checkout new-feature"
  *)
 on check_out()
