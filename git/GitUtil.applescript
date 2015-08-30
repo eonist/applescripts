@@ -229,6 +229,7 @@ end remote
 (*
  * Checkout
  * Note: Checkout is a way to move back and forward in your code history. The git checkout command serves three distinct functions: checking out files, checking out commits, and checking out branches. 
+ * Note: To create a new branch adn start using it: "git branch new-feature" then "git checkout new-feature"
  *)
 on check_out()
 	--condition
