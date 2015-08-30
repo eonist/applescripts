@@ -97,9 +97,9 @@ end clean
  * Note: the original git cmd is "git pull origin master"
  * Note: "https://user:pass@github.com/user/repo.git"
  * Note: returns "Already up-to-date." if there are nothing to pull from remote
- * TODO: : Do we need login and pass for pulling? - for private repos, yes
+ * TODO: Do we need login and pass for pulling? - for private repos, yes
  * Note: In the simplest terms, git pull does a git fetch followed by a git merge.
- * // :TODO: what is git pull --rebase <remote>. Same as the above command, but instead of using git merge to integrate the remote branch with the local one, use git rebase.
+ * TODO: what is git pull --rebase <remote>. Same as the above command, but instead of using git merge to integrate the remote branch with the local one, use git rebase.
  * Note: git fetch followed by git merge, git pull rolls this into a single command. git fetch <remote> followed by git merge origin/<current-branch>.
  *)
 on pull(local_repo_path, remote_repo_url, user_name, user_password)
