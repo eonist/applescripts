@@ -97,8 +97,10 @@ end clean
  * Note: the original git cmd is "git pull origin master"
  * Note: "https://user:pass@github.com/user/repo.git"
  * Note: returns "Already up-to-date." if there are nothing to pull from remote
- * Note: Do we need login and pass for pulling? - for private repos, yes
+ * TODO: : Do we need login and pass for pulling? - for private repos, yes
  * Note: In the simplest terms, git pull does a git fetch followed by a git merge.
+ * // :TODO: what is git pull --rebase <remote>
+ * Note: git fetch followed by git merge, git pull rolls this into a single command. git fetch <remote> followed by git merge origin/<current-branch>.
  *)
 on pull(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "https://" & user_name & ":" & user_password & "@" & remote_repo_url
@@ -241,3 +243,15 @@ end check_out
 on fetch()
 	--condition
 end fetch
+(*
+ * branch
+ * Note: Remote branches are just like local branches, except they represent commits from somebody else’s repository. You can check out a remote branch just like a local one, but this puts you in a detached HEAD state (just like checking out an old commit). You can think of them as read-only branches. 
+ * Note: you can inspect these branches with the usual git checkout and git log commands. If you approve the changes a remote branch contains, you can merge it into a local branch with a normal git merge.
+ git branch -r
+# origin/master
+# origin/develop
+# origin/some-feature
+ *)
+on branch()
+
+end branch
