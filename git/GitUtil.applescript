@@ -228,6 +228,7 @@ on remote()
 end remote
 (*
  * Checkout
+ * Note: Checkout is a way to move back and forward in your code history. The git checkout command serves three distinct functions: checking out files, checking out commits, and checking out branches. 
  *)
 on check_out()
 	--condition
