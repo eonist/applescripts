@@ -48,8 +48,10 @@ end commit
 
 (*
  * Uploads the current from the local git commits to the remote git
+ * @Note: if the remote history has diverged from your history, you need to pull the remote branch and merge it into your local one,
  * @param from_where: "master"
  * @param to_where: "origin"
+ * @Note: git push <remote> <branch> (Push the specified branch to <remote>, along with all of the necessary commits and internal objects. This creates a local branch in the destination repository. To prevent you from overwriting commits, Git won’t let you push when it results in a non-fast-forward merge in the destination repository.)
  * @param remote_repo_url: github.com/user-name/repo-name.git
  * Note: you may mitigate using username and pass by researching how to use SSH key in github from trusted maschines
  * <<<<<<< HEAD
@@ -59,6 +61,9 @@ end commit
  * >>>>>>> origin/master
  * Note: Original gti cmd: git push https://github.com/user/test.git master
  * Note: ssh-example: ssh://user@host/path/to/repo.git
+ * @Note: Only Push to Bare Repositories
+In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, it’s important to never push to another developer’s repository. But because bare repos don’t have a working directory, it’s impossible to interrupt anybody’s developments.
+ * @Note: The only time you should ever need to force push is when you realize that the commits you just shared were not quite right and you fixed them with a git commit --amend or an interactive rebase. However, you must be absolutely certain that none of your teammates have pulled those commits before using the --force option.
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "master" --master branch
