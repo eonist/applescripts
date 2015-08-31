@@ -54,15 +54,11 @@ end commit
  * @Note: git push <remote> <branch> (Push the specified branch to <remote>, along with all of the necessary commits and internal objects. This creates a local branch in the destination repository. To prevent you from overwriting commits, Git won’t let you push when it results in a non-fast-forward merge in the destination repository.)
  * @param remote_repo_url: github.com/user-name/repo-name.git
  * Note: you may mitigate using username and pass by researching how to use SSH key in github from trusted maschines
- * <<<<<<< HEAD
  * Todo: maybe add try error when doing the shell part
- * =======
  * Example: GitUtils's push(local_repo_path, "github.com/user-name/repo-name.git", user_name, user_password)
- * >>>>>>> origin/master
  * Note: Original gti cmd: git push https://github.com/user/test.git master
  * Note: ssh-example: ssh://user@host/path/to/repo.git
- * @Note: Only Push to Bare Repositories
-In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, it’s important to never push to another developer’s repository. But because bare repos don’t have a working directory, it’s impossible to interrupt anybody’s developments.
+ * @Note: Only Push to Bare Repositories In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, it’s important to never push to another developer’s repository. But because bare repos don’t have a working directory, it’s impossible to interrupt anybody’s developments.
  * @Note: The only time you should ever need to force push is when you realize that the commits you just shared were not quite right and you fixed them with a git commit --amend or an interactive rebase. However, you must be absolutely certain that none of your teammates have pulled those commits before using the --force option.
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password)
@@ -233,6 +229,7 @@ on remote()
 end remote
 (*
  * Checkout
+ * Note: checkout is also a way to switch between your branches
  * Note: Checkout is a way to move back and forward in your code history. The git checkout command serves three distinct functions: checking out files, checking out commits, and checking out branches.
  * Note git checkout works hand-in-hand with git branch. When you want to start a new feature, you create a branch with git branch, then check it out with git checkout. You can work on multiple features in a single repository by switching between them with git checkout
  * Note: To create a new branch adn start using it: "git branch new-feature" then "git checkout new-feature"
@@ -252,6 +249,8 @@ on fetch()
 end fetch
 (*
  * branch
+ * Note: to delete a branch do: "git branch -d some-branch"
+ * Note: you can check which branches you have open by doing "git branch"
  * Note: Remote branches are just like local branches, except they represent commits from somebody else’s repository. You can check out a remote branch just like a local one, but this puts you in a detached HEAD state (just like checking out an old commit). You can think of them as read-only branches. 
  * Note: you can inspect these branches with the usual git checkout and git log commands. If you approve the changes a remote branch contains, you can merge it into a local branch with a normal git merge.
  git branch -r
@@ -259,6 +258,14 @@ end fetch
 # origin/develop
 # origin/some-feature
  *)
-on branch()
+on branch(target_branch,delete_flag)
 
 end branch
+(*
+ * Note: to delete a branch from a remote repo: "git push origin --delete some_branch"
+ * Note: to merge a branch into another branch: first switch to the branch you want to merge into by doing "git checkout master", then do "git merge some_branch"
+ *)
+on merge(from_branch, into_branch)
+	--git merge from_branch, into_branch
+	
+end merge
