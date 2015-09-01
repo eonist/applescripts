@@ -229,6 +229,9 @@ on remote()
 end remote
 (*
  * Checkout
+ todo when you switch beetween branches, does the files change asweel, test thisbluk
+ * Note: to base a new branch of another branch do: "git checkout -b <new-branch> <existing-branch>"
+ * Note: to create a new branch and switch to it do:"git checkout -b new-branch-name-here"
  * Note: checkout is also a way to switch between your branches
  * Note: Checkout is a way to move back and forward in your code history. The git checkout command serves three distinct functions: checking out files, checking out commits, and checking out branches.
  * Note git checkout works hand-in-hand with git branch. When you want to start a new feature, you create a branch with git branch, then check it out with git checkout. You can work on multiple features in a single repository by switching between them with git checkout
@@ -262,10 +265,25 @@ on branch(target_branch,delete_flag)
 
 end branch
 (*
- * Note: to delete a branch from a remote repo: "git push origin --delete some_branch"
+ * Merging is Git's way of putting a forked history back together again
+ * @Note: If the two branches you‘re trying to merge both changed the same part of the same file, Git won’t be able to figure out which version to use. When such a situation occurs, it stops right before the merge commit so 
+ * @Note: Note that merge conflicts will only occur in the event of a 3-way merge. It’s not possible to have conflicting changes in a fast-forward merge.
+ * Note: The current branch will be updated to reflect the merge, but the target branch will be completely unaffected. 
+ * Note: to list all branches in your repo do: "git branch"
+ git branch -D <branch> Force delete the specified branch, even if it has unmerged changes. This is the command to use if you want to permanently throw away all of the commits associated with a particular line of development.
+ * Note: to delete a branch from a remote repo: "git push origin --delete some_branch" Delete the specified branch. This is a “safe” operation in that Git prevents you from deleting the branch if it has unmerged changes.
+ * @Note: "git merge --no-ff <branch>" Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
+ * @Note: "git merge <branch>"Merge the specified branch into the current branch. Git will determine the merge algorithm automatically (discussed below).
  * Note: to merge a branch into another branch: first switch to the branch you want to merge into by doing "git checkout master", then do "git merge some_branch"
+ * @Note: check out and merge a branch inn onne line: "git merge master some_branch"
  *)
 on merge(from_branch, into_branch)
 	--git merge from_branch, into_branch
 	
 end merge
+(*
+ * @Note: The golden rule of git rebase is to never use it on public branches.
+ *)
+on rebase()
+
+rnd rebase
