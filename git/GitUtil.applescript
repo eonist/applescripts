@@ -253,6 +253,7 @@ end fetch
 (*
  * branch
  * Note: to delete a branch do: "git branch -d some-branch"
+ * Note: to delete a branch from a remote repo: "git push origin --delete some_branch" Delete the specified branch. This is a “safe” operation in that Git prevents you from deleting the branch if it has unmerged changes.
  * Note: you can check which branches you have open by doing "git branch"
  * Note: Remote branches are just like local branches, except they represent commits from somebody else’s repository. You can check out a remote branch just like a local one, but this puts you in a detached HEAD state (just like checking out an old commit). You can think of them as read-only branches. 
  * Note: you can inspect these branches with the usual git checkout and git log commands. If you approve the changes a remote branch contains, you can merge it into a local branch with a normal git merge.
@@ -271,8 +272,7 @@ end branch
  * Note: The current branch will be updated to reflect the merge, but the target branch will be completely unaffected. 
  * Note: to list all branches in your repo do: "git branch"
  git branch -D <branch> Force delete the specified branch, even if it has unmerged changes. This is the command to use if you want to permanently throw away all of the commits associated with a particular line of development.
- * Note: to delete a branch from a remote repo: "git push origin --delete some_branch" Delete the specified branch. This is a “safe” operation in that Git prevents you from deleting the branch if it has unmerged changes.
- * @Note: "git merge --no-ff <branch>" Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
+ *  @Note: "git merge --no-ff <branch>" Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
  * @Note: "git merge <branch>"Merge the specified branch into the current branch. Git will determine the merge algorithm automatically (discussed below).
  * Note: to merge a branch into another branch: first switch to the branch you want to merge into by doing "git checkout master", then do "git merge some_branch"
  * @Note: check out and merge a branch inn onne line: "git merge master some_branch"
