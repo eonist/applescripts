@@ -282,7 +282,9 @@ on merge(from_branch, into_branch)
 	
 end merge
 (*
+ * @Note: it seems rebasing is almost the same as merging, but with rebasing you also get the opertunity to squash commits into fewer commits, so when the rebasing is complete, the commit history looks will look simpler than with merging.
  * @Note: The golden rule of git rebase is to never use it on public branches.
+ * @Note: you switch to the branch you want to rebase and then do "git rebase master"
  *)
 on rebase()
 
