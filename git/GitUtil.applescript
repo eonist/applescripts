@@ -48,18 +48,18 @@ end commit
 
 (*
  * Uploads the current from the local git commits to the remote git
- * @NOTE: if the remote history has diverged from your history, you need to pull the remote branch and merge it into your local one,
+ * NOTE: if the remote history has diverged from your history, you need to pull the remote branch and merge it into your local one,
  * @param from_where: "master"
  * @param to_where: "origin"
- * @NOTE: git push <remote> <branch> (Push the specified branch to <remote>, along with all of the necessary commits and internal objects. This creates a local branch in the destination repository. To prevent you from overwriting commits, Git won’t let you push when it results in a non-fast-forward merge in the destination repository.)
+ * NOTE: git push <remote> <branch> (Push the specified branch to <remote>, along with all of the necessary commits and internal objects. This creates a local branch in the destination repository. To prevent you from overwriting commits, Git won’t let you push when it results in a non-fast-forward merge in the destination repository.)
  * @param remote_repo_url: github.com/user-name/repo-name.git
  * NOTE: you may mitigate using username and pass by researching how to use SSH key in github from trusted maschines
  * TODO: maybe add try error when doing the shell part
  * Example: GitUtils's push(local_repo_path, "github.com/user-name/repo-name.git", user_name, user_password)
  * NOTE: Original gti cmd: git push https://github.com/user/test.git master
  * NOTE: ssh-example: ssh://user@host/path/to/repo.git
- * @NOTE: Only Push to Bare Repositories In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, it’s important to never push to another developer’s repository. But because bare repos don’t have a working directory, it’s impossible to interrupt anybody’s developments.
- * @NOTE: The only time you should ever need to force push is when you realize that the commits you just shared were not quite right and you fixed them with a git commit --amend or an interactive rebase. However, you must be absolutely certain that none of your teammates have pulled those commits before using the --force option.
+ * NOTE: Only Push to Bare Repositories In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, it’s important to never push to another developer’s repository. But because bare repos don’t have a working directory, it’s impossible to interrupt anybody’s developments.
+ * NOTE: The only time you should ever need to force push is when you realize that the commits you just shared were not quite right and you fixed them with a git commit --amend or an interactive rebase. However, you must be absolutely certain that none of your teammates have pulled those commits before using the --force option.
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password)
 	set from_where to "master" --master branch
@@ -78,6 +78,8 @@ end push
  * NOTE: git reset <commit> --reset the staging area to a specific commit id, this is great when you want to group a bunch of commits together
  * NOTE: git reset --hard <commit>--reset the staging area and the actual files to a specific commit id (does not remove untracked files)
  * NOTE: git reset --hard HEAD~2--resets 2 commits backward, also removes the actual files (does not remove untracked files)
+ * NOTE: "git reset --hard" (Undo changes in tracked files)
+ * NOTE: "git clean -df" (Remove untracked files, does not remove .ignored files, use ""-xf" for that)
  *)
 on reset(local_repo_path, file_name)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git reset" & " " & file_name
@@ -252,39 +254,40 @@ on fetch()
 end fetch
 (*
  * branch
- * NOTE: to delete a branch do: "git branch -d some-branch"
+ * NOTE: to delete a branch do: "git branch -d some-branch" (if you just merged the branch in, if not use -D)
  * NOTE: to delete a branch from a remote repo: "git push origin --delete some_branch" Delete the specified branch. This is a “safe” operation in that Git prevents you from deleting the branch if it has unmerged changes.
  * NOTE: you can check which branches you have open by doing "git branch"
  * NOTE: Remote branches are just like local branches, except they represent commits from somebody else’s repository. You can check out a remote branch just like a local one, but this puts you in a detached HEAD state (just like checking out an old commit). You can think of them as read-only branches. 
  * NOTE: you can inspect these branches with the usual git checkout and git log commands. If you approve the changes a remote branch contains, you can merge it into a local branch with a normal git merge.
- git branch -r
-# origin/master
-# origin/develop
-# origin/some-feature
+ * NOTE: git branch -r
+ * # origin/master
+ * # origin/develop
+ * # origin/some-feature
+ * NOTE: git checkout -b new_branch_name_here (Create and check out <new-branch>. The -b option is a convenience flag that tells Git to run git branch <new-branch> before running )
  *)
 on branch(target_branch,delete_flag)
 
 end branch
 (*
  * Merging is Git's way of putting a forked history back together again
- * @NOTE: If the two branches you‘re trying to merge both changed the same part of the same file, Git won’t be able to figure out which version to use. When such a situation occurs, it stops right before the merge commit so 
- * @NOTE: Note that merge conflicts will only occur in the event of a 3-way merge. It’s not possible to have conflicting changes in a fast-forward merge.
+ * NOTE: If the two branches you‘re trying to merge both changed the same part of the same file, Git won’t be able to figure out which version to use. When such a situation occurs, it stops right before the merge commit so 
+ * NOTE: Note that merge conflicts will only occur in the event of a 3-way merge. It’s not possible to have conflicting changes in a fast-forward merge.
  * NOTE: The current branch will be updated to reflect the merge, but the target branch will be completely unaffected. 
  * NOTE: to list all branches in your repo do: "git branch"
  git branch -D <branch> Force delete the specified branch, even if it has unmerged changes. This is the command to use if you want to permanently throw away all of the commits associated with a particular line of development.
- *  @NOTE: "git merge --no-ff <branch>" Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
- * @NOTE: "git merge <branch>"Merge the specified branch into the current branch. Git will determine the merge algorithm automatically (discussed below).
- * NOTE: to merge a branch into another branch: first switch to the branch you want to merge into by doing "git checkout master", then do "git merge some_branch"
- * @NOTE: check out and merge a branch inn onne line: "git merge master some_branch"
+ * NOTE: "git merge --no-ff <branch>" Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
+ * NOTE: "git merge <branch>"Merge the specified branch into the current branch. Git will determine the merge algorithm automatically (discussed below).
+ * NOTE: To merge a branch into another branch: first switch to the branch you want to merge into by doing "git checkout master", then do "git merge some_branch"
+ * NOTE: check out and merge a branch inn onne line: "git merge master some_branch"
  *)
 on merge(from_branch, into_branch)
 	--git merge from_branch, into_branch
 	
 end merge
 (*
- * @NOTE: it seems rebasing is almost the same as merging, but with rebasing you also get the opertunity to squash commits into fewer commits, so when the rebasing is complete, the commit history looks will look simpler than with merging.
- * @NOTE: The golden rule of git rebase is to never use it on public branches.
- * @NOTE: you switch to the branch you want to rebase and then do "git rebase master"
+ * NOTE: it seems rebasing is almost the same as merging, but with rebasing you also get the opertunity to squash commits into fewer commits, so when the rebasing is complete, the commit history looks will look simpler than with merging.
+ * NOTE: The golden rule of git rebase is to never use it on public branches.
+ * NOTE: you switch to the branch you want to rebase and then do "git rebase master"
  *)
 on rebase()
 
