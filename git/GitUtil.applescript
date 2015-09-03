@@ -245,6 +245,7 @@ end remote
  * NOTE: git checkout <commit> (checks out all files from a spessific commit)
  * NOTE: git checkout HEAD hello.py (you can check out the most recent version with the following:)
  * NOTE: git checkout master hello.py (checks out a spessific file in a spessific branch)
+ * NOTE: you can switch to a newly fetched branch with: "git checkout origin/master"
  *)
 on check_out()
 	--condition
@@ -255,6 +256,7 @@ end check_out
  * NOTE: The git fetch command downloads commits from a remote repository into your local repo, does not download the actual files
  * NOTE: git fetch <remote> (Fetch all of the branches from the repository. This also downloads all of the required commits and files from the other repository.)
  * NOTE: git fetch <remote> <branch> (Same as the above command, but only fetch the specified branch.)
+ * NOTE: you can switch to the fetched branch with: "git checkout origin/master"
  *)
 on fetch()
 	--condition
