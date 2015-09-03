@@ -209,10 +209,9 @@ on do_log()
 
 end do_log
 (*
- * set your name and email
- * git config --global user.email you@example.com
- * git config --global user.name "your-user-name"
- *
+ * Config
+ * NOTE: set your name: git config --global user.name "your-user-name"
+ * NOTE: set your email: git config --global user.email you@example.com
  *)
 on config()
 
