@@ -30,7 +30,7 @@ end add
 (*
  * Commits current changes
  * NOTE: Commit , usually doesnt return anything
- * @param msg example: "created index.html file"
+ * @Param: msg example: "created index.html file"
  * Return example: [master af86d55] added
  * 1 file changed, 0 insertions(+), 0 deletions(-)
  * create mode 100644 error.html
@@ -60,11 +60,12 @@ end commit
  * NOTE: ssh-example: ssh://user@host/path/to/repo.git
  * NOTE: Only Push to Bare Repositories In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, it’s important to never push to another developer’s repository. But because bare repos don’t have a working directory, it’s impossible to interrupt anybody’s developments.
  * NOTE: The only time you should ever need to force push is when you realize that the commits you just shared were not quite right and you fixed them with a git commit --amend or an interactive rebase. However, you must be absolutely certain that none of your teammates have pulled those commits before using the --force option.
+ * NOTE: you can also do "git push" if you are already switched into the branch you want to push and there is only one remote repo attached to the local repo
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password)
-	set from_where to "master" --master branch
-	set to_where to "https://" & user_name & ":" & user_password & "@" & remote_repo_url --https://user:pass@github.com/user/repo.git--"origin"
-	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git push" & " " & to_where & " " & from_where
+	set target_branch to "master" --master branch
+	set remote_loc to "https://" & user_name & ":" & user_password & "@" & remote_repo_url --https://user:pass@github.com/user/repo.git--"origin"
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git push" & " " & remote_loc & " " & target_branch
 	log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end push
@@ -104,11 +105,12 @@ end clean
  * NOTE: In the simplest terms, git pull does a git fetch followed by a git merge.
  * TODO: what is git pull --rebase <remote>. Same as the above command, but instead of using git merge to integrate the remote branch with the local one, use git rebase.
  * NOTE: git fetch followed by git merge, git pull rolls this into a single command. git fetch <remote> followed by git merge origin/<current-branch>.
+ * NOTE: you can also do "git pull" if you are already switched into the branch you want to pull and there is only one remote repo attached to the local repo
  *)
 on pull(local_repo_path, remote_repo_url, user_name, user_password)
-	set from_where to "https://" & user_name & ":" & user_password & "@" & remote_repo_url
-	set to_where to "master" --master branch
-	return do shell script "cd " & local_repo_path & ";" & git_path & "git pull" & " " & from_where & " " & to_where
+	set remote_loc to "https://" & user_name & ":" & user_password & "@" & remote_repo_url
+	set target_branch to "master" --master branch
+	return do shell script "cd " & local_repo_path & ";" & git_path & "git pull" & " " & remote_loc & " " & target_branch
 end pull
 (*
  * Cherry
@@ -274,9 +276,9 @@ end branch
  * NOTE: Note that merge conflicts will only occur in the event of a 3-way merge. It’s not possible to have conflicting changes in a fast-forward merge.
  * NOTE: The current branch will be updated to reflect the merge, but the target branch will be completely unaffected. 
  * NOTE: to list all branches in your repo do: "git branch"
- git branch -D <branch> Force delete the specified branch, even if it has unmerged changes. This is the command to use if you want to permanently throw away all of the commits associated with a particular line of development.
- * NOTE: "git merge --no-ff <branch>" Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
- * NOTE: "git merge <branch>"Merge the specified branch into the current branch. Git will determine the merge algorithm automatically (discussed below).
+ * NOTE: "git branch -D branch_name_here" Force delete the specified branch, even if it has unmerged changes. This is the command to use if you want to permanently throw away all of the commits associated with a particular line of development.
+ * NOTE: "git merge --no-ff branch_name_here" Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
+ * NOTE: "git merge branch_name_here" Merge the specified branch into the current branch. Git will determine the merge algorithm automatically (discussed below).
  * NOTE: To merge a branch into another branch: first switch to the branch you want to merge into by doing "git checkout master", then do "git merge some_branch"
  * NOTE: check out and merge a branch inn onne line: "git merge master some_branch"
  *)
@@ -289,6 +291,6 @@ end merge
  * NOTE: The golden rule of git rebase is to never use it on public branches.
  * NOTE: you switch to the branch you want to rebase and then do "git rebase master"
  *)
-on rebase()
+on rebase()/Applications/_dev/kdx/Downloads
 
 rnd rebase
