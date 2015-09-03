@@ -280,7 +280,7 @@ end branch
  * NOTE: "git merge --no-ff branch_name_here" Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
  * NOTE: "git merge branch_name_here" Merge the specified branch into the current branch. Git will determine the merge algorithm automatically (discussed below).
  * NOTE: To merge a branch into another branch: first switch to the branch you want to merge into by doing "git checkout master", then do "git merge some_branch"
- * NOTE: check out and merge a branch inn one line: "git merge target_branch new_branch" (new branch is then merged into the target branch)
+ * NOTE: To check out and merge a branch inn one line: "git merge target_branch new_branch" (aka: target_branch <-- new_branch)
  *)
 on merge(from_branch, into_branch)
 	--git merge from_branch, into_branch
