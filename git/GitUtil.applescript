@@ -268,6 +268,7 @@ end check_out
  * NOTE: git fetch <remote> (Fetch all of the branches from the repository. This also downloads all of the required commits and files from the other repository.)
  * NOTE: git fetch <remote> <branch> (Same as the above command, but only fetch the specified branch.)
  * NOTE: you can switch to the fetched branch with: "git checkout origin/master" then do "git log --oneline master..origin/master" to view the commit ids of the commits that the remote repo is ahead of local repo
+ * "git checkout --theirs *"  or "git checkout --ours *"
  *)
 on fetch()
 	--condition
@@ -300,7 +301,7 @@ end branch
  * NOTE: "git merge branch_name_here" Merge the specified branch into the current branch. Git will determine the merge algorithm automatically (discussed below).
  * NOTE: To merge a branch into another branch: first switch to the branch you want to merge into by doing "git checkout master", then do "git merge some_branch"
  * NOTE: To check out and merge a branch inn one-line: "git merge target_branch new_branch" (aka: target_branch <-- new_branch)
- * NOTE: To merge a remote branch into your local branch do: "git fetch origin master", "git checkout master", "git merge origin/master", if you get conflicts and you just want to keep all your or their updates you do "git checkout --thiers" or "git checkout --ours" and then add and commit and push. Now you have merged perfectly
+ * NOTE: To merge a remote branch into your local branch do: "git fetch origin master", "git checkout master", "git merge origin/master", if you get conflicts and you just want to keep all your or their updates you do "git checkout --thiers *" or "git checkout --ours *" and then add and commit and push. Now you have merged perfectly
  *)
 on merge(from_branch, into_branch)
 	--git merge from_branch, into_branch
