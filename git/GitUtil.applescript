@@ -244,6 +244,7 @@ end remote
  * NOTE: git checkout <commit> <file> (checks out a spessific file from a spessific commit)
  * NOTE: git checkout <commit> (checks out all files from a spessific commit)
  * NOTE: git checkout HEAD hello.py (you can check out the most recent version with the following:)
+ * NOTE: git checkout master hello.py (checks out a spessific file in a spessific branch)
  *)
 on check_out()
 	--condition
