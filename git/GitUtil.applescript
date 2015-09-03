@@ -192,6 +192,7 @@ end manual_clone
  * NOTE: "pretty=oneline" --get a log of what is new, less verbose with pretty oneline
  * NOTE: the cmd is: "git log"
  * NOTE: the do_log name is used because applescript has reserved the log word for its own log method
+ * NOTE: git log --oneline
  *)
 on do_log()
 
@@ -240,6 +241,9 @@ end remote
  * NOTE: Checkout is a way to move back and forward in your code history. The git checkout command serves three distinct functions: checking out files, checking out commits, and checking out branches.
  * NOTE: git checkout works hand-in-hand with git branch. When you want to start a new feature, you create a branch with git branch, then check it out with git checkout. You can work on multiple features in a single repository by switching between them with git checkout
  * NOTE: To create a new branch adn start using it: "git branch new-feature" then "git checkout new-feature"
+ * NOTE: git checkout <commit> <file> (checks out a spessific file from a spessific commit)
+ * NOTE: git checkout <commit> (checks out all files from a spessific commit)
+ * NOTE: git checkout HEAD hello.py (you can check out the most recent version with the following:)
  *)
 on check_out()
 	--condition
