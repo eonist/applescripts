@@ -113,6 +113,16 @@ on pull(local_repo_path, remote_repo_url, user_name, user_password)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git pull" & " " & remote_loc & " " & target_branch
 end pull
 (*
+ * Manual pull
+ *)
+on manual_pull()
+	--git fetch origin master
+	--git log --oneline master..origin/master (to view the commit ids of the commits that the remote repo is ahead of local repo )
+	--git checkout master (if you are already there, then skip this)
+	--git merge origin/master (merges the changes from remote that you just fetched)
+	--you are now in the same state as the remote
+end manual_pull
+(*
  * Cherry
  * NOTE: git cherry -v origin/master
  * NOTE: this can be used to assert if there are any local commits ready to be pushed, if there are local commits then text will be returned, if there arent then there will be no text
@@ -186,18 +196,6 @@ on manual_clone(local_repo_path, remote_repo_path)
 	--"git checkout master" <-- Switches to the master branch (if you are already there then skip this)
 	--"git fetch origin master" <-- Do this Again to download the latest .git data  , since your ahead sort of
 end manual_clone
-
-(*
- * manual pull
- *)
-on manual_pull()
-	--git fetch origin master
-	--git log --oneline master..origin/master (to view the commit ids of the commits that the remote repo is ahead of local repo )
-	--git checkout master (if you are already there, then skip this)
-	--git merge origin/master (merges the changes from remote that you just fetched)
-	--you are now in the same state as the remote
-	
-end manual_pull
 (*
  * Get a log of what is new, less verbose with pretty oneline
  * NOTE: git log --pretty=oneline
@@ -301,7 +299,7 @@ end branch
  * NOTE: "git merge --no-ff branch_name_here" Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
  * NOTE: "git merge branch_name_here" Merge the specified branch into the current branch. Git will determine the merge algorithm automatically (discussed below).
  * NOTE: To merge a branch into another branch: first switch to the branch you want to merge into by doing "git checkout master", then do "git merge some_branch"
- * NOTE: To check out and merge a branch inn one line: "git merge target_branch new_branch" (aka: target_branch <-- new_branch)
+ * NOTE: To check out and merge a branch inn one-line: "git merge target_branch new_branch" (aka: target_branch <-- new_branch)
  *)
 on merge(from_branch, into_branch)
 	--git merge from_branch, into_branch
