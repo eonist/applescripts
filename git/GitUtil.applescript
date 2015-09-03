@@ -183,7 +183,7 @@ on manual_clone(local_repo_path, remote_repo_path)
 	--TODO: do reasearch with different posix paths ~/testing/ vs Users/Joe/testing vs macintosh hd/ user / etc, and how to convert between them
 	--"git remote add origin https://github.com/user/testing.git" <-- attach a remote repo
 	--"git fetch origin master" <--Download the latest .git data
-	--"git checkout master" <-- Downloads all the **files** from the remote repo
+	--"git checkout master" <-- Switches to the master branch
 	--"git fetch origin master" <-- Do this Again to download the latest .git data  , since your ahead sort of
 end manual_clone
 (*
@@ -282,7 +282,8 @@ end branch
  * NOTE: If the two branches you‘re trying to merge both changed the same part of the same file, Git won’t be able to figure out which version to use. When such a situation occurs, it stops right before the merge commit so 
  * NOTE: Note that merge conflicts will only occur in the event of a 3-way merge. It’s not possible to have conflicting changes in a fast-forward merge.
  * NOTE: The current branch will be updated to reflect the merge, but the target branch will be completely unaffected. 
- * NOTE: to list all branches in your repo do: "git branch"
+ * NOTE: to list all local branches in your repo do: "git branch"
+ * NOTE: to list all remote branches in your repo do: "git branch -r"
  * NOTE: "git branch -D branch_name_here" Force delete the specified branch, even if it has unmerged changes. This is the command to use if you want to permanently throw away all of the commits associated with a particular line of development.
  * NOTE: "git merge --no-ff branch_name_here" Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge). This is useful for documenting all merges that occur in your repository.
  * NOTE: "git merge branch_name_here" Merge the specified branch into the current branch. Git will determine the merge algorithm automatically (discussed below).
