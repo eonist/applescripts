@@ -183,9 +183,21 @@ on manual_clone(local_repo_path, remote_repo_path)
 	--TODO: do reasearch with different posix paths ~/testing/ vs Users/Joe/testing vs macintosh hd/ user / etc, and how to convert between them
 	--"git remote add origin https://github.com/user/testing.git" <-- attach a remote repo
 	--"git fetch origin master" <--Download the latest .git data
-	--"git checkout master" <-- Switches to the master branch
+	--"git checkout master" <-- Switches to the master branch (if you are already there then skip this)
 	--"git fetch origin master" <-- Do this Again to download the latest .git data  , since your ahead sort of
 end manual_clone
+
+(*
+ * manual pull
+ *)
+on manual_pull()
+	--git fetch origin master
+	--git log --oneline master..origin/master (to view the commit ids of the commits that the remote repo is ahead of local repo )
+	--git checkout master (if you are already there, then skip this)
+	--git merge origin/master (merges the changes from remote that you just fetched)
+	--you are now in the same state as the remote
+	
+end manual_pull
 (*
  * Get a log of what is new, less verbose with pretty oneline
  * NOTE: git log --pretty=oneline
