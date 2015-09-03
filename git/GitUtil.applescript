@@ -193,6 +193,7 @@ end manual_clone
  * NOTE: the cmd is: "git log"
  * NOTE: the do_log name is used because applescript has reserved the log word for its own log method
  * NOTE: git log --oneline
+ * NOTE: "git log --oneline master..origin/master" to view the commit ids of the commits that the remote repo is ahead of local repo
  *)
 on do_log()
 
@@ -256,7 +257,7 @@ end check_out
  * NOTE: The git fetch command downloads commits from a remote repository into your local repo, does not download the actual files
  * NOTE: git fetch <remote> (Fetch all of the branches from the repository. This also downloads all of the required commits and files from the other repository.)
  * NOTE: git fetch <remote> <branch> (Same as the above command, but only fetch the specified branch.)
- * NOTE: you can switch to the fetched branch with: "git checkout origin/master"
+ * NOTE: you can switch to the fetched branch with: "git checkout origin/master" then do "git log --oneline master..origin/master" to view the commit ids of the commits that the remote repo is ahead of local repo
  *)
 on fetch()
 	--condition
