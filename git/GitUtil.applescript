@@ -233,12 +233,12 @@ on remote()
 end remote
 (*
  * Checkout
- todo when you switch beetween branches, does the files change asweel, test thisbluk
+ * NOTE: When you switch between branches, the local files change accordingly
  * NOTE: to base a new branch of another branch do: "git checkout -b <new-branch> <existing-branch>"
  * NOTE: to create a new branch and switch to it do:"git checkout -b new-branch-name-here"
- * NOTE: checkout is also a way to switch between your branches
+ * NOTE: "git checkout branch_name" is also a way to switch between your branches
  * NOTE: Checkout is a way to move back and forward in your code history. The git checkout command serves three distinct functions: checking out files, checking out commits, and checking out branches.
- * Note git checkout works hand-in-hand with git branch. When you want to start a new feature, you create a branch with git branch, then check it out with git checkout. You can work on multiple features in a single repository by switching between them with git checkout
+ * NOTE: git checkout works hand-in-hand with git branch. When you want to start a new feature, you create a branch with git branch, then check it out with git checkout. You can work on multiple features in a single repository by switching between them with git checkout
  * NOTE: To create a new branch adn start using it: "git branch new-feature" then "git checkout new-feature"
  *)
 on check_out()
@@ -248,8 +248,8 @@ end check_out
  * Fetch
  * NOTE: Fetching is what you do when you want to see what everybody else has been working on. Since fetched content is represented as a remote branch, it has absolutely no effect on your local development work. This makes fetching a safe way to review commits before integrating them with your local repository.
  * NOTE: The git fetch command downloads commits from a remote repository into your local repo, does not download the actual files
- * git fetch <remote> (Fetch all of the branches from the repository. This also downloads all of the required commits and files from the other repository.)
- * git fetch <remote> <branch> (Same as the above command, but only fetch the specified branch.)
+ * NOTE: git fetch <remote> (Fetch all of the branches from the repository. This also downloads all of the required commits and files from the other repository.)
+ * NOTE: git fetch <remote> <branch> (Same as the above command, but only fetch the specified branch.)
  *)
 on fetch()
 	--condition
