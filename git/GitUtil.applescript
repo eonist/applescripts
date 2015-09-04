@@ -311,6 +311,26 @@ end merge
  * NOTE: The golden rule of git rebase is to never use it on public branches.
  * NOTE: you switch to the branch you want to rebase and then do "git rebase master"
  *)
-on rebase()/Applications/_dev/kdx/Downloads
+on rebase()
 
-rnd rebase
+end rebase
+
+(*
+ * stash
+ * NOTE: plain old `git stash` won't touch files that are untracked. For this, you need to use `git stash -u`
+ * NOTE: stash vs branch merge: branch merge creates an extra commit, use stash when your in the middle of some unfinished feature and you need to pause it where it is
+ * NOTE: stash vs branch rebase: the jury is still out, need more research into rebase, but it could resolve the extra commit problem
+ * NOTE: use names for each stash: git stash save Major refactor of foo before interruption
+ * NOTE: apply stash: git stash apply stash@{1}
+ * NOTE: applies the latest stash and removes it: git stash pop
+ * NOTE: remove stashes: stash drop stash@{1}
+ * NOTE: list all stashes: git stash list
+ * NOTE: stash also removes all files in your directory as if you just did a "git reset --hard"
+ * NOTE: when you apply your stash again, you may get file conflicts, resolve this as you would resolve a branch merge
+ * TODO: test if you can use theirs and ours as you would in a regular merge
+ * TODO: create 2 methods for stash, stash and stash_by_id, stash_at
+ *)
+ on stash(title)
+    --TODO: if no title is provided store the stash without title: by not including the save syntax
+    --"git stash -u save " & title
+ end stash
