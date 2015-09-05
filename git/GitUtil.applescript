@@ -186,7 +186,7 @@ on clone()
 end clone
 (*
  * Manually clone a git to a local folder
- * NOTE:  same as clone but differs in that it clones into an existing folder
+ * NOTE: same as clone but differs in that it clones into an existing folder
  *)
 on manual_clone(local_repo_path, remote_repo_path)
 	--"git init" <--Installs the invisible .git folder
