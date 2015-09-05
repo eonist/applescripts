@@ -307,9 +307,14 @@ on merge(from_branch, into_branch)
 	
 end merge
 (*
+ * rebase
  * NOTE: it seems rebasing is almost the same as merging, but with rebasing you also get the opertunity to squash commits into fewer commits, so when the rebasing is complete, the commit history looks will look simpler than with merging.
  * NOTE: The golden rule of git rebase is to never use it on public branches.
+ * NOTE: One of the best ways to incorporate rebasing into your workflow is to clean up local, in-progress features. By periodically performing an interactive rebase, you can make sure each commit in your feature is focused and meaningful. This lets you write your code without worrying about breaking it up into isolated commits—you can fix it up after the fact.
+ * NOTE: you can also squash together commits without merging: "git checkout feature" then "git rebase -i HEAD~3" By specifying HEAD~3 as the new base, you’re not actually moving the branch—you’re just interactively re-writing the 3 commits that follow it. Note that this will not incorporate upstream changes into the feature branch.
+ * NOTE: If you would prefer a clean, linear history free of unnecessary merge commits, you should reach for git rebase instead of git merge when integrating changes from another branch.
  * NOTE: you switch to the branch you want to rebase and then do "git rebase master"
+ * TODO: try "git rebase -i" see if it works as a commit squassher
  *)
 on rebase()
 
