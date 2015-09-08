@@ -257,9 +257,18 @@ end remote
  * NOTE: git checkout HEAD hello.py (you can check out the most recent version with the following:)
  * NOTE: git checkout master hello.py (checks out a spessific file in a spessific branch)
  * NOTE: you can switch to a newly fetched branch with: "git checkout origin/master"
+ * NOTE: after a merge you can use: "git checkout --thiers *" or "git checkout --ours *"
+ * @param local_repo_path: path to the repository to operate on, must be absolute not relative
+ * @param loc: can be branch like: origin/master or master or some_feature, or --ours, --theirs can also be an commit id
+ * @param file_path: can be a relative file path, or the astrix sign for every file "*"
  *)
-on check_out()
-	--condition
+on check_out(local_repo_path,loc,file_path)
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git checkout " & loc
+	if file_path is not space then
+		set shell_cmd to shell_cmd & " " & file_path
+	end if
+	log "shell_cmd: " & shell_cmd
+	return do shell script shell_cmd
 end check_out
 (*
  * Fetch
@@ -268,9 +277,9 @@ end check_out
  * NOTE: git fetch <remote> (Fetch all of the branches from the repository. This also downloads all of the required commits and files from the other repository.)
  * NOTE: git fetch <remote> <branch> (Same as the above command, but only fetch the specified branch.)
  * NOTE: you can switch to the fetched branch with: "git checkout origin/master" then do "git log --oneline master..origin/master" to view the commit ids of the commits that the remote repo is ahead of local repo
- * "git checkout --theirs *"  or "git checkout --ours *"
+ * TODO: does this work here: "git checkout --theirs *"  or "git checkout --ours *" 
  *)
-on fetch()
+on fetch(branch)
 	--condition
 end fetch
 (*
