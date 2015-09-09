@@ -114,16 +114,18 @@ on pull(local_repo_path, remote_repo_url, user_name, user_password)
 end pull
 (*
  * Manual pull
+ * CAUTION: remember to wrap this method in a try error clause, so that you can handle merge conflicts
  *)
-on manual_pull(local_repo_path,remote_path,into_branch,from_branch)
+on manual_pull(local_repo_path,remote_path,local_branch,remote_branch)
 	--git fetch origin master
 	fetch(local_repo_path,remote_path,from_branch)
 	--git log --oneline master..origin/master (to view the commit ids of the commits that the remote repo is ahead of local repo )
-	set the_log to do_log(local_repo_path,"--oneline "&into_branch&".."&remote_path&"/"&from_branch)
-	log the_log
-	--git merge master origin/master (merges the changes from remote that you just fetched)
-	merge(local_file_path,into_branch,from_branch)
-	--you are now in the same state as the remote
+	set is_remote_branch_ahead to GitAsserter's is_remote_branch_ahead(local_repo_path,remote_path,local_branch,remote_branch)--use the git log oneline thing here
+	if is_remote_branch_ahead then
+		--git merge master origin/master (merges the changes from remote that you just fetched)
+		merge(local_file_path,local_branch,remote_branch)
+		--you are now in the same state as the remote
+	end if
 end manual_pull
 (*
  * Cherry

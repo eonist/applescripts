@@ -26,3 +26,13 @@ on has_remote_repo_attached(file_path,branch)
 	on error
 		return false
 end has_remote_repo_attached
+(*
+ * asserts if a remote branch is ahead of a local branch
+ *)
+on is_remote_branch_ahead(local_repo_path,remote_path,local_branch,remote_branch)
+	set the_log to GitUtil's do_log(local_repo_path,"--oneline "&local_branch&".."&remote_path&"/"&remote_branch)
+	log the_log
+	set log_list to paragraps of the_log
+	if length of log_list > 0 then return true
+	else return false
+end is_remote_branch_ahead
