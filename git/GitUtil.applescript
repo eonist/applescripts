@@ -181,8 +181,10 @@ end detach_remote_repo
  * NOTE: git clone <repo> <directory>
  * NOTE: 
  *)
-on clone()
-
+on clone(remote_path,local_path)
+	set shell_cmd to git_path & "git clone "&remote_path&" "&local_path
+	log "shell_cmd: " & shell_cmd
+	return do shell script shell_cmd
 end clone
 (*
  * Manually clone a git to a local folder
