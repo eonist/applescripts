@@ -19,9 +19,9 @@ end is_git_repo
 (*
  * 
  *)
-on has_remote_repo_attached(file_path)
+on has_remote_repo_attached(file_path,branch)
 	try 
-		GitUtil's status(file_path,"origin")
+		GitUtil's status(file_path,"origin"&"/"&branch)
 		return true
 	on error
 		return false

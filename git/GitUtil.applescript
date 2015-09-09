@@ -115,11 +115,14 @@ end pull
 (*
  * Manual pull
  *)
-on manual_pull()
+on manual_pull(local_repo_path,remote_path,into_branch,from_branch)
 	--git fetch origin master
+	fetch(local_repo_path,remote_path,from_branch)
 	--git log --oneline master..origin/master (to view the commit ids of the commits that the remote repo is ahead of local repo )
-	--git checkout master (if you are already there, then skip this)
-	--git merge origin/master (merges the changes from remote that you just fetched)
+	set the_log to do_log(local_repo_path,"--oneline "&into_branch&".."&remote_path&"/"&from_branch)
+	log the_log
+	--git merge master origin/master (merges the changes from remote that you just fetched)
+	merge(local_file_path,into_branch,from_branch)
 	--you are now in the same state as the remote
 end manual_pull
 (*
@@ -208,8 +211,10 @@ end manual_clone
  * NOTE: git log --oneline
  * NOTE: "git log --oneline master..origin/master" to view the commit ids of the commits that the remote repo is ahead of local repo
  *)
-on do_log()
-
+on do_log(local_repo_path,cmd)
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git log " & cmd
+	log "shell_cmd: " & shell_cmd
+	return do shell script shell_cmd
 end do_log
 (*
  * Config
@@ -281,8 +286,14 @@ end check_out
  * NOTE: you can switch to the fetched branch with: "git checkout origin/master" then do "git log --oneline master..origin/master" to view the commit ids of the commits that the remote repo is ahead of local repo
  * TODO: does this work here: "git checkout --theirs *"  or "git checkout --ours *" 
  *)
-on fetch(branch)
+on fetch(local_repo_path,remote_path,branch)
 	--condition
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git fetch " & remote_path
+	if branch is not space then
+		set shell_cmd to shell_cmd & " " & branch
+	end if
+	log "shell_cmd: " & shell_cmd
+	return do shell script shell_cmd
 end fetch
 (*
  * branch
@@ -313,10 +324,13 @@ end branch
  * NOTE: To merge a branch into another branch: first switch to the branch you want to merge into by doing "git checkout master", then do "git merge some_branch"
  * NOTE: To check out and merge a branch inn one-line: "git merge target_branch new_branch" (aka: target_branch <-- new_branch)
  * NOTE: To merge a remote branch into your local branch do: "git fetch origin master", "git checkout master", "git merge origin/master", if you get conflicts and you just want to keep all your or their updates you do "git checkout --thiers *" or "git checkout --ours *" and then add and commit and push. Now you have merged perfectly
+ * @param from_branch the branch you want to apply to the @param into_branch
+ * @param into_branch is the branch you usually checkout before doing the merge
  *)
-on merge(from_branch, into_branch)
-	--git merge from_branch, into_branch
-	
+on merge(local_repo_path,into_branch,from_branch)
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git merge " & into_branch & " " & from_branch
+	log "shell_cmd: " & shell_cmd
+	return do shell script shell_cmd
 end merge
 (*
  * rebase
