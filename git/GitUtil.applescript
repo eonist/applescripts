@@ -118,11 +118,11 @@ end pull
  * CAUTION: remember to wrap this method in a try error clause, so that you can handle merge conflicts
  * NOTE: the goal of this method is to arrive at the same state as the remote branch
  *)
-on manual_pull(local_repo_path,remote_path,local_branch,remote_branch)
-	fetch(local_repo_path,remote_path,from_branch)--git fetch origin master, retrive the latest repo info
-	set is_remote_branch_ahead to GitAsserter's is_remote_branch_ahead(local_repo_path,remote_path,local_branch,remote_branch)--use the git log oneline thing here	--git log --oneline master..origin/master (to view the commit ids of the commits that the remote repo is ahead of local repo )
-	if is_remote_branch_ahead then--asserts if a merge isneeded
-		merge(local_file_path,local_branch,remote_branch)--git merge master origin/master (merges the changes from remote that you just fetched)
+on manual_pull(local_repo_path, remote_path, local_branch, remote_branch)
+	fetch(local_repo_path, remote_path, from_branch) --git fetch origin master, retrive the latest repo info
+	set is_remote_branch_ahead to GitAsserter's is_remote_branch_ahead(local_repo_path, remote_path, local_branch, remote_branch) --use the git log oneline thing here	--git log --oneline master..origin/master (to view the commit ids of the commits that the remote repo is ahead of local repo )
+	if is_remote_branch_ahead then --asserts if a merge isneeded
+		merge(local_file_path, local_branch, remote_branch) --git merge master origin/master (merges the changes from remote that you just fetched)
 	end if
 end manual_pull
 (*
@@ -135,21 +135,21 @@ end manual_pull
 on cherry(local_repo_path, user_name, user_password)
 	set loc to "origin" --"https://" & user_name & ":" & user_password & "@" & remote_repo_url
 	set what_branch to "master" --master branch
-	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & what_branch--TODO: whats the -v, verbose?
+	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & what_branch --TODO: whats the -v, verbose?
 end cherry
 (*
  * The opposite of the add action
  * "git reset"
  *)
 on revert()
-	 
+	
 end revert
 
 (*
  * --rm --remove files, research this
  *)
 on remove()
-
+	
 end remove
 (*
  * Init
@@ -164,7 +164,7 @@ end init
  * NOTE: git remote add origin https://github.com/user/test.git
  * NOTE: git remote add john http://dev.example.com/john.git (YOu can also add other teammates git repos to the same repo as above)
  *)
-on attach_remote_repo(local_repo_path,remote_repo_path)
+on attach_remote_repo(local_repo_path, remote_repo_path)
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git remote add origin" & " " & (quoted form of remote_repo_path)
 	log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
@@ -185,8 +185,8 @@ end detach_remote_repo
  * NOTE: git clone <repo> <directory>
  * NOTE: 
  *)
-on clone(remote_path,local_path)
-	set shell_cmd to git_path & "git clone "&remote_path&" "&local_path
+on clone(remote_path, local_path)
+	set shell_cmd to git_path & "git clone " & remote_path & " " & local_path
 	log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end clone

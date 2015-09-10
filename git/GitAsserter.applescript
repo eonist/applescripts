@@ -30,8 +30,8 @@ end has_remote_repo_attached
 (*
  * Asserts if a remote branch is ahead of a local branch
  *)
-on is_branch_ahead(local_repo_path, branch_1, branch_2)
-	set the_log to GitUtil's do_log(local_repo_path, "--oneline " & branch & ".." & remote_path & "/" & branch)
+on is_remote_branch_ahead(local_repo_path, branch)
+	set the_log to GitUtil's do_log(local_repo_path, "--oneline " & branch & ".." & "origin" & "/" & branch)
 	log the_log
 	set log_list to paragraps of the_log
 	if (length of log_list > 0) then
