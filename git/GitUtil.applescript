@@ -233,7 +233,7 @@ end config
  * NOTE: git diff returns a result if a file is changed (the returned result will contain the lines that changed with a "-" preceding the line that is removed and a "+" preceding the line that is added)
  *)
 on diff()
-	
+	return do shell script "cd " & local_repo_path & ";" & git_path & "git remote update"
 end diff
 (*
  * NOTE: brings your remote refs up to date
