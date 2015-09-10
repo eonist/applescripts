@@ -9,40 +9,44 @@ property GitUtil : my ScriptLoader's load_script(alias ((path to scripts folder 
 * Note: Its wise to assert if the folder exists first, use FileAsserter's does_path_exist("~/test/.git/")
 *)
 on is_git_repo(posix_file_path)
-   try
- 		GitUtil's status(posix_file_path, "")
- 		return true
- 	on error
- 		return false
- 	end try
+	try
+		GitUtil's status(posix_file_path, "")
+		return true
+	on error
+		return false
+	end try
 end is_git_repo
 (*
  * 
  *)
-on has_remote_repo_attached(file_path,branch)
-	try 
-		GitUtil's status(file_path,"origin"&"/"&branch)
+on has_remote_repo_attached(file_path, branch)
+	try
+		GitUtil's status(file_path, "origin" & "/" & branch)
 		return true
 	on error
 		return false
+	end try
 end has_remote_repo_attached
 (*
- * asserts if a remote branch is ahead of a local branch
+ * Asserts if a remote branch is ahead of a local branch
  *)
-on is_remote_branch_ahead(local_repo_path,remote_path,branch)
-	set the_log to GitUtil's do_log(local_repo_path,"--oneline "&branch&".."&remote_path&"/"&branch)
+on is_remote_branch_ahead(local_repo_path, remote_path, branch)
+	set the_log to GitUtil's do_log(local_repo_path, "--oneline " & branch & ".." & remote_path & "/" & branch)
 	log the_log
 	set log_list to paragraps of the_log
-	if length of log_list > 0 then return true
-	else return false
+	if (length of log_list > 0) then
+		return true
+	else
+		return false
+	end if
 end is_remote_branch_ahead
 (*
  * you could also maybe use log to assert this, see is_remote_branch_ahead
  *)
-on is_local_branch_ahead(local_repo_path,remote_path,branch)
+on is_local_branch_ahead(local_repo_path, remote_path, branch)
 	log GitUtil's git_remote_update(local_path of repo_item) --in order for the cherry to work with "git add" that uses https, we need to call this method
 	set cherry_result to GitUtil's cherry(local_repo_path)
 	log "cherry_result: " & cherry_result
 	set has_commits to length of cherry_result > 0
-	return  has_commits
-end
+	return has_commits
+end is_local_branch_ahead
