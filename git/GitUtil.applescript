@@ -55,6 +55,7 @@ end commit
  * @param remote_repo_url: github.com/user-name/repo-name.git
  * NOTE: you may mitigate using username and pass by researching how to use SSH key in github from trusted maschines
  * TODO: maybe add try error when doing the shell part
+ * TODO: add branch as a param
  * Example: GitUtils's push(local_repo_path, "github.com/user-name/repo-name.git", user_name, user_password)
  * NOTE: Original gti cmd: git push https://github.com/user/test.git master
  * NOTE: ssh-example: ssh://user@host/path/to/repo.git
@@ -127,6 +128,7 @@ end manual_pull
 (*
  * Cherry
  * NOTE: git cherry -v origin/master
+ * TODO: impliment user and pass when this is needed, use "" if not
  * NOTE: this can be used to assert if there are any local commits ready to be pushed, if there are local commits then text will be returned, if there arent then there will be no text
  * Caution: if you use git add with https login and pass, you need to run "git remote update" in order for the above note to work
  *)
@@ -235,7 +237,7 @@ on diff()
 end diff
 (*
  * NOTE: brings your remote refs up to date
- * TODO: Ellaborate
+ * TODO: Ellaborate, it seems this method is needed to get the cherry method to work
  *)
 on git_remote_update(local_repo_path)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git remote update"
