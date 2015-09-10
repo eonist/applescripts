@@ -1,3 +1,4 @@
+property GitUtil : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "git:GitUtil.applescript"))
 (*
  * git diff --name-only --diff-filter=U "outputs: text2.txt"
  * git status -s "outputs UU text2.txt"
