@@ -81,7 +81,7 @@ end push
  * NOTE: git reset --hard <commit>--reset the staging area and the actual files to a specific commit id (does not remove untracked files)
  * NOTE: git reset --hard HEAD~2--resets 2 commits backward, also removes the actual files (does not remove untracked files)
  * NOTE: "git reset --hard" (Undo changes in tracked files)
- * NOTE: "git clean -df" (Remove untracked files, does not remove .ignored files, use ""-xf" for that)
+ * NOTE: "git clean -df" (Remove untracked files, does not remove .ignored files, use "-xf" for that)
  *)
 on reset(local_repo_path, file_name)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git reset" & " " & file_name
