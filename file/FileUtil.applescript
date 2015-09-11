@@ -8,7 +8,7 @@ log ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt
 
 set the_file_path to POSIX file ((path to me) as text)
 log the_file_path
-log class of (POSIX file the_file_path)
+
 if (class of the_file_path = alias) then
 	log "is alias"
 else if ((class of the_file_path) as text = "«class furl»") then
