@@ -8,7 +8,16 @@ property FileParser : my ScriptLoader's load_script(alias ((path to scripts fold
 on is_folder(the_path)
 	return FileParser's file_kind(the_path) is equal to "folder"
 end is_folder
-
+(*
+ * Asserts
+ *)
+on is_alias(the_obj)
+	if class of the_obj = alias then
+		return true
+	else if class of {} then
+		return false
+	end if
+end is_alias
 (*
  * Asserts if a file exits
  * Param: hsf_file_path is a hsf file path
@@ -29,22 +38,22 @@ test()
  * Note you can also do this in shell: try do shell script "cd " & posix_file_path
  *)
 on does_folder_exist(hsf_file_path)
-  try
-    hsf_file_path as alias
-    return true
-  on error
-    return false
-  end try
-end test
+	try
+		hsf_file_path as alias
+		return true
+	on error
+		return false
+	end try
+end does_folder_exist
 (*
  * Asserts if a folder exists uses posix path
  * Example: does_path_exist("~/testing/.git/")--true/false
  *)
 on does_path_exist(posix_file_path)
-  try
+	try
 		do shell script "cd " & posix_file_path
-    return true
+		return true
 	on error
-    return false
+		return false
 	end try
 end does_path_exist

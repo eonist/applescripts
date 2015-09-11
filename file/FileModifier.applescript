@@ -59,7 +59,7 @@ end rename_file
  * @Example: create_folder(path to desktop,"test")
  * Todo: Assert if the folder already exists, if it does dont try to make it just return false, return true if it succseded
  *)
-on create_folder(alias_hsf_file_path,folder_name)
+on create_folder(alias_hsf_file_path, folder_name)
 	tell application "Finder"
 		set newfo to make new folder at alias_hsf_file_path with properties {name:folder_name}
 		--make new folder at newfo with properties {name:"Job Materials"}

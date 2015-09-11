@@ -1,14 +1,29 @@
+property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
+property FileParser : my ScriptLoader's load_script(alias ((POSIX file (POSIX path of ((path to me as text) & "::")) as alias as text) & "FileParser.applescript"))
+log (path to me as text)
+set the_path to POSIX path of ((path to me as text) & "::")
+log the_path
+log ((POSIX file the_path as alias as text) & "FileParser.applescript")
+log ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt")
+
+if class of (path to me) = alias then
+	log "is alias"
+	
+else if class of ()
+	log "not alias"
+end if
+
 (*
  * @param: file_path should be in posix format?
  *)
 on open_file(file_path)
-	tell finder to open file_path
+	tell application finder to open file_path
 end open_file
 (*
  * @param: file_paths should be a list of posix files
  *)
 on open_files(file_paths)
-	repeat with every file_path in filepaths
+	repeat with file_path in filepaths
 		open_file(file_path)
 	end repeat
 end open_files

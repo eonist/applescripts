@@ -76,6 +76,13 @@ on parent_folder(file_path)
 	end tell
 end parent_folder
 (*
+ * posix_parent(path to me)--/Users/someUser/Library/Scripts/file/
+ * NOTE: This method is great when you dont want to use system events to get the parent
+ *)
+on posix_parent(alias_hsf_file_path)
+	set parent_posix_file_path to POSIX path of ((alias_hsf_file_path as text) & "::")
+end posix_parent
+(*
  * Note can be used on files and folders
  *)
 on file_kind(file_path)
