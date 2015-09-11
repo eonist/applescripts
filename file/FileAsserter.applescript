@@ -9,16 +9,6 @@ on is_folder(the_path)
 	return FileParser's file_kind(the_path) is equal to "folder"
 end is_folder
 (*
- * Asserts if an alias is an alias
- *)
-on is_alias(the_obj)
-	if class of the_obj = alias then
-		return true
-	else if class of {} then
-		return false
-	end if
-end is_alias
-(*
  * Asserts if a file exits
  * Param: hsf_file_path is a hsf file path
  * Caution if you use alias hsf paths, make sure to cast it as text first
@@ -58,4 +48,21 @@ on does_path_exist(posix_file_path)
 		return false
 	end try
 end does_path_exist
+(*
+ * Asserts if a file_path is a POSIX file
+ * NOTE: use this to assert if its text: (class of the_file_path) = text
+ *)
+on is_posix_file(the_file_path)
+	return (class of the_file_path as text = "«class furl»")
+end is_posix_file
 
+(*
+ * Asserts if an alias is an alias
+ *)
+on is_alias(the_obj)
+	if class of the_obj = alias then
+		return true
+	else if class of {} then
+		return false
+	end if
+end is_alias
