@@ -3,7 +3,7 @@ property FileParser : my ScriptLoader's load_script(alias ((POSIX file (POSIX pa
 log (path to me as text)
 set the_path to POSIX path of ((path to me as text) & "::")
 log the_path
-log ((POSIX file the_path as alias as text) & "FileParser.applescript")
+log alias ((POSIX file the_path as text) & "FileParser.applescript")
 log ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt")
 
 set the_file_path to POSIX file ((path to me) as text)
