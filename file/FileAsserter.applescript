@@ -45,6 +45,7 @@ on does_folder_exist(hsf_file_path)
 		return false
 	end try
 end does_folder_exist
+
 (*
  * Asserts if a folder exists uses posix path
  * Example: does_path_exist("~/testing/.git/")--true/false
@@ -57,3 +58,4 @@ on does_path_exist(posix_file_path)
 		return false
 	end try
 end does_path_exist
+

@@ -9,15 +9,7 @@ log ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt
 set the_file_path to POSIX file ((path to me) as text)
 log the_file_path
 
-if (class of the_file_path = alias) then
-	log "is alias"
-else if (class of the_file_path as text = "«class furl»") then
-	log "is POSIX file"
-else if ((class of the_file_path) = text) then
-	log "is text"
-else --undefined
-	log "undefined"
-end if
+
 
 (*
  * @param: file_path should be in posix format?
