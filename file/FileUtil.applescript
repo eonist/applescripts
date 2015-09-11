@@ -11,7 +11,7 @@ log the_file_path
 log class of the_file_path
 if (class of the_file_path = alias) then
 	log "is alias"
-else if (class of the_file_path = "«class furl»") then
+else if (class of the_file_path = "class furl") then
 	log "is POSIX file"
 else if (class of the_file_path = text) then
 	log "is text"
