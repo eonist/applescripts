@@ -6,7 +6,7 @@ log the_path
 log ((POSIX file the_path as alias as text) & "FileParser.applescript")
 log ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt")
 
-set the_file_path to POSIX path of ((path to me) as text)
+set the_file_path to POSIX path of (((path to me) as text) & "::")
 log the_file_path
 log class of the_file_path
 if (class of the_file_path = alias) then
