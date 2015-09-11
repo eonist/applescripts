@@ -15,7 +15,7 @@ else if (class of the_file_path as text = "«class furl»") then
 	log "is POSIX file"
 else if ((class of the_file_path) = text) then
 	log "is text"
-else --POSIX
+else --undefined
 	log "undefined"
 end if
 
