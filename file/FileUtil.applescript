@@ -1,5 +1,5 @@
 property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
-property FileParser : my ScriptLoader's load_script(alias ((POSIX file (POSIX path of ((path to me as text) & "::")) as alias as text) & "FileParser.applescript"))
+property FileParser : my ScriptLoader's load(path to me, "FileParser.applescript")
 log (path to me as text)
 set the_path to POSIX path of ((path to me as text) & "::")
 log the_path
