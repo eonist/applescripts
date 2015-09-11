@@ -6,10 +6,13 @@ log the_path
 log alias ((POSIX file the_path as text) & "FileParser.applescript")
 log ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt")
 
-set the_file_path to POSIX file ((path to me) as text)
+set the_file_path to POSIX file ((path to scripts folder from user domain) as text)
 log the_file_path
 
+tell application "Finder" to get folder of (path to me) as Unicode text
 
+set workingDir to POSIX path of result
+log workingDir
 
 (*
  * @param: file_path should be in posix format?
