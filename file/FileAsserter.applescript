@@ -9,7 +9,7 @@ on is_folder(the_path)
 	return FileParser's file_kind(the_path) is equal to "folder"
 end is_folder
 (*
- * Asserts
+ * Asserts if an alias is an alias
  *)
 on is_alias(the_obj)
 	if class of the_obj = alias then

@@ -6,10 +6,11 @@ log the_path
 log ((POSIX file the_path as alias as text) & "FileParser.applescript")
 log ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt")
 
-if class of (path to me) = alias then
+set the_file_path to (path to me)
+if (class of the_file_path = alias) then
 	log "is alias"
 	
-else if class of ()
+else if (class of the_file_path = POSIX file) then
 	log "not alias"
 end if
 
