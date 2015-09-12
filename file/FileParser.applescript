@@ -84,6 +84,12 @@ on posix_file_parent(alias_hsf_file_path)
 	set parent_posix_file_path to POSIX path of ((alias_hsf_file_path as text) & "::")
 end posix_file_parent
 (*
+ * Returns the parent path of @param alias_hsf_file_path
+ *)
+on alias_hsf_parent(alias_hsf_file_path)
+	return alias ((alias_hsf_file_path as text) & "::")
+end alias_hsf_parent
+(*
  * Note can be used on files and folders
  *)
 on file_kind(file_path)
