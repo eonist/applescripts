@@ -1,9 +1,9 @@
-
+open_file(alias ((path to desktop as text) & "del.txt"))
 (*
  * @param: file_path should be in posix format?
  *)
 on open_file(file_path)
-	tell application finder to open file_path
+	tell application "Finder" to open file_path
 end open_file
 (*
  * @param: file_paths should be a list of posix files
@@ -13,3 +13,9 @@ on open_files(file_paths)
 		open_file(file_path)
 	end repeat
 end open_files
+(*
+ *
+ *)
+on open_many(folder_path, file_names)
+	
+end open_many
