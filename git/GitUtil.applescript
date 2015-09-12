@@ -119,6 +119,7 @@ end pull
  * NOTE: the goal of this method is to arrive at the same state as the remote branch
  *)
 on manual_pull(local_repo_path, remote_path, local_branch, remote_branch)
+	log "manual_pull()"
 	fetch(local_repo_path, remote_path, from_branch) --git fetch origin master, retrive the latest repo info
 	set is_remote_branch_ahead to GitAsserter's is_remote_branch_ahead(local_repo_path, remote_path, local_branch, remote_branch) --use the git log oneline thing here	--git log --oneline master..origin/master (to view the commit ids of the commits that the remote repo is ahead of local repo )
 	if is_remote_branch_ahead then --asserts if a merge isneeded
