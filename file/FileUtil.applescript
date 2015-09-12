@@ -1,4 +1,4 @@
-log (path to home)
+
 (*
  * @param: file_path should be in posix format?
  *)
