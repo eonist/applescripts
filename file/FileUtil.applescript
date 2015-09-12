@@ -13,3 +13,9 @@ on open_files(file_paths)
 		open_file(file_path)
 	end repeat
 end open_files
+(*
+ *
+ *)
+on open_many()
+	
+end open_many
