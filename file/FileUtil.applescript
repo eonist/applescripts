@@ -1,9 +1,10 @@
-open_file(alias ((path to desktop as text) & "del.txt"))
+open_file(POSIX path of ((path to desktop as text) & "del.txt"))
 (*
  * @param: file_path should be in posix format?
  *)
 on open_file(file_path)
-	tell application "Finder" to open file_path
+	log file_path
+	--tell application "Finder" to open file_path
 end open_file
 (*
  * @param: file_paths should be a list of posix files
