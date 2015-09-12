@@ -54,9 +54,9 @@ on has_local_commits(local_repo_path, remote_path, branch)
 	return has_commits
 end has_local_commits
 (*
- *
+ * Asserts if there are unmerged paths that needs resolvment
  *)
 on has_unmerged_paths(local_path)
-	log length of GitParser's unmerged_files(local_path)
+	--log length of GitParser's unmerged_files(local_path)
 	return length of GitParser's unmerged_files(local_path) > 0
 end has_unmerged_paths
