@@ -19,72 +19,7 @@ on manual_pull(local_repo_path, remote_path, local_branch, remote_branch)
 		merge(local_file_path, local_branch, remote_branch) --git merge master origin/master (merges the changes from remote that you just fetched)
 	end if
 end manual_pull
-(*
- * Cherry
- * NOTE: git cherry -v origin/master
- * TODO: impliment user and pass when this is needed, use "" if not
- * NOTE: this can be used to assert if there are any local commits ready to be pushed, if there are local commits then text will be returned, if there arent then there will be no text
- * Caution: if you use git add with https login and pass, you need to run "git remote update" in order for the above note to work
- *)
-on cherry(local_repo_path, user_name, user_password)
-	set loc to "origin" --"https://" & user_name & ":" & user_password & "@" & remote_repo_url
-	set what_branch to "master" --master branch
-	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & what_branch --TODO: whats the -v, verbose?
-end cherry
-(*
- * The opposite of the add action
- * "git reset"
- *)
-on revert()
-	
-end revert
 
-(*
- * --rm --remove files, research this
- *)
-on remove()
-	
-end remove
-(*
- * Init
- *)
-on init(local_repo_path)
-	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git init"
-	log "shell_cmd: " & shell_cmd
-	return do shell script shell_cmd
-end init
-(*
- * Attach a remote repo to a local repo
- * NOTE: git remote add origin https://github.com/user/test.git
- * NOTE: git remote add john http://dev.example.com/john.git (YOu can also add other teammates git repos to the same repo as above)
- * NOTE: to retrive the origin url: "git config --get remote.origin.url"
- *)
-on attach_remote_repo(local_repo_path, remote_repo_path)
-	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git remote add origin" & " " & (quoted form of remote_repo_path)
-	log "shell_cmd: " & shell_cmd
-	return do shell script shell_cmd
-end attach_remote_repo
-(*
- * Detach a remote repo of a local repo
- * NOTE: the reverse of attach_remote_repo method
- * NOTE: git remote rm origin
- *)
-on detach_remote_repo(local_repo_path)
-	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git remote rm origin"
-	log "shell_cmd: " & shell_cmd
-	return do shell script shell_cmd
-end detach_remote_repo
-(*
- * Clone
- * NOTE: Cloning automatically creates a remote connection called "origin" pointing back to the original repository.
- * NOTE: git clone <repo> <directory>
- * NOTE: 
- *)
-on clone(remote_path, local_path)
-	set shell_cmd to git_path & "git clone " & remote_path & " " & local_path
-	log "shell_cmd: " & shell_cmd
-	return do shell script shell_cmd
-end clone
 (*
  * Manually clone a git to a local folder
  * NOTE:  same as clone but differs in that it clones into an existing folder
@@ -98,38 +33,7 @@ on manual_clone(local_repo_path, remote_repo_path)
 	--"git checkout master" <-- Switches to the master branch (if you are already there then skip this)
 	--"git fetch origin master" <-- Do this Again to download the latest .git data  , since your ahead sort of
 end manual_clone
-(*
- * Get a log of what is new, less verbose with pretty oneline
- * NOTE: git log --pretty=oneline
- * NOTE: "pretty=oneline" --get a log of what is new, less verbose with pretty oneline
- * NOTE: the cmd is: "git log"
- * NOTE: the do_log name is used because applescript has reserved the log word for its own log method
- * NOTE: git log --oneline
- * NOTE: "git log --oneline master..origin/master" to view the commit ids of the commits that the remote repo is ahead of local repo
- *)
-on do_log(local_repo_path, cmd)
-	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git log " & cmd
-	log "shell_cmd: " & shell_cmd
-	return do shell script shell_cmd
-end do_log
-(*
- * Config
- * NOTE: set your name: git config --global user.name "your-user-name"
- * NOTE: set your email: git config --global user.email you@example.com
- *)
-on config()
-	
-end config
-(*
- * "git diff --name-only --diff-filter=U" --returns a list of unmerged files
- * NOTE: the digits within the @@ and @@ signs represents indices of the lines that changed. Like: @@ -1 +1,3 @@,do a test with numbered lines from 1 - 16 and remove some to see the meaning like in this research: http://stackoverflow.com/questions/10950412/what-does-1-1-mean-in-gits-diff-output
- * NOTE: git diff returns a result if a file is removed (the removed file will look like this in the returned result: "--- path-to-removed-file")
- * NOTE: git diff does not reurn a result if a file is added
- * NOTE: git diff returns a result if a file is changed (the returned result will contain the lines that changed with a "-" preceding the line that is removed and a "+" preceding the line that is added)
- *)
-on diff(local_repo_path, cmd)
-	return do shell script "cd " & local_repo_path & ";" & git_path & "git diff " & cmd
-end diff
+
 (*
  * NOTE: brings your remote refs up to date
  * TODO: Ellaborate, it seems this method is needed to get the cherry method to work
