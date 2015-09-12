@@ -33,11 +33,11 @@ end origin_url
  * TODO: impliment user and pass when this is needed, use "" if not
  * NOTE: this can be used to assert if there are any local commits ready to be pushed, if there are local commits then text will be returned, if there arent then there will be no text
  * Caution: if you use git add with https login and pass, you need to run "git remote update" in order for the above note to work
+ * NOTE: branch: usually "master"
  *)
-on cherry(local_repo_path, user_name, user_password)
+on cherry(local_repo_path, branch,user_name, user_password)
 	set loc to "origin" --"https://" & user_name & ":" & user_password & "@" & remote_repo_url
-	set what_branch to "master" --master branch
-	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & what_branch --TODO: whats the -v, verbose?
+	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & branch --TODO: whats the -v, verbose?
 end cherry
 (*
  * Get a log of what is new, less verbose with pretty oneline
