@@ -53,3 +53,9 @@ on has_local_commits(local_repo_path, remote_path, branch)
 	set has_commits to (length of cherry_result > 0)
 	return has_commits
 end has_local_commits
+(*
+ *
+ *)
+on has_unmerged_paths(local_path)
+	return GitParser's unmerged_files(local_path)
+end has_unmerged_paths
