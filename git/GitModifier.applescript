@@ -52,8 +52,7 @@ end commit
  * NOTE: you can also do "git push" if you are already switched into the branch you want to push and there is only one remote repo attached to the local repo
  * @PARAM: branch: usually "master"
  *)
-on push(local_repo_path, remote_repo_url, user_name, user_password,branch)
-	
+on push(local_repo_path, remote_repo_url, user_name, user_password, branch)
 	set remote_loc to "https://" & user_name & ":" & user_password & "@" & remote_repo_url --https://user:pass@github.com/user/repo.git--"origin"
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git push" & " " & remote_loc & " " & branch
 	log "shell_cmd: " & shell_cmd
