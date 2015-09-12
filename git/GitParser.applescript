@@ -10,10 +10,10 @@ on unmerged_files(local_path)
 	return paragraphs of unmerged_paths
 end unmerged_files
 (*
- *
+ *Returns https://github.com/user/repository.git
  *)
 on origin_url(local_repo_path)
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git config --get remote.origin.url"
-	log "shell_cmd: " & shell_cmd
+	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end origin_url
