@@ -224,7 +224,7 @@ end check_out
 on fetch(local_repo_path, remote_path, branch)
 	log "fetch()"
 	--condition
-	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git fetch " & remote_path
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git fetch " & "origin"
 	if branch is not space then
 		set shell_cmd to shell_cmd & " " & branch
 	end if
