@@ -57,5 +57,6 @@ end has_local_commits
  *
  *)
 on has_unmerged_paths(local_path)
-	return GitParser's unmerged_files(local_path)
+	log length of GitParser's unmerged_files(local_path)
+	return length of GitParser's unmerged_files(local_path) > 0
 end has_unmerged_paths
