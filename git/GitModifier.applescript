@@ -50,6 +50,7 @@ end commit
  * NOTE: Only Push to Bare Repositories In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, it�s important to never push to another developer�s repository. But because bare repos don�t have a working directory, it�s impossible to interrupt anybody�s developments.
  * NOTE: The only time you should ever need to force push is when you realize that the commits you just shared were not quite right and you fixed them with a git commit --amend or an interactive rebase. However, you must be absolutely certain that none of your teammates have pulled those commits before using the --force option.
  * NOTE: you can also do "git push" if you are already switched into the branch you want to push and there is only one remote repo attached to the local repo
+ * NOTE: remove remote feature branch: git push origin --delete <branch-name>
  * @PARAM: branch: usually "master"
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password, branch)
@@ -239,6 +240,7 @@ end fetch
  * NOTE: Remote branches are just like local branches, except they represent commits from somebody else�s repository. You can check out a remote branch just like a local one, but this puts you in a detached HEAD state (just like checking out an old commit). You can think of them as read-only branches. 
  * NOTE: you can inspect these branches with the usual git checkout and git log commands. If you approve the changes a remote branch contains, you can merge it into a local branch with a normal git merge.
  * NOTE: git branch -r
+ * NOTE: Delete your local feature branch: "git branch --delete <branch-name>"
  * # origin/master
  * # origin/develop
  * # origin/some-feature
