@@ -20,7 +20,6 @@ on manual_pull(local_path, remote_path, branch)
 		GitModifier's merge(local_path, branch, "origin/" & branch) --git merge master origin/master (merges the changes from remote that you just fetched)
 	end if
 end manual_pull
-
 (*
  * Manually clone a git to a local folder
  * NOTE:  same as clone but differs in that it clones into an existing folder
