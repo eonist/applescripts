@@ -18,6 +18,7 @@ on has_any_word(the_text, the_words)
 end has_any_word
 (*
  * you can also use "is equal to" instead of the equal sign, the opposite is "is not equal to"
+ * Note: if you want to log a boolean just add some adition text to the log like: log "toggle: " & false
  *)
 on is_equal(a, b)
 	return (a = b)
