@@ -1,5 +1,5 @@
---log alias ((alias ((path to me as text) & "::") as text) & "::")
-log POSIX path of ((path to me as text) & "../")
+alias ((alias ((path to me as text) & "::") as text) & "::")
+
 (*
  * @param: file_path should be in posix format?
  *)
