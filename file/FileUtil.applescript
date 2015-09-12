@@ -1,3 +1,4 @@
+log alias ((path to me as text) & "::::")
 (*
  * @param: file_path should be in posix format?
  *)
