@@ -44,8 +44,9 @@ end is_remote_branch_ahead
  * you could also maybe use log to assert this, see is_remote_branch_ahead
  *)
 on has_local_commits(local_repo_path, remote_path, branch)
+	--move the bellow to gitModifier?
 	log GitUtil's git_remote_update(local_path of repo_item) --in order for the cherry to work with "git add" that uses https, we need to call this method
-	set cherry_result to GitUtil's cherry(local_repo_path)
+	set cherry_result to GitUtil's cherry(local_repo_path)--move to parser
 	log "cherry_result: " & cherry_result
 	set has_commits to (length of cherry_result > 0)
 	return has_commits
