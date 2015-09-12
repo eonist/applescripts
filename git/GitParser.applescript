@@ -35,7 +35,7 @@ end origin_url
  * Caution: if you use git add with https login and pass, you need to run "git remote update" in order for the above note to work
  * NOTE: branch: usually "master"
  *)
-on cherry(local_repo_path, branch,user_name, user_password)
+on cherry(local_repo_path, branch)
 	set loc to "origin" --"https://" & user_name & ":" & user_password & "@" & remote_repo_url
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & branch --TODO: whats the -v, verbose?
 end cherry
