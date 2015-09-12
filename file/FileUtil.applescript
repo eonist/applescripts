@@ -1,5 +1,5 @@
 log alias ((alias ((path to me as text) & "::") as text) & "::")
-log alias (alias ((path to me as text) & "::")) as text & "FileUtil.applescript"
+log alias ((alias ((path to me as text) & "::")) as text & "FileUtil.applescript")
 (*
  * @param: file_path should be in posix format?
  *)
