@@ -199,4 +199,19 @@ on hfs_parent_path(the_hsf_path)
 	set the_hfs_file_path to hfs_file_path(the_posix_path)
 	return the_hfs_file_path
 end hfs_parent_path
-
+(*
+ * NOTE: edge case method
+ *)
+on full_hsf_path(folder_posix_path, file_name)
+	return alias (folder_posix_path & file_name)
+end full_hsf_path
+(*
+ * NOTE: edge case method
+ *)
+on full_hsf_paths(folder_posix_path, file_names)
+	set file_paths to {}
+	repeat with file_name in file_names
+		set file_paths to file_paths & full_hsf_path(folder_posix_path, file_name)
+	end repeat
+	return file_paths
+end full_hsf_paths
