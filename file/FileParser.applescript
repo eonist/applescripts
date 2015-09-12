@@ -144,6 +144,16 @@ on file_names(the_folder)
 	end tell
 end file_names
 (*
+ * the_folder: alias hsf file path
+ * file_kind: "AppleScript text" or "JPEG image"
+ *)
+on file_names_of_kind(the_folder,file_kind)
+	tell application "Finder"
+		set the_file_list to name of files of folder the_folder whose (kind is file_kind) -- or kind is "AppleScript" 
+	end tell
+	return the_file_list
+end file_names_of_kind
+(*
  * Returns the file name from the file path
  * Todo: does it include the file extension?
  * Todo: does this work with posix?, if not make a note about how to convert hsf to posix
