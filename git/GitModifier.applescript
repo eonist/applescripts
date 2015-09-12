@@ -6,6 +6,7 @@ property git_path : "/usr/local/git/bin/" --to execute git commands we need to c
  * @param file_name is the file name you want to add, use * if you want to add all files
  * Caution: when a file is removed, the * char wont work, you have to add the file manually
  * Example: GitUtils's add(local_repo_path, "*")
+ * Note: the opposite of add is reset, see the reset method for more info
  *)
 on add(local_repo_path, file_name)
 	if (TextAsserter's is_wrapped_in(file_name, "\"") = false) then --avoids quoting a file_name that is already quoated, this can happen when git removes a file
@@ -64,7 +65,7 @@ end push
  * The opposite of the add action
  * Important: You should never use git reset <commit> when any snapshots after <commit> have been pushed to a public repository
  * NOTE: The * resets all
- * NOTE: git reset <file> --Removes a file from the staging area, 
+ * NOTE: git reset <file> --Removes a file from the staging area, aka unstagin a file
  * NOTE: git reset --hard --Removes a file from the staging area and the actual file (does not remove an untracked file)
  * NOTE: git reset --Removes all files form the staging area, opposite of 
  * NOTE: git reset <commit> --reset the staging area to a specific commit id, this is great when you want to group a bunch of commits together
