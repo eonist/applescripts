@@ -199,3 +199,4 @@ on hfs_parent_path(the_hsf_path)
 	set the_hfs_file_path to hfs_file_path(the_posix_path)
 	return the_hfs_file_path
 end hfs_parent_path
+
