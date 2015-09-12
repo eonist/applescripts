@@ -292,6 +292,7 @@ end check_out
  * TODO: does this work here: "git checkout --theirs *"  or "git checkout --ours *" 
  *)
 on fetch(local_repo_path, remote_path, branch)
+	log "fetch()"
 	--condition
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git fetch " & remote_path
 	if branch is not space then
