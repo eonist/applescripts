@@ -51,7 +51,7 @@ end commit
  * NOTE: if the remote history has diverged from your history, you need to pull the remote branch and merge it into your local one,
  * @param from_where: "master"
  * @param to_where: "origin"
- * NOTE: git push <remote> <branch> (Push the specified branch to <remote>, along with all of the necessary commits and internal objects. This creates a local branch in the destination repository. To prevent you from overwriting commits, Git wonÕt let you push when it results in a non-fast-forward merge in the destination repository.)
+ * NOTE: git push <remote> <branch> (Push the specified branch to <remote>, along with all of the necessary commits and internal objects. This creates a local branch in the destination repository. To prevent you from overwriting commits, Git wonï¿½t let you push when it results in a non-fast-forward merge in the destination repository.)
  * @param remote_repo_url: github.com/user-name/repo-name.git
  * NOTE: you may mitigate using username and pass by researching how to use SSH key in github from trusted maschines
  * TODO: maybe add try error when doing the shell part
@@ -59,7 +59,7 @@ end commit
  * Example: GitUtils's push(local_repo_path, "github.com/user-name/repo-name.git", user_name, user_password)
  * NOTE: Original gti cmd: git push https://github.com/user/test.git master
  * NOTE: ssh-example: ssh://user@host/path/to/repo.git
- * NOTE: Only Push to Bare Repositories In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, itÕs important to never push to another developerÕs repository. But because bare repos donÕt have a working directory, itÕs impossible to interrupt anybodyÕs developments.
+ * NOTE: Only Push to Bare Repositories In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, itï¿½s important to never push to another developerï¿½s repository. But because bare repos donï¿½t have a working directory, itï¿½s impossible to interrupt anybodyï¿½s developments.
  * NOTE: The only time you should ever need to force push is when you realize that the commits you just shared were not quite right and you fixed them with a git commit --amend or an interactive rebase. However, you must be absolutely certain that none of your teammates have pulled those commits before using the --force option.
  * NOTE: you can also do "git push" if you are already switched into the branch you want to push and there is only one remote repo attached to the local repo
  *)
@@ -88,7 +88,7 @@ on reset(local_repo_path, file_name)
 end reset
 (*
  * clean
- * NOTE: git clean -n --Perform a Òdry runÓ of git clean. This will show you which files are going to be removed without actually doing it.
+ * NOTE: git clean -n --Perform a ï¿½dry runï¿½ of git clean. This will show you which files are going to be removed without actually doing it.
  * NOTE: git clean -f --Remove untracked files from the current directory. The -f (force) flag is required unless the clean.requireForce configuration option is set to false (it's true by default). This will not remove untracked folders or files specified by .gitignore.
  * NOTE: git clean -f <path> --Remove untracked files, but limit the operation to the specified path.
  * NOTE: git clean -df --Remove untracked files and untracked directories from the current directory.
@@ -163,6 +163,7 @@ end init
  * Attach a remote repo to a local repo
  * NOTE: git remote add origin https://github.com/user/test.git
  * NOTE: git remote add john http://dev.example.com/john.git (YOu can also add other teammates git repos to the same repo as above)
+ * NOTE: to retrive the origin url: "git config --get remote.origin.url"
  *)
 on attach_remote_repo(local_repo_path, remote_repo_path)
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git remote add origin" & " " & (quoted form of remote_repo_path)
@@ -244,7 +245,7 @@ on git_remote_update(local_repo_path)
 end git_remote_update
 (*
  * NOTE: git remote -v (List the remote connections you have to other repositories. include the URL of each connection.)
- * NOTE: git remote add <name> <url> (Create a new connection to a remote repository. After adding a remote, youÕll be able to use <name> as a shortcut)
+ * NOTE: git remote add <name> <url> (Create a new connection to a remote repository. After adding a remote, youï¿½ll be able to use <name> as a shortcut)
  * NOTE: git remote rm <name> (Remove the connection to the remote repository called <name>.)
  * NOTE: git remote rename <old-name> <new-name> (Rename a remote connection from <old-name> to <new-name>.)
  *)
@@ -299,9 +300,9 @@ end fetch
 (*
  * branch
  * NOTE: to delete a branch do: "git branch -d some-branch" (if you just merged the branch in, if not use -D)
- * NOTE: to delete a branch from a remote repo: "git push origin --delete some_branch" Delete the specified branch. This is a ÒsafeÓ operation in that Git prevents you from deleting the branch if it has unmerged changes.
+ * NOTE: to delete a branch from a remote repo: "git push origin --delete some_branch" Delete the specified branch. This is a ï¿½safeï¿½ operation in that Git prevents you from deleting the branch if it has unmerged changes.
  * NOTE: you can check which branches you have open by doing "git branch"
- * NOTE: Remote branches are just like local branches, except they represent commits from somebody elseÕs repository. You can check out a remote branch just like a local one, but this puts you in a detached HEAD state (just like checking out an old commit). You can think of them as read-only branches. 
+ * NOTE: Remote branches are just like local branches, except they represent commits from somebody elseï¿½s repository. You can check out a remote branch just like a local one, but this puts you in a detached HEAD state (just like checking out an old commit). You can think of them as read-only branches. 
  * NOTE: you can inspect these branches with the usual git checkout and git log commands. If you approve the changes a remote branch contains, you can merge it into a local branch with a normal git merge.
  * NOTE: git branch -r
  * # origin/master
@@ -314,8 +315,8 @@ on branch(target_branch, delete_flag)
 end branch
 (*
  * Merging is Git's way of putting a forked history back together again
- * NOTE: If the two branches youÔre trying to merge both changed the same part of the same file, Git wonÕt be able to figure out which version to use. When such a situation occurs, it stops right before the merge commit so 
- * NOTE: Note that merge conflicts will only occur in the event of a 3-way merge. ItÕs not possible to have conflicting changes in a fast-forward merge.
+ * NOTE: If the two branches youï¿½re trying to merge both changed the same part of the same file, Git wonï¿½t be able to figure out which version to use. When such a situation occurs, it stops right before the merge commit so 
+ * NOTE: Note that merge conflicts will only occur in the event of a 3-way merge. Itï¿½s not possible to have conflicting changes in a fast-forward merge.
  * NOTE: The current branch will be updated to reflect the merge, but the target branch will be completely unaffected. 
  * NOTE: to list all local branches in your repo do: "git branch"
  * NOTE: to list all remote branches in your repo do: "git branch -r"
@@ -337,8 +338,8 @@ end merge
  * rebase
  * NOTE: it seems rebasing is almost the same as merging, but with rebasing you also get the opertunity to squash commits into fewer commits, so when the rebasing is complete, the commit history looks will look simpler than with merging.
  * NOTE: The golden rule of git rebase is to never use it on public branches.
- * NOTE: One of the best ways to incorporate rebasing into your workflow is to clean up local, in-progress features. By periodically performing an interactive rebase, you can make sure each commit in your feature is focused and meaningful. This lets you write your code without worrying about breaking it up into isolated commitsÑyou can fix it up after the fact.
- * NOTE: you can also squash together commits without merging: "git checkout feature" then "git rebase -i HEAD~3" By specifying HEAD~3 as the new base, youÕre not actually moving the branchÑyouÕre just interactively re-writing the 3 commits that follow it. Note that this will not incorporate upstream changes into the feature branch.
+ * NOTE: One of the best ways to incorporate rebasing into your workflow is to clean up local, in-progress features. By periodically performing an interactive rebase, you can make sure each commit in your feature is focused and meaningful. This lets you write your code without worrying about breaking it up into isolated commitsï¿½you can fix it up after the fact.
+ * NOTE: you can also squash together commits without merging: "git checkout feature" then "git rebase -i HEAD~3" By specifying HEAD~3 as the new base, youï¿½re not actually moving the branchï¿½youï¿½re just interactively re-writing the 3 commits that follow it. Note that this will not incorporate upstream changes into the feature branch.
  * NOTE: If you would prefer a clean, linear history free of unnecessary merge commits, you should reach for git rebase instead of git merge when integrating changes from another branch.
  * NOTE: you switch to the branch you want to rebase and then do "git rebase master"
  * TODO: try "git rebase -i" see if it works as a commit squassher
