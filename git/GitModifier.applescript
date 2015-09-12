@@ -172,7 +172,7 @@ end config
 
 (*
  * NOTE: brings your remote refs up to date
- * TODO: Ellaborate, it seems this method is needed to get the cherry method to work
+ * TODO: Ellaborate, it seems this method is needed to get the cherry method to work, can it be used with specific branches?
  *)
 on git_remote_update(local_repo_path)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git remote update"
