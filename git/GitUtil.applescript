@@ -4,7 +4,6 @@ property GitAsserter : my ScriptLoader's load_script(alias ((path to scripts fol
 property GitModifier : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "git:GitModifier.applescript"))
 property git_path : "/usr/local/git/bin/" --to execute git commands we need to call the git commands from this path
 
-
 (*
  * Manual pull
  * CAUTION: remember to wrap this method in a try error clause, so that you can handle merge conflicts
@@ -18,7 +17,7 @@ on manual_pull(local_repo_path, remote_path, local_branch, remote_branch)
 	log "is_remote_branch_ahead: " & is_remote_branch_ahead
 	return --faux break
 	if is_remote_branch_ahead then --asserts if a merge isneeded
-		merge(local_file_path, local_branch, remote_branch) --git merge master origin/master (merges the changes from remote that you just fetched)
+		GitModifier's merge(local_file_path, local_branch, remote_branch) --git merge master origin/master (merges the changes from remote that you just fetched)
 	end if
 end manual_pull
 
