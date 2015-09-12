@@ -1,4 +1,4 @@
-log alias ((path to me as text) & "::::")
+log alias ((alias ((path to me as text) & "::") as text) & "::")
 (*
  * @param: file_path should be in posix format?
  *)
