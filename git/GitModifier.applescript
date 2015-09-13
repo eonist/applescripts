@@ -49,14 +49,14 @@ end commit
  * Example: GitUtils's push(local_repo_path, "github.com/user-name/repo-name.git", user_name, user_password)
  * NOTE: Original gti cmd: git push https://github.com/user/test.git master
  * NOTE: ssh-example: ssh://user@host/path/to/repo.git
- * NOTE: Only Push to Bare Repositories In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, it�s important to never push to another developer�s repository. But because bare repos don�t have a working directory, it�s impossible to interrupt anybody�s developments.
+ * NOTE: Only Push to Bare Repositories In addition, you should only push to repositories that have been created with the --bare flag. Since pushing messes with the remote branch structure, it's important to never push to another developers repository. But because bare repos don't have a working directory, it's impossible to interrupt anybodys developments.
  * NOTE: The only time you should ever need to force push is when you realize that the commits you just shared were not quite right and you fixed them with a git commit --amend or an interactive rebase. However, you must be absolutely certain that none of your teammates have pulled those commits before using the --force option.
  * NOTE: you can also do "git push" if you are already switched into the branch you want to push and there is only one remote repo attached to the local repo
  * NOTE: remove remote feature branch: git push origin --delete <branch-name>
  * @PARAM: branch: usually "master"
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password, branch)
-	log ("GitModifier's push()")
+	log ("GitModifier's push(" & "local_path: " & local_repo_path & ", remote_path: " & remote_repo_url & ", user: " & user_name & ", pass: " & user_password & ", branch: " & branch & ")")
 	set remote_loc to "https://" & user_name & ":" & user_password & "@" & remote_repo_url --https://user:pass@github.com/user/repo.git--"origin"
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git push" & " " & remote_loc & " " & branch
 	--log "shell_cmd: " & shell_cmd
