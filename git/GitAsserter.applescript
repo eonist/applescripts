@@ -32,9 +32,9 @@ end has_remote_repo_attached
  * Asserts if a remote branch is ahead of a local branch
  *)
 on is_remote_branch_ahead(local_repo_path, branch)
-	log "is_remote_branch_ahead()"
+	--log "GitAsserter's is_remote_branch_ahead()"
 	set the_log to GitParser's do_log(local_repo_path, "--oneline " & branch & ".." & "origin" & "/" & branch) --move this to the gitparser as a ref
-	log the_log
+	--log the_log
 	set log_list to paragraphs of the_log
 	if (length of log_list > 0) then
 		return true
@@ -43,10 +43,10 @@ on is_remote_branch_ahead(local_repo_path, branch)
 	end if
 end is_remote_branch_ahead
 (*
- * you could also maybe use log to assert this, see is_remote_branch_ahead
+ * you could also maybe use log to assert this, see is_remote_branch_ahead but opposite
  *)
 on has_local_commits(local_repo_path, branch)
-	log "GitAsserter's has_local_commits()"
+	--log "GitAsserter's has_local_commits()"
 	--move the bellow to gitModifier?
 	GitModifier's git_remote_update(local_repo_path) --in order for the cherry to work with "git add" that uses https, we need to call this method
 	set cherry_result to GitParser's cherry(local_repo_path, branch)
