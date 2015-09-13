@@ -9,7 +9,7 @@ property git_path : "/usr/local/git/bin/" --to execute git commands we need to c
  * Note: the opposite of add is reset, see the reset method for more info
  *)
 on add(local_repo_path, file_name)
-	log ("GitModifier's add(" & file_name & ")")
+	log ("GitModifier's add(" & local_repo_path & file_name & ")")
 	if (TextAsserter's is_wrapped_in(file_name, "\"") = false) then --avoids quoting a file_name that is already quoated, this can happen when git removes a file
 		set file_name to quoted form of file_name
 	end if
@@ -271,7 +271,7 @@ end branch
  * @param into_branch is the branch you usually checkout before doing the merge
  *)
 on merge(local_repo_path, into_branch, from_branch)
-	log("GitModifier's merge()")
+	log ("GitModifier's merge()")
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git merge " & into_branch & " " & from_branch
 	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
