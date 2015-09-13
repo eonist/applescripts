@@ -269,6 +269,7 @@ end branch
  * NOTE: To merge a remote branch into your local branch do: "git fetch origin master", "git checkout master", "git merge origin/master", if you get conflicts and you just want to keep all your or their updates you do "git checkout --thiers *" or "git checkout --ours *" and then add and commit and push. Now you have merged perfectly
  * @param from_branch the branch you want to apply to the @param into_branch
  * @param into_branch is the branch you usually checkout before doing the merge
+ * NOTE: "git merge --abort" tries to revert back to your state before you ran the merge. The only cases where it may not be able to do this perfectly would be if you had unstashed, uncommitted changes in your working directory when you ran it, otherwise it should work fine.
  *)
 on merge(local_repo_path, into_branch, from_branch)
 	log ("GitModifier's merge()")
