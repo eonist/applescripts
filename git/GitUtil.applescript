@@ -11,16 +11,16 @@ property git_path : "/usr/local/git/bin/" --to execute git commands we need to c
  * TODO: add support for different local and remote branch name
  *)
 on manual_pull(local_path, remote_path, branch)
-	log (tab & "GitUtil's manual_pull()")
+	log ("GitUtil's manual_pull()")
 	GitModifier's fetch(local_path, remote_path, branch) --git fetch origin master, retrive the latest repo info
 	set is_remote_branch_ahead to GitAsserter's is_remote_branch_ahead(local_path, branch) --use the git log oneline thing here	--git log --oneline master..origin/master (to view the commit ids of the commits that the remote repo is ahead of local repo )
 	
 	--log tab & "is_remote_branch_ahead: " & is_remote_branch_ahead
 	if is_remote_branch_ahead then --asserts if a merge isneeded
-		log tab & tab & "remote branch is ahead, so there is something to merge"
+		log tab & "remote branch is ahead, so there is something to merge"
 		GitModifier's merge(local_path, branch, "origin/" & branch) --git merge master origin/master (merges the changes from remote that you just fetched)
 	else
-		log tab & tab & "nothing to merge, local branch is up-to-date"
+		log tab & "nothing to merge, local branch is up-to-date"
 	end if
 end manual_pull
 (*

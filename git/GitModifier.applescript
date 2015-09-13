@@ -102,7 +102,7 @@ end clean
  * NOTE: git fetch followed by git merge, git pull rolls this into a single command. git fetch <remote> followed by git merge origin/<current-branch>.
  * NOTE: you can also do "git pull" if you are already switched into the branch you want to pull and there is only one remote repo attached to the local repo
  *)
-on pull(local_repo_path, remote_repo_url, user_name, user_password) --TODO: add branch here
+on pull(local_repo_path, remote_repo_url, user_name, user_password)--TODO: add branch here
 	set remote_loc to "https://" & user_name & ":" & user_password & "@" & remote_repo_url
 	set target_branch to "master" --master branch
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git pull" & " " & remote_loc & " " & target_branch
@@ -209,7 +209,7 @@ end remote
  * @param file_path: can be a relative file path, or the astrix sign for every file "*"
  *)
 on check_out(local_repo_path, loc, file_path)
-	log (tab & "GitModifier's check_out(" & loc & " " & file_path & ")")
+	log ("GitModifier's check_out(" & loc & " " & file_path & ")")
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git checkout " & loc
 	if file_path is not space then
 		set shell_cmd to shell_cmd & " " & file_path
@@ -228,7 +228,7 @@ end check_out
  *)
 on fetch(local_repo_path, remote_path, branch)
 	--log "fetch()"
-	log (tab & "GitModifier's fetch(" & branch & ")")
+	log ("GitModifier's fetch(" & branch & ")")
 	--condition
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git fetch " & "origin"
 	if branch is not space then
