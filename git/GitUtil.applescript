@@ -19,7 +19,7 @@ on manual_pull(local_path, remote_path, branch)
 	if is_remote_branch_ahead then --asserts if a merge isneeded
 		GitModifier's merge(local_path, branch, "origin/" & branch) --git merge master origin/master (merges the changes from remote that you just fetched)
 	else
-		log "nothing to merge, local branch is up-to-date"
+		log tab & "nothing to merge, local branch is up-to-date"
 	end if
 end manual_pull
 (*
