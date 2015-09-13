@@ -9,7 +9,7 @@ property git_path : "/usr/local/git/bin/" --to execute git commands we need to c
  * Note: the opposite of add is reset, see the reset method for more info
  *)
 on add(local_repo_path, file_name)
-	display alert ("GitModifier's manual_pull()")
+	display alert ("GitModifier's add(" & file_name & ")")
 	if (TextAsserter's is_wrapped_in(file_name, "\"") = false) then --avoids quoting a file_name that is already quoated, this can happen when git removes a file
 		set file_name to quoted form of file_name
 	end if
@@ -33,7 +33,8 @@ end add
  * TODO: git commit -m "Title" -m "Description .........." <--this works
  *)
 on commit(local_repo_path, message_title, message_description)
-	log "message_title: " & message_title
+	--log "message_title: " & message_title
+	display alert ("GitModifier's commit(" & message_title & message_description & ")")
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git commit" & " " & "-m" & " '" & message_title & "' " & "-m" & " '" & message_description & "'"
 end commit
 (*
