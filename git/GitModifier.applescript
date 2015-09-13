@@ -33,7 +33,7 @@ end add
  * TODO: git commit -m "Title" -m "Description .........." <--this works
  *)
 on commit(local_repo_path, message_title, message_description)
-	log ("GitModifier's commit(" & message_title &  ")")
+	log ("GitModifier's commit(" & message_title & ")")
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git commit" & " " & "-m" & " '" & message_title & "' " & "-m" & " '" & message_description & "'"
 end commit
 (*
@@ -56,7 +56,7 @@ end commit
  * @PARAM: branch: usually "master"
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password, branch)
-	log ("GitModifier's manual_push()")
+	log ("GitModifier's push()")
 	set remote_loc to "https://" & user_name & ":" & user_password & "@" & remote_repo_url --https://user:pass@github.com/user/repo.git--"origin"
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git push" & " " & remote_loc & " " & branch
 	--log "shell_cmd: " & shell_cmd
