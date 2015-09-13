@@ -41,8 +41,7 @@ on cherry(local_repo_path, branch)
 end cherry
 (*
  * Get a log of what is new, less verbose with pretty oneline
- * NOTE: git log --pretty=oneline
- * NOTE: "pretty=oneline" --get a log of what is new, less verbose with pretty oneline
+ * NOTE: "git log --pretty=oneline" --get a log of what is new, less verbose with pretty oneline
  * NOTE: the cmd is: "git log"
  * NOTE: the do_log name is used because applescript has reserved the log word for its own log method
  * NOTE: git log --oneline
