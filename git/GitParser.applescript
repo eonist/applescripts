@@ -12,6 +12,20 @@ on status(local_repo_path, option)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git status" & " " & option
 end status
 (*
+ * Get a log of what is new, less verbose with pretty oneline
+ * NOTE: "git log --pretty=oneline" --get a log of what is new, less verbose with pretty oneline
+ * NOTE: the cmd is: "git log"
+ * NOTE: the do_log name is used because applescript has reserved the log word for its own log method
+ * NOTE: git log --oneline
+ * NOTE: "git log --oneline master..origin/master" to view the commit ids of the commits that the remote repo is ahead of local repo
+ * NOTE: "git log --oneline origin/master..master" commits the local branch is ahead of remote
+ *)
+on do_log(local_repo_path, cmd)
+	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git log " & cmd
+	--log "shell_cmd: " & shell_cmd
+	return do shell script shell_cmd
+end do_log
+(*
  * git diff --name-only --diff-filter=U "outputs: text2.txt"
  * git status -s "outputs UU text2.txt"
  *)
@@ -39,20 +53,6 @@ on cherry(local_repo_path, branch)
 	set loc to "origin" --"https://" & user_name & ":" & user_password & "@" & remote_repo_url
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & branch --TODO: whats the -v, verbose?
 end cherry
-(*
- * Get a log of what is new, less verbose with pretty oneline
- * NOTE: "git log --pretty=oneline" --get a log of what is new, less verbose with pretty oneline
- * NOTE: the cmd is: "git log"
- * NOTE: the do_log name is used because applescript has reserved the log word for its own log method
- * NOTE: git log --oneline
- * NOTE: "git log --oneline master..origin/master" to view the commit ids of the commits that the remote repo is ahead of local repo
- * NOTE: "git log --oneline origin/master..master" commits the local branch is ahead of remote
- *)
-on do_log(local_repo_path, cmd)
-	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git log " & cmd
-	--log "shell_cmd: " & shell_cmd
-	return do shell script shell_cmd
-end do_log
 (*
  * "git diff --name-only --diff-filter=U" --returns a list of unmerged files
  * NOTE: the digits within the @@ and @@ signs represents indices of the lines that changed. Like: @@ -1 +1,3 @@,do a test with numbered lines from 1 - 16 and remove some to see the meaning like in this research: http://stackoverflow.com/questions/10950412/what-does-1-1-mean-in-gits-diff-output
