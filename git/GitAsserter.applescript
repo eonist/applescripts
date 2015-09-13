@@ -46,11 +46,11 @@ end is_remote_branch_ahead
  * you could also maybe use log to assert this, see is_remote_branch_ahead
  *)
 on has_local_commits(local_repo_path, branch)
-	log "has_local_commits()"
+	log "GitAsserter's has_local_commits()"
 	--move the bellow to gitModifier?
-	log GitModifier's git_remote_update(local_repo_path) --in order for the cherry to work with "git add" that uses https, we need to call this method
+	GitModifier's git_remote_update(local_repo_path) --in order for the cherry to work with "git add" that uses https, we need to call this method
 	set cherry_result to GitParser's cherry(local_repo_path, branch)
-	log "cherry_result: " & cherry_result
+	--log "cherry_result: " & cherry_result
 	set has_commits to (length of cherry_result > 0)
 	return has_commits
 end has_local_commits
