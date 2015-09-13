@@ -102,7 +102,7 @@ end clean
  * NOTE: git fetch followed by git merge, git pull rolls this into a single command. git fetch <remote> followed by git merge origin/<current-branch>.
  * NOTE: you can also do "git pull" if you are already switched into the branch you want to pull and there is only one remote repo attached to the local repo
  *)
-on pull(local_repo_path, remote_repo_url, user_name, user_password)--TODO: add branch here
+on pull(local_repo_path, remote_repo_url, user_name, user_password) --TODO: add branch here
 	set remote_loc to "https://" & user_name & ":" & user_password & "@" & remote_repo_url
 	set target_branch to "master" --master branch
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git pull" & " " & remote_loc & " " & target_branch
@@ -271,7 +271,7 @@ end branch
  * @param into_branch is the branch you usually checkout before doing the merge
  *)
 on merge(local_repo_path, into_branch, from_branch)
-	display alert ("GitModifier's merge()")
+	log("GitModifier's merge()")
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git merge " & into_branch & " " & from_branch
 	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
