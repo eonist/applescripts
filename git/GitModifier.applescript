@@ -209,7 +209,7 @@ end remote
  * @param file_path: can be a relative file path, or the astrix sign for every file "*"
  *)
 on check_out(local_repo_path, loc, file_path)
-	log ("GitModifier's check_out(" & file_path & ")")
+	log ("GitModifier's check_out(" & loc & " " & file_path & ")")
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git checkout " & loc
 	if file_path is not space then
 		set shell_cmd to shell_cmd & " " & file_path
