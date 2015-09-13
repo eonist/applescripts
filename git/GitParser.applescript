@@ -50,7 +50,7 @@ end cherry
  *)
 on do_log(local_repo_path, cmd)
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git log " & cmd
-	log "shell_cmd: " & shell_cmd
+	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end do_log
 (*
