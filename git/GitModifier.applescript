@@ -33,7 +33,7 @@ end add
  * TODO: git commit -m "Title" -m "Description .........." <--this works
  *)
 on commit(local_repo_path, message_title, message_description)
-	log ("GitModifier's commit(" & message_title & message_description & ")")
+	log ("GitModifier's commit(" & message_title &  ")")
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git commit" & " " & "-m" & " '" & message_title & "' " & "-m" & " '" & message_description & "'"
 end commit
 (*
