@@ -1,4 +1,3 @@
-property ScriptLoader : load script alias ((path to scripts folder from user domain as text) & "file:ScriptLoader.scpt") --prerequisite for loading .applescript files
 property git_path : "/usr/local/git/bin/" --to execute git commands we need to call the git commands from this path
 (*
  * Returns current git status
@@ -25,6 +24,16 @@ on do_log(local_repo_path, cmd)
 	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end do_log
+(*
+ * "git diff --name-only --diff-filter=U" --returns a list of unmerged files
+ * NOTE: the digits within the @@ and @@ signs represents indices of the lines that changed. Like: @@ -1 +1,3 @@,do a test with numbered lines from 1 - 16 and remove some to see the meaning like in this research: http://stackoverflow.com/questions/10950412/what-does-1-1-mean-in-gits-diff-output
+ * NOTE: git diff returns a result if a file is removed (the removed file will look like this in the returned result: "--- path-to-removed-file")
+ * NOTE: git diff does not reurn a result if a file is added
+ * NOTE: git diff returns a result if a file is changed (the returned result will contain the lines that changed with a "-" preceding the line that is removed and a "+" preceding the line that is added)
+ *)
+on diff(local_repo_path, cmd)
+	return do shell script "cd " & local_repo_path & ";" & git_path & "git diff " & cmd
+end diff
 (*
  * git diff --name-only --diff-filter=U "outputs: text2.txt"
  * git status -s "outputs UU text2.txt"
@@ -53,13 +62,3 @@ on cherry(local_repo_path, branch)
 	set loc to "origin" --"https://" & user_name & ":" & user_password & "@" & remote_repo_url
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & branch --TODO: whats the -v, verbose?
 end cherry
-(*
- * "git diff --name-only --diff-filter=U" --returns a list of unmerged files
- * NOTE: the digits within the @@ and @@ signs represents indices of the lines that changed. Like: @@ -1 +1,3 @@,do a test with numbered lines from 1 - 16 and remove some to see the meaning like in this research: http://stackoverflow.com/questions/10950412/what-does-1-1-mean-in-gits-diff-output
- * NOTE: git diff returns a result if a file is removed (the removed file will look like this in the returned result: "--- path-to-removed-file")
- * NOTE: git diff does not reurn a result if a file is added
- * NOTE: git diff returns a result if a file is changed (the returned result will contain the lines that changed with a "-" preceding the line that is removed and a "+" preceding the line that is added)
- *)
-on diff(local_repo_path, cmd)
-	return do shell script "cd " & local_repo_path & ";" & git_path & "git diff " & cmd
-end diff
