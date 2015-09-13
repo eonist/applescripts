@@ -267,8 +267,9 @@ end branch
  * @param into_branch is the branch you usually checkout before doing the merge
  *)
 on merge(local_repo_path, into_branch, from_branch)
+	display alert ("GitModifier's manual_pull()")
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git merge " & into_branch & " " & from_branch
-	log "shell_cmd: " & shell_cmd
+	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end merge
 (*
