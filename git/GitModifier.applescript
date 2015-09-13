@@ -9,11 +9,12 @@ property git_path : "/usr/local/git/bin/" --to execute git commands we need to c
  * Note: the opposite of add is reset, see the reset method for more info
  *)
 on add(local_repo_path, file_name)
+	display alert ("GitModifier's manual_pull()")
 	if (TextAsserter's is_wrapped_in(file_name, "\"") = false) then --avoids quoting a file_name that is already quoated, this can happen when git removes a file
 		set file_name to quoted form of file_name
 	end if
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git add" & " " & file_name
-	log "shell_cmd: " & shell_cmd
+	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end add
 
@@ -55,9 +56,10 @@ end commit
  * @PARAM: branch: usually "master"
  *)
 on push(local_repo_path, remote_repo_url, user_name, user_password, branch)
+	display alert ("GitModifier's manual_push()")
 	set remote_loc to "https://" & user_name & ":" & user_password & "@" & remote_repo_url --https://user:pass@github.com/user/repo.git--"origin"
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git push" & " " & remote_loc & " " & branch
-	log "shell_cmd: " & shell_cmd
+	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end push
 
@@ -211,7 +213,7 @@ on check_out(local_repo_path, loc, file_path)
 	if file_path is not space then
 		set shell_cmd to shell_cmd & " " & file_path
 	end if
-	log "shell_cmd: " & shell_cmd
+	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end check_out
 (*
@@ -224,13 +226,14 @@ end check_out
  * TODO: does this work here: "git checkout --theirs *"  or "git checkout --ours *" 
  *)
 on fetch(local_repo_path, remote_path, branch)
-	log "fetch()"
+	--log "fetch()"
+	display alert ("GitModifier's fetch()")
 	--condition
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git fetch " & "origin"
 	if branch is not space then
 		set shell_cmd to shell_cmd & " " & branch
 	end if
-	log "shell_cmd: " & shell_cmd
+	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end fetch
 (*
