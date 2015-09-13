@@ -46,6 +46,7 @@ end cherry
  * NOTE: the do_log name is used because applescript has reserved the log word for its own log method
  * NOTE: git log --oneline
  * NOTE: "git log --oneline master..origin/master" to view the commit ids of the commits that the remote repo is ahead of local repo
+ * NOTE: "git log --oneline origin/master..master" commits the local branch is ahead of remote
  *)
 on do_log(local_repo_path, cmd)
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git log " & cmd
