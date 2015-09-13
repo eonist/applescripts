@@ -228,7 +228,7 @@ end check_out
  *)
 on fetch(local_repo_path, remote_path, branch)
 	--log "fetch()"
-	display alert ("GitModifier's fetch()")
+	log ("GitModifier's fetch(" & branch & ")")
 	--condition
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git fetch " & "origin"
 	if branch is not space then
@@ -256,7 +256,7 @@ on branch(target_branch, delete_flag)
 end branch
 (*
  * Merging is Git's way of putting a forked history back together again
- * NOTE: If the two branches you�re trying to merge both changed the same part of the same file, Git won�t be able to figure out which version to use. When such a situation occurs, it stops right before the merge commit so 
+ * NOTE: If the two branches your trying to merge both changed the same part of the same file, Git wont be able to figure out which version to use. When such a situation occurs, it stops right before the merge commit so 
  * NOTE: Note that merge conflicts will only occur in the event of a 3-way merge. It�s not possible to have conflicting changes in a fast-forward merge.
  * NOTE: The current branch will be updated to reflect the merge, but the target branch will be completely unaffected. 
  * NOTE: to list all local branches in your repo do: "git branch"
