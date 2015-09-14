@@ -6,6 +6,7 @@ property git_path : "/usr/local/git/bin/" --to execute git commands we need to c
 
 (*
  * Manual pull
+ * CAUTION: its best practice to always commit any uncommited files before you attempt to pull. 
  * CAUTION: remember to wrap this method in a try error clause, so that you can handle merge conflicts
  * NOTE: the goal of this method is to arrive at the same state as the remote branch
  * TODO: add support for different local and remote branch name
@@ -26,7 +27,7 @@ end manual_pull
 (*
  * Manually clone a git to a local folder
  * NOTE:  same as clone but differs in that it clones into an existing folder
- * TODO: this method is wrong see git workflows
+ * TODO: this method is wrong see git workflows on gitsyncs github.com
  *)
 on manual_clone(local_repo_path, remote_repo_path)
 	--"git init" <--Installs the invisible .git folder
