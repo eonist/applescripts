@@ -17,7 +17,6 @@ on add(local_repo_path, file_name)
 	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end add
-
 (*
  * Commits current changes
  * NOTE: Commit , usually doesnt return anything
@@ -62,7 +61,6 @@ on push(local_repo_path, remote_repo_url, user_name, user_password, branch)
 	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end push
-
 (*
  * The opposite of the add action
  * Important: You should never use git reset <commit> when any snapshots after <commit> have been pushed to a public repository
@@ -80,7 +78,7 @@ on reset(local_repo_path, file_name)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git reset" & " " & file_name
 end reset
 (*
- * clean
+ * Clean
  * NOTE: git clean -n --Perform a "dry run" of git clean. This will show you which files are going to be removed without actually doing it.
  * NOTE: git clean -f --Remove untracked files from the current directory. The -f (force) flag is required unless the clean.requireForce configuration option is set to false (it's true by default). This will not remove untracked folders or files specified by .gitignore.
  * NOTE: git clean -f <path> --Remove untracked files, but limit the operation to the specified path.
@@ -92,14 +90,13 @@ on clean()
 end clean
 
 (*
- * Downloads the current from the remote git to the local git
+ * Downloads the current from the remote git to the local git (git pull = git fetch + git merge)
  * NOTE: the original git cmd is "git pull origin master"
  * NOTE: "https://user:pass@github.com/user/repo.git"
  * NOTE: returns "Already up-to-date." if there are nothing to pull from remote
  * TODO: Do we need login and pass for pulling? - for private repos, yes
  * NOTE: In the simplest terms, git pull does a git fetch followed by a git merge.
  * TODO: what is git pull --rebase <remote>. Same as the above command, but instead of using git merge to integrate the remote branch with the local one, use git rebase.
- * NOTE: git fetch followed by git merge, git pull rolls this into a single command. git fetch <remote> followed by git merge origin/<current-branch>.
  * NOTE: you can also do "git pull" if you are already switched into the branch you want to pull and there is only one remote repo attached to the local repo
  *)
 on pull(local_repo_path, remote_repo_url, user_name, user_password) --TODO: add branch here
@@ -107,21 +104,18 @@ on pull(local_repo_path, remote_repo_url, user_name, user_password) --TODO: add 
 	set target_branch to "master" --master branch
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git pull" & " " & remote_loc & " " & target_branch
 end pull
-
-
 (*
  * The opposite of the add action
  * "git reset"
  *)
 on revert()
-	
+	--complete this method
 end revert
-
 (*
  * --rm --remove files, research this
  *)
 on remove()
-	
+	--complete this method
 end remove
 (*
  * Init
@@ -163,16 +157,15 @@ on clone(remote_path, local_path)
 	log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
 end clone
-
 (*
  * Config
  * NOTE: set your name: git config --global user.name "your-user-name"
  * NOTE: set your email: git config --global user.email you@example.com
+ * NOTE: git config --global core.editor "vi", or use nano or atom, see gitsync on github in the wiki: dev tips
  *)
 on config()
-	
+	--complete this method
 end config
-
 (*
  * NOTE: brings your remote refs up to date
  * TODO: Ellaborate, it seems this method is needed to get the cherry method to work, can it be used with specific branches?
@@ -187,7 +180,7 @@ end git_remote_update
  * NOTE: git remote rename <old-name> <new-name> (Rename a remote connection from <old-name> to <new-name>.)
  *)
 on remote()
-	--condition 
+	--complete this method
 end remote
 (*
  * Checkout
@@ -239,6 +232,7 @@ on fetch(local_repo_path, remote_path, branch)
 end fetch
 (*
  * branch
+ * TODO: try this: "git branch branchname origin/branchname" -- this should make a local branch based of a remote branch
  * NOTE: to delete a branch do: "git branch -d some-branch" (if you just merged the branch in, if not use -D)
  * NOTE: to delete a branch from a remote repo: "git push origin --delete some_branch" Delete the specified branch. This is a �safe� operation in that Git prevents you from deleting the branch if it has unmerged changes.
  * NOTE: you can check which branches you have open by doing "git branch"
@@ -252,7 +246,7 @@ end fetch
  * NOTE: git checkout -b new_branch_name_here (Create and check out <new-branch>. The -b option is a convenience flag that tells Git to run git branch <new-branch> before running )
  *)
 on branch(target_branch, delete_flag)
-	
+	--complete this method
 end branch
 (*
  * Merging is Git's way of putting a forked history back together again
@@ -288,9 +282,8 @@ end merge
  * TODO: try "git rebase -i" see if it works as a commit squassher
  *)
 on rebase()
-	
+	--complete this method
 end rebase
-
 (*
  * stash
  * NOTE: plain old `git stash` won't touch files that are untracked. For this, you need to use `git stash -u`
