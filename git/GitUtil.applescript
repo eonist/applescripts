@@ -3,7 +3,6 @@ property GitParser : my ScriptLoader's load_script(alias ((path to scripts folde
 property GitAsserter : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "git:GitAsserter.applescript"))
 property GitModifier : my ScriptLoader's load_script(alias ((path to scripts folder from user domain as text) & "git:GitModifier.applescript"))
 property git_path : "/usr/local/git/bin/" --to execute git commands we need to call the git commands from this path
-
 (*
  * Manual pull
  * CAUTION: its best practice to always commit any uncommited files before you attempt to pull. 
