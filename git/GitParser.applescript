@@ -11,7 +11,7 @@ on status(local_repo_path, option)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git status" & " " & option
 end status
 (*
- * Get a log of what is new, less verbose with pretty oneline
+ * Retruns a log of what is new (less verbose with pretty oneline)
  * NOTE: "git log --pretty=oneline" --get a log of what is new, less verbose with pretty oneline
  * NOTE: the cmd is: "git log"
  * NOTE: the do_log name is used because applescript has reserved the log word for its own log method
