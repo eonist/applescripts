@@ -19,7 +19,7 @@ end remove
 (*
  * Note: Instead of loading a .sh shell script into terminal, we compile it as a string and run it directly in terminal
  * Note: the upside of running the script directly as a string is that we dont have to include a .sh in every project
- * Note: When including shell scripts inside applescripts, becarefull with using linebreaks as "return" or end calls with ";"
+ * Note: When including shell scripts inside applescripts, be carefull with using linebreaks as "return" or end calls with ";" and avoid ending a line with &, use only & in none end places
  * Note Using a shell script file, returns the same result: log do shell script "cd ~/;" & "sh hexatoascii.sh x6162634028292F3132335F262F25242F26242325242226C2A7E2889E7CC2A7E2889E7"
  * Example: --log hex_to_ascii("x6162634028292F3132335F262F25242F26242325242226C2A7E2889E7CC2A7E2889E7")--abc@()/123_&/%$/&$#%$"&��|��
  * Caution: seems to work without the x infront of the hex aswell, 0x00FF00 format doesnt seem to work
