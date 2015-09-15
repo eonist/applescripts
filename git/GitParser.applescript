@@ -9,6 +9,8 @@ property git_path : "/usr/local/git/bin/" --to execute git commands we need to c
  * NOTE: make the option param optional with an if clause
  *)
 on status(local_repo_path, option)
+	log "local_repo_path: " & local_repo_path
+	--set local_repo_path to "echo " & local_repo_path & " | sed s'/ /\\ /g'"
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git status" & " " & option
 end status
 (*
