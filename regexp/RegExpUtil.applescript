@@ -81,8 +81,8 @@ end match
 
 (*
  * Todo: untested
- * NOTE: this replaces the space char with two backslashes
- * NOTE: this illustrates how to use the sed for replacing strings
+ * NOTE: this replaces the space char with one backslash
+ * NOTE: this illustrates how to use the shell's sed call for replacing strings
  *)
 on match_and_replace(the_text)
 	set the_result to do shell script "echo " & quoted form of the_text & " | sed 's/ /\\\\ /g'"
