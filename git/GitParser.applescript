@@ -6,6 +6,7 @@ property git_path : "/usr/local/git/bin/" --to execute git commands we need to c
  * NOTE: the cd is to move manouver into the local repository path, the ; char ends the call so you can make another call
  * NOTE: To obtaine a more meaningfull list of items, create a metod that compiles a multidim accociative array derived from the text based staus
  * NOTE: Appending -s simplifies the ret msg or you can also use --porcelain which does the same
+ * NOTE: make the option param optional with an if clause
  *)
 on status(local_repo_path, option)
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git status" & " " & option
