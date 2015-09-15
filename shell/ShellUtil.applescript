@@ -44,15 +44,19 @@ end hex_to_ascii
  * NOTE: Just add a call to this method when you need to check for internet
  *)
 on wait_for_internet()
-  repeat while has_internet_connection()
-    log "no internet connection"
+  repeat while has_internet_connection() = false
     delay 5--delays 5 seconds
   end repeat
-  log "has internet connection"
 end wait_for_internet
 (*
- * --comment here
+ * Asserts if there is internet connection
  *)
 on has_internet_connection()
-	return (do shell script "ping -c 1 www.apple.com") contains "100% packet loss"--0.0% packet loss is the opposite 
+	if (do shell script "ping -c 1 www.apple.com") contains "0.0% packet loss" then --0.0% packet loss is the opposite 
+		log "has internet connection"
+		return true
+	else 
+		log "no internet connection"
+		return false
+	end if
 end has_internet_connection
