@@ -13,6 +13,7 @@ on add(local_repo_path, file_name)
 	if (TextAsserter's is_wrapped_in(file_name, "\"") = false) then --avoids quoting a file_name that is already quoated, this can happen when git removes a file
 		set file_name to quoted form of file_name
 	end if
+	set local_repo_path to quoted form of local_repo_path & " | sed 's/ /\\\\ /g'"
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git add" & " " & file_name
 	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
