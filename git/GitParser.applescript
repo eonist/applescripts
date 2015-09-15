@@ -22,6 +22,7 @@ end status
  * NOTE: "git log --oneline origin/master..master" commits the local branch is ahead of remote
  *)
 on do_log(local_repo_path, cmd)
+	set local_repo_path to quoted form of local_repo_path & " | sed 's/ /\\\\ /g'"
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git log " & cmd
 	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
@@ -34,6 +35,7 @@ end do_log
  * NOTE: git diff returns a result if a file is changed (the returned result will contain the lines that changed with a "-" preceding the line that is removed and a "+" preceding the line that is added)
  *)
 on diff(local_repo_path, cmd)
+	set local_repo_path to quoted form of local_repo_path & " | sed 's/ /\\\\ /g'"
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git diff " & cmd
 end diff
 (*
@@ -41,6 +43,7 @@ end diff
  * git status -s "outputs UU text2.txt"
  *)
 on unmerged_files(local_path)
+	set local_repo_path to quoted form of local_repo_path & " | sed 's/ /\\\\ /g'"
 	set unmerged_paths to diff(local_path, "--name-only --diff-filter=U")
 	return paragraphs of unmerged_paths
 end unmerged_files
@@ -48,6 +51,7 @@ end unmerged_files
  *Returns https://github.com/user/repository.git
  *)
 on origin_url(local_repo_path)
+	set local_repo_path to quoted form of local_repo_path & " | sed 's/ /\\\\ /g'"
 	set shell_cmd to "cd " & local_repo_path & ";" & git_path & "git config --get remote.origin.url"
 	--log "shell_cmd: " & shell_cmd
 	return do shell script shell_cmd
@@ -61,6 +65,7 @@ end origin_url
  * NOTE: branch: usually "master"
  *)
 on cherry(local_repo_path, branch)
+	set local_repo_path to quoted form of local_repo_path & " | sed 's/ /\\\\ /g'"
 	set loc to "origin" --"https://" & user_name & ":" & user_password & "@" & remote_repo_url
 	return do shell script "cd " & local_repo_path & ";" & git_path & "git cherry" & " -v " & loc & "/" & branch --TODO: whats the -v, verbose?
 end cherry
