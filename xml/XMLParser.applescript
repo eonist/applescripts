@@ -14,7 +14,7 @@ on xml_name(xml_item)
 	return name of xml_item
 end xml_name
 (*
- * Returns an XML item
+ * Returns an XML item at an index
  *)
 on element_at(xml_item, the_index)
 	tell application "System Events"
