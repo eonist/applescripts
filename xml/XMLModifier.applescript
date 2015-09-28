@@ -15,6 +15,10 @@ on element(the_name, content)
 	else --no content
 		set xml_text to xml_text & "/>" --end of xml text
 	end if
+	
+	--this is wrong
+	--// :TODO: find thw wizzard file for examples
+	
 	return "<" & the_name & ">" & content & "</" & the_name & ">"
 end element
 --no content = single element
