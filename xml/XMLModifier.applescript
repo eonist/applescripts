@@ -6,7 +6,7 @@ on header()
 end header
 (*
  * Returns an XML item with name and content
- * Todo: impliment no content = single element
+ * Todo: impliment no content = single element aka </item>
  *)
 on element(the_name, content)
 	set xml_text to "<" & the_name
