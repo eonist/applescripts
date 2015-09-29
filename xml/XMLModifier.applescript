@@ -15,14 +15,14 @@ on element(the_name, content)
 	else --no content
 		set xml_text to xml_text & "/>" --end of xml text
 	end if
-	
+	return xml_text
 	--this is wrong
 	--// :TODO: find thw wizzard file for examples
 	
-	return "<" & the_name & ">" & content & "</" & the_name & ">"
+	--return "<" & the_name & ">" & content & "</" & the_name & ">"
 end element
 --no content = single element
---attributes contain a list with "sudo accociative lists" like {{"key","color"},{"code","FF0503"}}
+--attributes contain a list with "sudo acociative lists" like {{"key","color"},{"code","FF0503"}}
 on element_with_attribute(the_name, the_content, the_attributes)
 	set attribute_text to ""
 	repeat with i from 1 to (length of the_attributes)
