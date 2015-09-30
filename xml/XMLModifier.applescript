@@ -18,7 +18,6 @@ on element(the_name, content)
 	return xml_text
 	--this is wrong
 	--// :TODO: find thw wizzard file for examples
-	
 	--return "<" & the_name & ">" & content & "</" & the_name & ">"
 end element
 --no content = single element
@@ -31,7 +30,6 @@ on element_with_attribute(the_name, the_content, the_attributes)
 		set the_value to (second item in attribute)
 		set attribute_text to attribute_text & (the_key & "=" & "\"" & the_value & "\"")
 		if attribute is not the last item in the_attributes then set attribute_text to attribute_text & " " --append a space after each key value pair, unless its at the end
-		
 	end repeat
 	set xml_text to "<" & the_name & " " & attribute_text --beginning of xml text
 	if (length of the_content > 0) then --has content
@@ -41,11 +39,15 @@ on element_with_attribute(the_name, the_content, the_attributes)
 	end if
 	return xml_text
 end element_with_attribute
---
+(*
+ *
+ *)
 on element_beginning(the_name)
 	return "<" & the_name & ">"
 end element_beginning
---
+(*
+ *
+ *)
 on element_end(the_name)
 	return "</" & the_name & ">"
 end element_end
