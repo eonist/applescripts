@@ -44,19 +44,27 @@ end hex_to_ascii
  * NOTE: Just add a call to this method when you need to check for internet
  *)
 on wait_for_internet()
-  repeat while has_internet_connection() = false
-    delay 5--delays 5 seconds
-  end repeat
+	repeat while has_internet_connection() = false
+		delay 5 --delays 5 seconds
+	end repeat
+	return true --convenince return call
 end wait_for_internet
 (*
  * Asserts if there is internet connection
  *)
 on has_internet_connection()
-	if (do shell script "ping -c 1 www.apple.com") contains "0.0% packet loss" then --0.0% packet loss is the opposite 
+	try --try to make a git commit
+		--try something here
 		log "has internet connection"
-		return true
-	else 
+		set retVal to do shell script ("ping -c 1 www.apple.com") --0.0% packet loss is the opposite 
+		if (retVal contains "0.0% packet loss") then
+			return true
+		else
+			return false
+		end if
+	on error errMsg --you may omit the errMsg
+		log tab & "error:" & errMsg
 		log "no internet connection"
 		return false
-	end if
+	end try
 end has_internet_connection
