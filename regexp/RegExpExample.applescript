@@ -8,7 +8,7 @@ on is_year(the_text)
 	return RegExpUtil's has_match(the_text, the_pattern)
 end is_year
 (*
- * OSX sed doesnt seem to support wod boundaies, google may have information on workarounds
+ * OSX sed doesnt seem to support wod boundries, google may have information on workarounds
  *)
 
 on isloated_word(the_text)
