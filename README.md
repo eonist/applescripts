@@ -9,3 +9,5 @@
 - [ ] Rename Note: and Todo: to NOTE: and TODO: (so that Atom.io Editor can highlight them)
 - [ ] rename script folder to utils folder n the mac mini, but keep the scripts name on macbook
 [FAQ](https://github.com/eonist/applescripts/wiki/FAQ)
+
+[MIT License](http://opensource.org/licenses/MIT) 
