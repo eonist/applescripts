@@ -21,10 +21,15 @@ on keychain_data(the_keychain_item_name)
 	log length of pass_result
 	
 	set wrapped_text to TextParser's wrap_text(pass_result, " ") --wraps the text into one line, replaces linebreaks with a single space char
-	log wrapped_text
+	log "wrapped_text: " & wrapped_text
 	
-	set the_result to RegExpUtil's match(wrapped_text, "password\\: (.+) keychain\\: \"([a-z0-9/.]+)\" class\\: \"genp\" attributes\\:(.+)")
-	log the_result
+	set pattern to "password\\: (.+) keychain\\: \"([a-z0-9/.]+)\" version\\: ([0-9]+) class\\: \"genp\" attributes\\:(.+)" --old pattern: "password\\: (.+) keychain\\: \"([a-z0-9/.]+)\" class\\: \"genp\" attributes\\:(.+)"
+	set the_result to RegExpUtil's match(wrapped_text, pattern)
+	log "the_result: " & the_result
+	
+	--continue here, the regexp doesnt work, thats it!
+	
+	
 	log "length of result: " & (length of the_result)
 	log second item in the_result
 	
