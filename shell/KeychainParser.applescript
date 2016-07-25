@@ -25,8 +25,11 @@ on keychain_data(the_keychain_item_name)
 	
 	set the_result to RegExpUtil's match(wrapped_text, "password\\: (.+) keychain\\: \"([a-z0-9/.]+)\" class\\: \"genp\" attributes\\:(.+)")
 	log the_result
-	log length of the_result
+	log "length of result: " & (length of the_result)
 	log second item in the_result
+	
+	log "third"
+	
 	log third item in the_result
 	log fourth item in the_result
 	log ">"
