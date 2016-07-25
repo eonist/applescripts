@@ -29,7 +29,9 @@ on keychain_data(the_keychain_item_name)
 	log second item in the_result
 	log third item in the_result
 	log fourth item in the_result
-	set the_password_text to second item in the_result
+	log ">"
+	set the_password_text to (second item in the_result)
+	log "<"
 	log "the_password_text: " & the_password_text
 	set password_result to RegExpUtil's match(the_password_text, "0?x?([0-9A-F]+)?[[:space:]]*\"(.+)\"")
 	
