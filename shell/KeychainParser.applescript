@@ -37,6 +37,7 @@ on keychain_data(the_keychain_item_name)
 	
 	log third item in the_result
 	log fourth item in the_result
+	log fifth item in the_result
 	log ">"
 	set the_password_text to (second item in the_result)
 	log "<"
@@ -51,7 +52,7 @@ on keychain_data(the_keychain_item_name)
 		set the_password to ShellUtil's hex_to_ascii(hex_pass)
 	end if
 	log "the_password: " & the_password
-	set the_content to fourth item in the_result
+	set the_content to fifth item in the_result --was fourth but apple changed their keychain api in osx 10.11.6
 	log the_content
 	set account_name_result to RegExpUtil's match(the_content, " \"acct\"\\<blob\\>\\=\"([^\"]+)\"")
 	log account_name_result
