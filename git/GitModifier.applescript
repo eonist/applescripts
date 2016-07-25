@@ -40,7 +40,7 @@ end commit
  * NOTE: if the remote history has diverged from your history, you need to pull the remote branch and merge it into your local one,
  * @param from_where: "master"
  * @param to_where: "origin"
- * NOTE: git push <remote> <branch> (Push the specified branch to <remote>, along with all of the necessary commits and internal objects. This creates a local branch in the destination repository. To prevent you from overwriting commits, Git won�t let you push when it results in a non-fast-forward merge in the destination repository.)
+ * NOTE: git push <remote> <branch> (Push the specified branch to <remote>, along with all of the necessary commits and internal objects. This creates a local branch in the destination repository. To prevent you from overwriting commits, Git won't let you push when it results in a non-fast-forward merge in the destination repository.)
  * @param remote_repo_url: github.com/user-name/repo-name.git
  * NOTE: you may mitigate using username and pass by researching how to use SSH key in github from trusted maschines
  * TODO: maybe add try error when doing the shell part
@@ -175,7 +175,7 @@ on git_remote_update(local_repo_path)
 end git_remote_update
 (*
  * NOTE: git remote -v (List the remote connections you have to other repositories. include the URL of each connection.)
- * NOTE: git remote add <name> <url> (Create a new connection to a remote repository. After adding a remote, you�ll be able to use <name> as a shortcut)
+ * NOTE: git remote add <name> <url> (Create a new connection to a remote repository. After adding a remote, you'll be able to use <name> as a shortcut)
  * NOTE: git remote rm <name> (Remove the connection to the remote repository called <name>.)
  * NOTE: git remote rename <old-name> <new-name> (Rename a remote connection from <old-name> to <new-name>.)
  *)
@@ -234,9 +234,9 @@ end fetch
  * branch
  * TODO: try this: "git branch branchname origin/branchname" -- this should make a local branch based of a remote branch
  * NOTE: to delete a branch do: "git branch -d some-branch" (if you just merged the branch in, if not use -D)
- * NOTE: to delete a branch from a remote repo: "git push origin --delete some_branch" Delete the specified branch. This is a �safe� operation in that Git prevents you from deleting the branch if it has unmerged changes.
+ * NOTE: to delete a branch from a remote repo: "git push origin --delete some_branch" Delete the specified branch. This is a 'safe' operation in that Git prevents you from deleting the branch if it has unmerged changes.
  * NOTE: you can check which branches you have open by doing "git branch"
- * NOTE: Remote branches are just like local branches, except they represent commits from somebody else�s repository. You can check out a remote branch just like a local one, but this puts you in a detached HEAD state (just like checking out an old commit). You can think of them as read-only branches. 
+ * NOTE: Remote branches are just like local branches, except they represent commits from somebody else's repository. You can check out a remote branch just like a local one, but this puts you in a detached HEAD state (just like checking out an old commit). You can think of them as read-only branches. 
  * NOTE: you can inspect these branches with the usual git checkout and git log commands. If you approve the changes a remote branch contains, you can merge it into a local branch with a normal git merge.
  * NOTE: git branch -r
  * NOTE: Delete your local feature branch: "git branch --delete <branch-name>"
@@ -251,7 +251,7 @@ end branch
 (*
  * Merging is Git's way of putting a forked history back together again
  * NOTE: If the two branches your trying to merge both changed the same part of the same file, Git wont be able to figure out which version to use. When such a situation occurs, it stops right before the merge commit so 
- * NOTE: Note that merge conflicts will only occur in the event of a 3-way merge. It�s not possible to have conflicting changes in a fast-forward merge.
+ * NOTE: Note that merge conflicts will only occur in the event of a 3-way merge. It's not possible to have conflicting changes in a fast-forward merge.
  * NOTE: The current branch will be updated to reflect the merge, but the target branch will be completely unaffected. 
  * NOTE: to list all local branches in your repo do: "git branch"
  * NOTE: to list all remote branches in your repo do: "git branch -r"
@@ -275,8 +275,8 @@ end merge
  * rebase
  * NOTE: it seems rebasing is almost the same as merging, but with rebasing you also get the opertunity to squash commits into fewer commits, so when the rebasing is complete, the commit history looks will look simpler than with merging.
  * NOTE: The golden rule of git rebase is to never use it on public branches.
- * NOTE: One of the best ways to incorporate rebasing into your workflow is to clean up local, in-progress features. By periodically performing an interactive rebase, you can make sure each commit in your feature is focused and meaningful. This lets you write your code without worrying about breaking it up into isolated commits�you can fix it up after the fact.
- * NOTE: you can also squash together commits without merging: "git checkout feature" then "git rebase -i HEAD~3" By specifying HEAD~3 as the new base, you�re not actually moving the branch�you�re just interactively re-writing the 3 commits that follow it. Note that this will not incorporate upstream changes into the feature branch.
+ * NOTE: One of the best ways to incorporate rebasing into your workflow is to clean up local, in-progress features. By periodically performing an interactive rebase, you can make sure each commit in your feature is focused and meaningful. This lets you write your code without worrying about breaking it up into isolated commits'you can fix it up after the fact.
+ * NOTE: you can also squash together commits without merging: "git checkout feature" then "git rebase -i HEAD~3" By specifying HEAD~3 as the new base, you're not actually moving the branch'you're just interactively re-writing the 3 commits that follow it. Note that this will not incorporate upstream changes into the feature branch.
  * NOTE: If you would prefer a clean, linear history free of unnecessary merge commits, you should reach for git rebase instead of git merge when integrating changes from another branch.
  * NOTE: you switch to the branch you want to rebase and then do "git rebase master"
  * TODO: try "git rebase -i" see if it works as a commit squassher
